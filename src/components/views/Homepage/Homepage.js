@@ -8,9 +8,12 @@ import clsx from 'clsx';
 
 import styles from './Homepage.module.scss';
 
+import { Header } from '../../layout/Header/Header';
+
 const Component = ({className, children}) => (
   <div className={clsx(className, styles.root)}>
     <h2>Homepage</h2>
+    <Header />
     {children}
   </div>
 );

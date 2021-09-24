@@ -3,10 +3,12 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { initialState } from './initialState';
+import { reducer as loginReducer } from './loginRedux';
 import { reducer as postsReducer } from './postsRedux';
 
 // define reducers
 const reducers = {
+  user: loginReducer,
   posts: postsReducer,
 };
 
