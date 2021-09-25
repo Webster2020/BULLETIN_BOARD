@@ -14,7 +14,6 @@ import Button from '@material-ui/core/Button';
 const Component = ({className, children, setLogoutStatusDispatch}) => {
 
   const clickHandler = () => {
-    console.log('dupa');
     setLogoutStatusDispatch(false);
   };
 
