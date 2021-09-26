@@ -8,11 +8,13 @@ import clsx from 'clsx';
 
 import styles from './EditPostButton.module.scss';
 
+import { Link } from 'react-router-dom';
+
 import Button from '@material-ui/core/Button';
 import Stack from '@mui/material/Stack';
 
 
-const Component = ({className, children}) => {
+const Component = ({className, children, id}) => {
 
   const clickHandler = () => {
     console.log('edit post page');
@@ -26,7 +28,9 @@ const Component = ({className, children}) => {
         justifyContent="center"
         alignItems="center"
       >
-        <Button variant="contained" onClick={() => clickHandler()}>EDIT POST</Button>
+        <Link to={`/post/${id}/edit`} style={{textDecoration: 'none'}}>
+          <Button variant="contained" onClick={() => clickHandler()}>EDIT POST</Button>
+        </Link>
       </Stack>
       {children}
     </div>
@@ -36,6 +40,7 @@ const Component = ({className, children}) => {
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  id: PropTypes.number,
 };
 
 // const mapStateToProps = state => ({

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router';
 import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
@@ -8,16 +9,32 @@ import clsx from 'clsx';
 
 import styles from './PostEdit.module.scss';
 
-const Component = ({className, children}) => (
-  <div className={clsx(className, styles.root)}>
-    <h2>PostEdit</h2>
-    {children}
-  </div>
-);
+import { PostEditBar } from '../../features/PostEditBar/PostEditBar';
+import { PostEditForm } from '../../features/PostEditForm/PostEditForm';
+
+const Component = ({className, children}) => {
+ 
+  const { id } = useParams();
+
+  return (
+    <div className={clsx(className, styles.root)}>
+      <h2>PostEdit {id}</h2>
+      <PostEditBar id={id} />
+      <PostEditForm id={id} />
+      {children}
+    </div>
+  );
+};
 
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+};
+
+export {
+  Component as PostEdit,
+  // Container as PostEdit,
+  Component as PostEditComponent,
 };
 
 // const mapStateToProps = state => ({
@@ -29,9 +46,3 @@ Component.propTypes = {
 // });
 
 // const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
-
-export {
-  Component as PostEdit,
-  // Container as PostEdit,
-  Component as PostEditComponent,
-};

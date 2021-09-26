@@ -25,6 +25,7 @@ const Component = ({className, children}) => {
         spacing={{ xs: 1, sm: 2, md: 4 }}
         justifyContent="center"
         alignItems="center"
+        mt={2}
       >
         <Button variant="contained" onClick={() => clickHandler()}>NEW POST +</Button>
       </Stack>

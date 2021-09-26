@@ -6,18 +6,15 @@ import clsx from 'clsx';
 import { connect } from 'react-redux';
 import { getLoginStatus, getUserData } from '../../../redux/loginRedux.js';
 
-import styles from './PostBar.module.scss';
+import styles from './PostEditBar.module.scss';
 
-import { EditPostButton } from '../../common/EditPostButton/EditPostButton';
-import { LoginButton } from '../../common/LoginButton/LoginButton';
-import { LogoutButton } from '../../common/LogoutButton/LogoutButton';
 import { BackHomeButton } from '../../common/BackHomeButton/BackHomeButton';
+import { SaveEditedPostButton } from '../../common/SaveEditedPostButton/SaveEditedPostButton';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
-import Stack from '@mui/material/Stack';
 import Switch from '@mui/material/Switch';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -37,7 +34,7 @@ const Component = ({className, children, id, login, user}) => {
 
   return (
     <div className={clsx(className, styles.root)}>
-      <h2>PostBar</h2>
+      <h2>PostEditBar</h2>
       <Box sx={{ flexGrow: 1 }}>
         <FormGroup>
           <FormControlLabel
@@ -65,20 +62,9 @@ const Component = ({className, children, id, login, user}) => {
             </IconButton> */}
             <BackHomeButton />
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              POST {id}
+              POST {id} (EDIT)
             </Typography>
-
-            {!login ? (
-              <LoginButton />
-            ) : 
-              (
-                <Stack direction="row" spacing={2}>
-                  <EditPostButton id={id}/>
-                  <LogoutButton />
-                </Stack>
-              )
-            }
-
+            <SaveEditedPostButton />
           </Toolbar>
         </AppBar>
       </Box>
@@ -108,7 +94,7 @@ const mapStateToProps = state => ({
 const Container = connect(mapStateToProps)(Component);
 
 export {
-  // Component as PostBar,
-  Container as PostBar,
-  Component as PostBarComponent,
+  //Component as PostEditBar,
+  Container as PostEditBar,
+  Component as PostEditBarComponent,
 };

@@ -63,7 +63,7 @@ const Component = ({className, children, id, login}) => {
             </ListItemButton>
           </ListItem>
         </Link>
-        {login && <EditPostButton />}
+        {login && <EditPostButton id={id}/>}
       
       </Stack>
 
