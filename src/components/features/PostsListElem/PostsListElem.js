@@ -10,6 +10,8 @@ import styles from './PostsListElem.module.scss';
 
 import { EditPostButton } from '../../common/EditPostButton/EditPostButton';
 
+import { Link } from 'react-router-dom';
+
 import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
@@ -20,8 +22,10 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 
-const Component = ({className, children, login}) => {
+const Component = ({className, children, id, login}) => {
   
+  const author = undefined;
+
   return (
     <div className={clsx(className, styles.root)}>
       
@@ -34,31 +38,31 @@ const Component = ({className, children, login}) => {
         alignItems="center"
         spacing={2}
       >
-
-        <ListItem alignItems="center">
-          <ListItemButton>
-            <ListItemAvatar>
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-            </ListItemAvatar>
-            <ListItemText
-              primary="Brunch this weekend?"
-              secondary={
-                <React.Fragment>
-                  <Typography
-                    sx={{ display: 'inline' }}
-                    component="span"
-                    variant="body2"
-                    color="text.primary"
-                  >
-                    Ali Connors
-                  </Typography>
-                  {' — I\'ll be in your neighborhood doing errands this…'}
-                </React.Fragment>
-              }
-            />
-          </ListItemButton>
-        </ListItem>
-
+        <Link to={`/post/${id}`} style={{textDecoration: 'none'}}>
+          <ListItem alignItems="center">
+            <ListItemButton>
+              <ListItemAvatar>
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              </ListItemAvatar>
+              <ListItemText
+                primary="Brunch this weekend?"
+                secondary={
+                  <React.Fragment>
+                    <Typography
+                      sx={{ display: 'inline' }}
+                      component="span"
+                      variant="body2"
+                      color="text.primary"
+                    >
+                      {author === undefined ? 'Bill Gates' : author}
+                    </Typography>
+                    {' — I\'ll be in your neighborhood doing errands this…'}
+                  </React.Fragment>
+                }
+              />
+            </ListItemButton>
+          </ListItem>
+        </Link>
         {login && <EditPostButton />}
       
       </Stack>
@@ -71,6 +75,7 @@ const Component = ({className, children, login}) => {
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  id: PropTypes.number,
   login: PropTypes.bool,
 };
 

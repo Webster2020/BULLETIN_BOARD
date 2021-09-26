@@ -24,9 +24,8 @@ const Component = ({className, children}) => {
         my={1} py={1}
       >
         <List sx={{ width: '100%', maxWidth: 900, bgcolor: 'background.paper' }}>
-          <PostsListElem />
-          <PostsListElem />
-          <PostsListElem />
+          <PostsListElem id={1}/>
+          <PostsListElem id={2}/>
         </List>
       </Box>
       {children}

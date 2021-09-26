@@ -1,5 +1,4 @@
 import React from 'react';
-import { useParams } from 'react-router';
 import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
@@ -7,20 +6,27 @@ import clsx from 'clsx';
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
-import styles from './Post.module.scss';
+import styles from './BackHomeButton.module.scss';
 
-import { PostBar } from '../../features/PostBar/PostBar';
-import { SinglePost} from '../../features/SinglePost/SinglePost';
+import { Link } from 'react-router-dom';
+
+import Box from '@mui/material/Box';
+import Button from '@material-ui/core/Button';
+
 
 const Component = ({className, children}) => {
-
-  const { id } = useParams();
-
   return (
     <div className={clsx(className, styles.root)}>
-      <h2>Post {id}</h2>
-      <PostBar id={id}/>
-      <SinglePost id={id}/>
+      <Box   
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        mr={3}
+      >
+        <Link to={'/'} style={{textDecoration: 'none'}}>
+          <Button variant="contained">HOME</Button>
+        </Link>
+      </Box>
       {children}
     </div>
   );
@@ -42,7 +48,7 @@ Component.propTypes = {
 // const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  Component as Post,
-  // Container as Post,
-  Component as PostComponent,
+  Component as BackHomeButton,
+  // Container as BackHomeButton,
+  Component as BackHomeButtonComponent,
 };
