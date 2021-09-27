@@ -8,6 +8,9 @@ import { getPostById } from '../../../redux/postsRedux.js';
 
 import styles from './PostEditForm.module.scss';
 
+import { SaveEditedPostButton } from '../../common/SaveEditedPostButton/SaveEditedPostButton';
+import { SinglePost} from '../../features/SinglePost/SinglePost';
+
 // import Box from '@mui/material/Box';
 import Checkbox from '@mui/material/Checkbox';
 import Stack from '@mui/material/Stack';
@@ -20,10 +23,21 @@ const Component = ({className, children, id, post}) => {
 
   const [titleChecked, setTitleChecked] = useState(false);
   const [title, setTitle] = useState(postData.title);
+
   const [contentChecked, setContentChecked] = useState(false);
   const [content, setContent] = useState(postData.content);
+
   const [imageChecked, setImageChecked] = useState(false);
   const [image, setImage] = useState(postData.image);
+
+  const [priceChecked, setPriceChecked] = useState(false);
+  const [price, setPrice] = useState(postData.price);
+
+  const [phoneChecked, setPhoneChecked] = useState(false);
+  const [phone, setPhone] = useState(postData.phone);
+
+  const [localizationChecked, setLocalizationChecked] = useState(false);
+  const [localization, setLocalization] = useState(postData.localization);
 
   const handleCheckTitle = (event) => {
     setTitleChecked(event.target.checked);
@@ -46,98 +60,215 @@ const Component = ({className, children, id, post}) => {
     setImage(event.target.value);
   };
 
+  const handleCheckPrice = (event) => {
+    setPriceChecked(event.target.checked);
+  };
+  const handleChangePrice = (event) => {
+    setPrice(event.target.value);
+  };
+
+  const handleCheckPhone = (event) => {
+    setPhoneChecked(event.target.checked);
+  };
+  const handleChangePhone = (event) => {
+    setPhone(event.target.value);
+  };
+
+  const handleCheckLocalization = (event) => {
+    setLocalizationChecked(event.target.checked);
+  };
+  const handleChangeLocalization = (event) => {
+    setLocalization(event.target.value);
+  };
+
   return (
     <div className={clsx(className, styles.root)}>
-      <h2>PostEditForm {id}</h2>
 
-      <Stack
-        component="form"
-        sx={{
-          '& > :not(style)': { m: 1, maxWidth: '500px' },
-        }}
-        direction='column'
-        ml={5}
-      >
+      <div className={styles.column}>
+        <h2>PostEditForm {id}</h2>
 
-        <Stack direction="row" spacing={2}>
-          {!titleChecked ? 
-            (<TextField
-              id="outlined-title"
-              label="Title"
-              value={title}
-              onChange={handleChangeTitle}
-              fullWidth
-              disabled
-            />)
-            :
-            (<TextField
-              id="outlined-title"
-              label="Title"
-              value={title}
-              onChange={handleChangeTitle}
-              fullWidth
-            />) 
-          }
-          <Checkbox
-            checked={titleChecked}
-            onChange={handleCheckTitle}
-            inputProps={{ 'aria-label': 'controlled' }}
-          />
+        <Stack
+          component="form"
+          sx={{
+            '& > :not(style)': { m: 1, maxWidth: '500px' },
+          }}
+          direction='column'
+          ml={5}
+          mb={5}
+        >
+
+          <Stack direction="row" spacing={2}>
+            {!titleChecked ? 
+              (<TextField
+                id="outlined-title"
+                label="Title"
+                value={title}
+                onChange={handleChangeTitle}
+                fullWidth
+                disabled
+              />)
+              :
+              (<TextField
+                id="outlined-title"
+                label="Title"
+                value={title}
+                onChange={handleChangeTitle}
+                fullWidth
+              />) 
+            }
+            <Checkbox
+              checked={titleChecked}
+              onChange={handleCheckTitle}
+              inputProps={{ 'aria-label': 'controlled' }}
+            />
+          </Stack>
+
+          <Stack direction="row" spacing={2}>
+            {!contentChecked ? 
+              (<TextField
+                id="outlined-content"
+                label="Content"
+                value={content}
+                onChange={handleChangeContent}
+                fullWidth
+                disabled
+              />)
+              :
+              (<TextField
+                id="outlined-content"
+                label="Content"
+                value={content}
+                onChange={handleChangeContent}
+                fullWidth
+              />)
+            }
+            <Checkbox
+              checked={contentChecked}
+              onChange={handleCheckContent}
+              inputProps={{ 'aria-label': 'controlled' }}
+            />
+          </Stack>
+
+          <Stack direction="row" spacing={2}>
+            {!imageChecked ? 
+              (<TextField
+                id="outlined-image"
+                label="Image"
+                value={image}
+                onChange={handleChangeImage}
+                fullWidth
+                disabled
+              />)
+              :
+              (<TextField
+                id="outlined-image"
+                label="Image"
+                value={image}
+                onChange={handleChangeImage}
+                fullWidth
+              />)
+            }
+            <Checkbox
+              checked={imageChecked}
+              onChange={handleCheckImage}
+              inputProps={{ 'aria-label': 'controlled' }}
+            />
+          </Stack>
+
+          <Stack direction="row" spacing={2}>
+            {!priceChecked ? 
+              (<TextField
+                id="outlined-price"
+                label="Price [$]"
+                value={price}
+                onChange={handleChangePrice}
+                fullWidth
+                disabled
+              />)
+              :
+              (<TextField
+                id="outlined-price"
+                label="Price [$]"
+                value={price}
+                onChange={handleChangePrice}
+                fullWidth
+              />)
+            }
+            <Checkbox
+              checked={priceChecked}
+              onChange={handleCheckPrice}
+              inputProps={{ 'aria-label': 'controlled' }}
+            />
+          </Stack>
+
+          <Stack direction="row" spacing={2}>
+            {!phoneChecked ? 
+              (<TextField
+                id="outlined-phone"
+                label="Phone"
+                value={phone}
+                onChange={handleChangePhone}
+                fullWidth
+                disabled
+              />)
+              :
+              (<TextField
+                id="outlined-phone"
+                label="Phone"
+                value={phone}
+                onChange={handleChangePhone}
+                fullWidth
+              />)
+            }
+            <Checkbox
+              checked={phoneChecked}
+              onChange={handleCheckPhone}
+              inputProps={{ 'aria-label': 'controlled' }}
+            />
+          </Stack>
+
+          <Stack direction="row" spacing={2}>
+            {!localizationChecked ? 
+              (<TextField
+                id="outlined-localization"
+                label="Localization"
+                value={localization}
+                onChange={handleChangeLocalization}
+                fullWidth
+                disabled
+              />)
+              :
+              (<TextField
+                id="outlined-localization"
+                label="Localization"
+                value={localization}
+                onChange={handleChangeLocalization}
+                fullWidth
+              />)
+            }
+            <Checkbox
+              checked={localizationChecked}
+              onChange={handleCheckLocalization}
+              inputProps={{ 'aria-label': 'controlled' }}
+            />
+          </Stack>
+
         </Stack>
-
-        <Stack direction="row" spacing={2}>
-          {!contentChecked ? 
-            (<TextField
-              id="outlined-content"
-              label="Content"
-              value={content}
-              onChange={handleChangeContent}
-              fullWidth
-              disabled
-            />)
-            :
-            (<TextField
-              id="outlined-content"
-              label="Content"
-              value={content}
-              onChange={handleChangeContent}
-              fullWidth
-            />)
-          }
-          <Checkbox
-            checked={contentChecked}
-            onChange={handleCheckContent}
-            inputProps={{ 'aria-label': 'controlled' }}
-          />
+        
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          spacing={{ xs: 1, sm: 2, md: 4 }}
+          justifyContent="center"
+          alignItems="center"
+          mt={2}
+        >
+          <SaveEditedPostButton />
         </Stack>
-
-        <Stack direction="row" spacing={2}>
-          {!contentChecked ? 
-            (<TextField
-              id="outlined-image"
-              label="Image"
-              value={image}
-              onChange={handleChangeImage}
-              fullWidth
-              disabled
-            />)
-            :
-            (<TextField
-              id="outlined-image"
-              label="Image"
-              value={image}
-              onChange={handleChangeImage}
-              fullWidth
-            />)
-          }
-          <Checkbox
-            checked={imageChecked}
-            onChange={handleCheckImage}
-            inputProps={{ 'aria-label': 'controlled' }}
-          />
-        </Stack>
-
-      </Stack>
+      </div>
+      
+      <div className={styles.column}>
+        <SinglePost id={id}/>
+      </div>
 
       {children}
     </div>

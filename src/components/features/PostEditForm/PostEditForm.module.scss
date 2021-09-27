@@ -1,4 +1,10 @@
 @import '../../../styles/settings.scss';
 
-// .root {
-// }
+.root {
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  flex: 1;
+}
