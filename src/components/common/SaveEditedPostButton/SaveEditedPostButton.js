@@ -5,17 +5,41 @@ import clsx from 'clsx';
 
 import { connect } from 'react-redux';
 import { getLoginStatus, getUserData } from '../../../redux/loginRedux.js';
+import { createActionEditPost } from '../../../redux/postsRedux.js';
 
 import styles from './SaveEditedPostButton.module.scss';
 
 import Button from '@material-ui/core/Button';
 
 
-const Component = ({className, children}) => {
+const Component = (
+  {
+    className,
+    children, 
+    postData,
+    title,
+    content,
+    image,
+    price,
+    phone,
+    localization,
+    setEditedPostDispatch,
+  }
+) => {
+
+  const editedPost = {
+    ...postData,
+    title,
+    content,
+    image,
+    price,
+    phone,
+    localization,
+  };
 
   const clickHandler = () => {
-    console.log('dupa');
-    //setLoginStatusDispatch(true);
+    console.log(editedPost);
+    setEditedPostDispatch(editedPost);
   };
 
   return (
@@ -30,7 +54,14 @@ const Component = ({className, children}) => {
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  // setLoginStatusDispatch: PropTypes.func,
+  postData: PropTypes.object,
+  title: PropTypes.string,
+  content: PropTypes.string,
+  image: PropTypes.string,
+  price: PropTypes.string,
+  phone: PropTypes.string,
+  localization: PropTypes.string,
+  setEditedPostDispatch: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -39,11 +70,11 @@ const mapStateToProps = state => ({
   //admin: getAdminStatus(state),
 });
 
-// const mapDispatchToProps = dispatch => ({
-//   setLoginStatusDispatch: bool => dispatch(createActionLogin(bool)),
-// });
+const mapDispatchToProps = dispatch => ({
+  setEditedPostDispatch: postData => dispatch(createActionEditPost(postData)),
+});
 
-const Container = connect(mapStateToProps)(Component);
+const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 export {
   // Component as SaveEditedPostButton,
   Container as SaveEditedPostButton,

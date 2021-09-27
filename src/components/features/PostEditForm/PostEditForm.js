@@ -262,7 +262,15 @@ const Component = ({className, children, id, post}) => {
           alignItems="center"
           mt={2}
         >
-          <SaveEditedPostButton />
+          <SaveEditedPostButton 
+            postData={postData} 
+            title={title}
+            content={content}
+            image={image}
+            price={price}
+            phone={phone}
+            localization={localization}
+          />
         </Stack>
       </div>
       
