@@ -3,23 +3,32 @@ import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
+import { connect } from 'react-redux';
+import { getPostsState, createActionSwitchPosts } from '../../../redux/postsRedux.js';
 
 import styles from './MyPostsButton.module.scss';
 
 import Button from '@material-ui/core/Button';
 
 
-const Component = ({className, children}) => {
+const Component = ({className, children, postsState, switchPostsDispatch}) => {
 
   const clickHandler = () => {
-    console.log('my posts page');
+    console.log(postsState);
+    switchPostsDispatch(!postsState);
   };
 
   return (
     <div className={clsx(className, styles.root)}>
-      <Button variant="contained" onClick={() => clickHandler()}>MY POSTS</Button>
+      {!postsState ? 
+        (
+          <Button variant="contained" onClick={() => clickHandler()}>MY POSTS</Button>
+        )
+        : 
+        (
+          <Button variant="contained" onClick={() => clickHandler()}>ALL POSTS</Button>
+        )
+      }
       {children}
     </div>
   );
@@ -28,20 +37,22 @@ const Component = ({className, children}) => {
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  postsState: PropTypes.bool,
+  switchPostsDispatch: PropTypes.func,
 };
 
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
+const mapStateToProps = (state) => ({
+  postsState: getPostsState(state),
+});
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
+const mapDispatchToProps = dispatch => ({
+  switchPostsDispatch: bool => dispatch(createActionSwitchPosts(bool)),
+});
 
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  Component as MyPostsButton,
-  // Container as MyAdvertsButton,
+  // Component as MyPostsButton,
+  Container as MyPostsButton,
   Component as MyPostsButtonComponent,
 };

@@ -10,6 +10,7 @@ export const initialState = {
     },
   },
   posts: {
+    userPosts: false,
     data: [
       // {
       //   postId: 1,

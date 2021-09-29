@@ -23,6 +23,7 @@ const Component = (
     price,
     phone,
     localization,
+    update,
     setEditedPostDispatch,
   }
 ) => {
@@ -35,6 +36,7 @@ const Component = (
     price,
     phone,
     localization,
+    update,
   };
 
   const clickHandler = () => {
@@ -60,6 +62,7 @@ Component.propTypes = {
   price: PropTypes.string,
   phone: PropTypes.string,
   localization: PropTypes.string,
+  update: PropTypes.string,
   setEditedPostDispatch: PropTypes.func,
 };
 

@@ -31,7 +31,7 @@ const Component = ({className, children, id, post}) => {
     console.log(post);
   });
 
-  const postData = post; //o co kaman?
+  const postData = post;
 
   return (
     <div className={clsx(className, styles.root)}>
@@ -62,7 +62,7 @@ const Component = ({className, children, id, post}) => {
           </CardContent>
           <CardMedia
             component="img"
-            height="194"
+            height="400"
             image={postData.image}
             alt={postData.title}
           />

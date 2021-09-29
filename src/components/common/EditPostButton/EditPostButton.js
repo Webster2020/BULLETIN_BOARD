@@ -27,6 +27,7 @@ const Component = ({className, children, id}) => {
         spacing={{ xs: 1, sm: 2, md: 4 }}
         justifyContent="center"
         alignItems="center"
+        mx={2}
       >
         <Link to={`/post/${id}/edit`} style={{textDecoration: 'none'}}>
           <Button variant="contained" onClick={() => clickHandler()}>EDIT POST</Button>

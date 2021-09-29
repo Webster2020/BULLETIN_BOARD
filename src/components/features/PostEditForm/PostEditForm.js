@@ -20,6 +20,13 @@ const Component = ({className, children, id, post}) => {
 
   const postData = post;
 
+  const today = new Date();
+  const day = today.getDate() < 10 ? `0${today.getDate()}` : today.getDate();
+  const month = (today.getMonth() + 1) < 10 ? `0${today.getMonth() + 1}` : (today.getMonth() + 1);
+  const year = today.getFullYear();
+  const currentDate = `${day}/${month}/${year}`;
+  console.log('CURRENT DATA:' + currentDate);
+
   const [titleChecked, setTitleChecked] = useState(false);
   const [title, setTitle] = useState(postData.title);
 
@@ -269,6 +276,7 @@ const Component = ({className, children, id, post}) => {
             price={price}
             phone={phone}
             localization={localization}
+            update={currentDate}
           />
         </Stack>
       </div>

@@ -50,6 +50,7 @@ const Component = (
   };
 
   const clickHandler = () => {
+    console.log('addedPost');
     console.log(addedPost);
     setAddedPostDispatch(addedPost);
   };
@@ -84,7 +85,7 @@ Component.propTypes = {
 const mapStateToProps = state => ({
   login: getLoginStatus(state),
   user: getUserData(state),
-  //admin: getAdminStatus(state),
+  // admin: getAdminStatus(state),
 });
 
 const mapDispatchToProps = dispatch => ({
