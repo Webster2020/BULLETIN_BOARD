@@ -5,9 +5,9 @@ import clsx from 'clsx';
 
 import { connect } from 'react-redux';
 import { getLoginStatus, getUserData } from '../../../redux/loginRedux.js';
-import { createActionEditPost } from '../../../redux/postsRedux.js';
+import { createActionAddPost } from '../../../redux/postsRedux.js';
 
-import styles from './SaveEditedPostButton.module.scss';
+import styles from './SaveAddedPostButton.module.scss';
 
 import Button from '@material-ui/core/Button';
 
@@ -16,21 +16,33 @@ const Component = (
   {
     className,
     children, 
-    postData,
+    postId,
+    authorId,
+    author,
     title,
     content,
+    date,
+    update,
+    email,
+    status,
     image,
     price,
     phone,
     localization,
-    setEditedPostDispatch,
+    setAddedPostDispatch,
   }
 ) => {
 
-  const editedPost = {
-    ...postData,
+  const addedPost = {
+    postId,
+    authorId,
+    author,
     title,
     content,
+    date,
+    update,
+    email,
+    status,
     image,
     price,
     phone,
@@ -38,8 +50,8 @@ const Component = (
   };
 
   const clickHandler = () => {
-    console.log(editedPost);
-    setEditedPostDispatch(editedPost);
+    console.log(addedPost);
+    setAddedPostDispatch(addedPost);
   };
 
   return (
@@ -53,14 +65,20 @@ const Component = (
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  postData: PropTypes.object,
+  postId: PropTypes.string,
+  authorId: PropTypes.string,
+  author: PropTypes.string,
   title: PropTypes.string,
   content: PropTypes.string,
+  date: PropTypes.string,
+  update: PropTypes.string,
+  email: PropTypes.string,
+  status: PropTypes.string,
   image: PropTypes.string,
   price: PropTypes.string,
   phone: PropTypes.string,
   localization: PropTypes.string,
-  setEditedPostDispatch: PropTypes.func,
+  setAddedPostDispatch: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -70,13 +88,13 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setEditedPostDispatch: postData => dispatch(createActionEditPost(postData)),
+  setAddedPostDispatch: postData => dispatch(createActionAddPost(postData)),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  // Component as SaveEditedPostButton,
-  Container as SaveEditedPostButton,
-  Component as SaveEditedPostButtonComponent,
+  // Component as SaveAddedPostButton,
+  Container as SaveAddedPostButton,
+  Component as SaveAddedPostButtonComponent,
 };

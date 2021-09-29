@@ -26,7 +26,6 @@ const Component = ({className, children, setLoginStatusDispatch}) => {
   );
 };
 
-
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,

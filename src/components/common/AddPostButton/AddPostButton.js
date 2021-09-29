@@ -8,6 +8,8 @@ import clsx from 'clsx';
 
 import styles from './AddPostButton.module.scss';
 
+import { Link } from 'react-router-dom';
+
 import Button from '@material-ui/core/Button';
 import Stack from '@mui/material/Stack';
 
@@ -27,7 +29,9 @@ const Component = ({className, children}) => {
         alignItems="center"
         mt={2}
       >
-        <Button variant="contained" onClick={() => clickHandler()}>NEW POST +</Button>
+        <Link to={`/post/add`} style={{textDecoration: 'none'}}>
+          <Button variant="contained" onClick={() => clickHandler()}>NEW POST +</Button>
+        </Link>
       </Stack>
       {children}
     </div>

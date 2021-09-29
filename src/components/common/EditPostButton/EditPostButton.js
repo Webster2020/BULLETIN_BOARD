@@ -40,7 +40,7 @@ const Component = ({className, children, id}) => {
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  id: PropTypes.number,
+  id: PropTypes.string,
 };
 
 // const mapStateToProps = state => ({

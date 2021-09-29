@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import shortid from 'shortid';
 
 import clsx from 'clsx';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
+import { connect } from 'react-redux';
+import { getAll } from '../../../redux/postsRedux.js';
 
 import styles from './PostsList.module.scss';
 
@@ -14,7 +15,12 @@ import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 
 
-const Component = ({className, children}) => {
+const Component = ({className, children, posts}) => {
+
+  useEffect(() => {
+    console.log(posts);
+  });
+
   return (
     <div className={clsx(className, styles.root)}>
       <Box   
@@ -24,8 +30,10 @@ const Component = ({className, children}) => {
         my={1} py={1}
       >
         <List sx={{ width: '100%', maxWidth: 900, bgcolor: 'background.paper' }}>
-          <PostsListElem id={1}/>
-          <PostsListElem id={2}/>
+          {/* <PostsListElem id={1}/>
+          <PostsListElem id={2}/> */}
+          {posts.map((post => console.log(post.postId)))}
+          {posts.map(post => <PostsListElem key={shortid.generate()} id={post.postId} post={post}/>)}
         </List>
       </Box>
       {children}
@@ -36,20 +44,21 @@ const Component = ({className, children}) => {
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  posts: PropTypes.array,
 };
 
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
+const mapStateToProps = (state) => ({
+  posts: getAll(state),
+});
 
 // const mapDispatchToProps = dispatch => ({
 //   someAction: arg => dispatch(reduxActionCreator(arg)),
 // });
 
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(mapStateToProps)(Component);
 
 export {
-  Component as PostsList,
-  // Container as PostsList,
+  // Component as PostsList,
+  Container as PostsList,
   Component as PostsListComponent,
 };

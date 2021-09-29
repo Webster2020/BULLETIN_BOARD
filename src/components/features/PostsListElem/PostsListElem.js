@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
 
 import { connect } from 'react-redux';
 import { getLoginStatus } from '../../../redux/loginRedux.js';
+// import { getPostById } from '../../../redux/postsRedux.js';
 
 import styles from './PostsListElem.module.scss';
 
@@ -22,9 +23,14 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 
-const Component = ({className, children, id, login}) => {
+const Component = ({className, children, id, login, post}) => {
   
-  const author = undefined;
+  //const author = undefined;
+  const postData = post;
+
+  useEffect(() => {
+    console.log(post);
+  });
 
   return (
     <div className={clsx(className, styles.root)}>
@@ -34,7 +40,7 @@ const Component = ({className, children, id, login}) => {
       <Stack 
         my={1}
         direction="row"
-        justifyContent="center"
+        justifyContent="flex-start"
         alignItems="center"
         spacing={2}
       >
@@ -42,10 +48,13 @@ const Component = ({className, children, id, login}) => {
           <ListItem alignItems="center">
             <ListItemButton>
               <ListItemAvatar>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp">
+                  {postData.author.charAt(0)}
+                </Avatar>
               </ListItemAvatar>
               <ListItemText
-                primary="Brunch this weekend?"
+                sx={{ minWidth: '200px', width: '500px' }}
+                primary={postData.title}
                 secondary={
                   <React.Fragment>
                     <Typography
@@ -54,9 +63,26 @@ const Component = ({className, children, id, login}) => {
                       variant="body2"
                       color="text.primary"
                     >
-                      {author === undefined ? 'Bill Gates' : author}
+                      {/* {author === undefined ? 'Noname' : author} */}
                     </Typography>
-                    {' — I\'ll be in your neighborhood doing errands this…'}
+                    {` —  ${postData.content}`}
+                  </React.Fragment>
+                }
+              />
+              <ListItemText
+                sx={{ marginLeft: '15px' }}
+                primary={`Add date: ${postData.date}`}
+                secondary={
+                  <React.Fragment>
+                    <Typography
+                      sx={{ display: 'inline' }}
+                      component="span"
+                      variant="body2"
+                      color="text.primary"
+                    >
+                      {`Last update: ${postData.update}`}
+                    </Typography>
+                    {/* {postData.update} */}
                   </React.Fragment>
                 }
               />
@@ -75,12 +101,14 @@ const Component = ({className, children, id, login}) => {
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  id: PropTypes.number,
+  id: PropTypes.string,
   login: PropTypes.bool,
+  post: PropTypes.object,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   login: getLoginStatus(state),
+  // post: getPostById(state, props.id),
   // user: getUserData(state),
   // admin: getAdminStatus(state),
 });

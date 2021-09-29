@@ -11,7 +11,6 @@ import styles from './PostEditForm.module.scss';
 import { SaveEditedPostButton } from '../../common/SaveEditedPostButton/SaveEditedPostButton';
 import { SinglePost} from '../../features/SinglePost/SinglePost';
 
-// import Box from '@mui/material/Box';
 import Checkbox from '@mui/material/Checkbox';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
@@ -19,7 +18,7 @@ import TextField from '@mui/material/TextField';
 
 const Component = ({className, children, id, post}) => {
 
-  const postData = post[0];
+  const postData = post;
 
   const [titleChecked, setTitleChecked] = useState(false);
   const [title, setTitle] = useState(postData.title);
@@ -286,7 +285,7 @@ const Component = ({className, children, id, post}) => {
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  id: PropTypes.number,
+  id: PropTypes.string,
   post: PropTypes.object,
 };
 

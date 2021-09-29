@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
@@ -25,7 +25,13 @@ import Typography from '@mui/material/Typography';
 
 const Component = ({className, children, id, post}) => {
 
-  const postData = post[0];
+  useEffect(() => {
+    console.log('SINGL POST:');
+    console.log(id);
+    console.log(post);
+  });
+
+  const postData = post; //o co kaman?
 
   return (
     <div className={clsx(className, styles.root)}>
@@ -113,7 +119,7 @@ const Component = ({className, children, id, post}) => {
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  id: PropTypes.number,
+  id: PropTypes.string,
   post: PropTypes.object,
 };
 

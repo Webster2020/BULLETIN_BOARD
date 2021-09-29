@@ -6,7 +6,7 @@ import clsx from 'clsx';
 import { connect } from 'react-redux';
 import { getLoginStatus, getUserData } from '../../../redux/loginRedux.js';
 
-import styles from './PostEditBar.module.scss';
+import styles from './PostAddBar.module.scss';
 
 import { BackHomeButton } from '../../common/BackHomeButton/BackHomeButton';
 import { SaveEditedPostButton } from '../../common/SaveEditedPostButton/SaveEditedPostButton';
@@ -20,7 +20,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
 
-const Component = ({className, children, id, login, user}) => {
+const Component = ({className, children, login, user}) => {
 
   // const [auth, setAuth] = useState(false);
   useEffect(() => {
@@ -34,7 +34,7 @@ const Component = ({className, children, id, login, user}) => {
 
   return (
     <div className={clsx(className, styles.root)}>
-      <h2>PostEditBar</h2>
+      <h2>PostAddBar</h2>
       <Box sx={{ flexGrow: 1 }}>
         <FormGroup>
           <FormControlLabel
@@ -51,18 +51,9 @@ const Component = ({className, children, id, login, user}) => {
         </FormGroup>
         <AppBar position="static">
           <Toolbar>
-            {/* <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon />
-            </IconButton> */}
             <BackHomeButton />
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              POST {id} (EDIT)
+              POST ADD
             </Typography>
             <SaveEditedPostButton />
           </Toolbar>
@@ -76,7 +67,6 @@ const Component = ({className, children, id, login, user}) => {
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  id: PropTypes.string,
   login: PropTypes.bool,
   user: PropTypes.object,
 };
@@ -94,7 +84,7 @@ const mapStateToProps = state => ({
 const Container = connect(mapStateToProps)(Component);
 
 export {
-  //Component as PostEditBar,
-  Container as PostEditBar,
-  Component as PostEditBarComponent,
+  // Component as PostAddBar,
+  Container as PostAddBar,
+  Component as PostAddBarComponent,
 };

@@ -56,7 +56,8 @@
     "react-scripts": "4.0.3",
     "react-test-renderer": "^17.0.2",
     "redux": "^4.1.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "shortid": "^2.2.16"
   },
   "devDependencies": {
     "husky": "4.2",

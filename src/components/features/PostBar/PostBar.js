@@ -90,7 +90,7 @@ const Component = ({className, children, id, login, user}) => {
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  id: PropTypes.number,
+  id: PropTypes.string,
   login: PropTypes.bool,
   user: PropTypes.object,
 };
