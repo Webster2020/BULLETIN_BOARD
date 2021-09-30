@@ -18,7 +18,6 @@ const Component = ({className, children}) => {
 
   return (
     <div className={clsx(className, styles.root)}>
-      <h2>Post {id}</h2>
       <PostBar id={id}/>
       <SinglePost id={id}/>
       {children}

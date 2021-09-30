@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
@@ -24,12 +24,6 @@ import Typography from '@mui/material/Typography';
 
 
 const Component = ({className, children, id, post}) => {
-
-  useEffect(() => {
-    console.log('SINGL POST:');
-    console.log(id);
-    console.log(post);
-  });
 
   const postData = post;
 

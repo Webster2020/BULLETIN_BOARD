@@ -40,7 +40,6 @@ const Component = (
   };
 
   const clickHandler = () => {
-    console.log(editedPost);
     setEditedPostDispatch(editedPost);
   };
 

@@ -37,7 +37,6 @@ const Component = ({className, children, login, user}) => {
 
   return (
     <div className={clsx(className, styles.root)}>
-      <h2>HomeBar</h2>
       <Box sx={{ flexGrow: 1 }}>
         <FormGroup>
           <FormControlLabel

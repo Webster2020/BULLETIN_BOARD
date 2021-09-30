@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
 
@@ -16,12 +16,6 @@ import List from '@mui/material/List';
 
 
 const Component = ({className, children, posts, userId, postsState, userPosts}) => {
-
-  useEffect(() => {
-    console.log(posts);
-    console.log(userId);
-    console.log(userPosts); //undefined ?? why??
-  });
 
   return (
     <div className={clsx(className, styles.root)}>

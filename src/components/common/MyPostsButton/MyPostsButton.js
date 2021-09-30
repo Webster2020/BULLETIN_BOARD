@@ -14,7 +14,6 @@ import Button from '@material-ui/core/Button';
 const Component = ({className, children, postsState, switchPostsDispatch}) => {
 
   const clickHandler = () => {
-    console.log(postsState);
     switchPostsDispatch(!postsState);
   };
 

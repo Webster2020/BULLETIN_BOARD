@@ -11,6 +11,8 @@ import styles from './PostEditForm.module.scss';
 import { SaveEditedPostButton } from '../../common/SaveEditedPostButton/SaveEditedPostButton';
 import { SinglePost} from '../../features/SinglePost/SinglePost';
 
+import { currentDate } from '../../../utils/currentDate';
+
 import Checkbox from '@mui/material/Checkbox';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
@@ -20,12 +22,7 @@ const Component = ({className, children, id, post}) => {
 
   const postData = post;
 
-  const today = new Date();
-  const day = today.getDate() < 10 ? `0${today.getDate()}` : today.getDate();
-  const month = (today.getMonth() + 1) < 10 ? `0${today.getMonth() + 1}` : (today.getMonth() + 1);
-  const year = today.getFullYear();
-  const currentDate = `${day}/${month}/${year}`;
-  console.log('CURRENT DATA:' + currentDate);
+  const today = currentDate();
 
   const [titleChecked, setTitleChecked] = useState(false);
   const [title, setTitle] = useState(postData.title);
@@ -91,7 +88,6 @@ const Component = ({className, children, id, post}) => {
     <div className={clsx(className, styles.root)}>
 
       <div className={styles.column}>
-        <h2>PostEditForm {id}</h2>
 
         <Stack
           component="form"
@@ -276,7 +272,7 @@ const Component = ({className, children, id, post}) => {
             price={price}
             phone={phone}
             localization={localization}
-            update={currentDate}
+            update={today}
           />
         </Stack>
       </div>

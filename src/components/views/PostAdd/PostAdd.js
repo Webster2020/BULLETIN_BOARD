@@ -13,7 +13,6 @@ import { PostAddForm } from '../../features/PostAddForm/PostAddForm';
 
 const Component = ({className, children}) => (
   <div className={clsx(className, styles.root)}>
-    <h2>PostAdd</h2>
     <PostAddBar />
     <PostAddForm />
     {children}

@@ -14,7 +14,6 @@ import { PostsList } from '../../features/PostsList/PostsList';
 
 const Component = ({className, children, login, user}) => (
   <div className={clsx(className, styles.root)}>
-    <h2>Homepage</h2>
     <Header />
     {login && <AddPostButton />}
     <PostsList userId={user.id}/>

@@ -14,7 +14,6 @@ import Button from '@material-ui/core/Button';
 const Component = ({className, children, setLoginStatusDispatch}) => {
 
   const clickHandler = () => {
-    console.log('dupa');
     setLoginStatusDispatch(true);
   };
 

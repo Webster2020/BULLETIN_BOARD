@@ -8,9 +8,11 @@ import clsx from 'clsx';
 
 import styles from './NotFound.module.scss';
 
+import { NotFoundBar } from '../../features/NotFoundBar/NotFoundBar';
+
 const Component = ({className, children}) => (
   <div className={clsx(className, styles.root)}>
-    <h2>NotFound</h2>
+    <NotFoundBar />
     {children}
   </div>
 );

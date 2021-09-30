@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 import { connect } from 'react-redux';
-import { getLoginStatus } from '../../../redux/loginRedux.js';
-// import { getPostById } from '../../../redux/postsRedux.js';
+import { getLoginStatus, getUserData } from '../../../redux/loginRedux.js';
 
 import styles from './PostsListElem.module.scss';
 
@@ -23,13 +22,16 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 
-const Component = ({className, children, id, login, post}) => {
+const Component = ({className, children, id, login, post, user}) => {
   
   //const author = undefined;
   const postData = post;
 
   useEffect(() => {
+    console.log('POST LIST ELEM:');
     console.log(post);
+    console.log(user.id);
+    console.log(postData.authorId);
   });
 
   return (
@@ -82,14 +84,13 @@ const Component = ({className, children, id, login, post}) => {
                     >
                       {`Last update: ${postData.update}`}
                     </Typography>
-                    {/* {postData.update} */}
                   </React.Fragment>
                 }
               />
             </ListItemButton>
           </ListItem>
         </Link>
-        {login && <EditPostButton id={id}/>}
+        {login && user.id === postData.authorId && <EditPostButton id={id}/>}
       
       </Stack>
 
@@ -104,12 +105,13 @@ Component.propTypes = {
   id: PropTypes.string,
   login: PropTypes.bool,
   post: PropTypes.object,
+  user: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({
   login: getLoginStatus(state),
   // post: getPostById(state, props.id),
-  // user: getUserData(state),
+  user: getUserData(state),
   // admin: getAdminStatus(state),
 });
 

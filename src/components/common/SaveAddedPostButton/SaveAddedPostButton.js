@@ -9,6 +9,8 @@ import { createActionAddPost } from '../../../redux/postsRedux.js';
 
 import styles from './SaveAddedPostButton.module.scss';
 
+import { Link } from 'react-router-dom';
+
 import Button from '@material-ui/core/Button';
 
 
@@ -50,14 +52,14 @@ const Component = (
   };
 
   const clickHandler = () => {
-    console.log('addedPost');
-    console.log(addedPost);
     setAddedPostDispatch(addedPost);
   };
 
   return (
     <div className={clsx(className, styles.root)}>
-      <Button variant="contained" onClick={() => clickHandler()}>SAVE</Button>
+      <Link to={`/`} style={{textDecoration: 'none'}}>
+        <Button variant="contained" onClick={() => clickHandler()}>SAVE</Button>
+      </Link>
       {children}
     </div>
   );

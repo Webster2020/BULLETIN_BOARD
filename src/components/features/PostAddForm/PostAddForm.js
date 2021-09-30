@@ -10,6 +10,7 @@ import { getUserData } from '../../../redux/loginRedux.js';
 import styles from './PostAddForm.module.scss';
 
 import { SaveAddedPostButton } from '../../common/SaveAddedPostButton/SaveAddedPostButton';
+import { currentDate } from '../../../utils/currentDate';
 
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
@@ -20,12 +21,7 @@ import TextField from '@mui/material/TextField';
 
 const Component = ({className, children, user}) => {
 
-  const today = new Date();
-  const day = today.getDate() < 10 ? `0${today.getDate()}` : today.getDate();
-  const month = (today.getMonth() + 1) < 10 ? `0${today.getMonth() + 1}` : (today.getMonth() + 1);
-  const year = today.getFullYear();
-  const currentDate = `${day}/${month}/${year}`;
-  console.log(currentDate);
+  const today = currentDate();
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -61,7 +57,6 @@ const Component = ({className, children, user}) => {
     <div className={clsx(className, styles.root)}>
 
       <div className={styles.column}>
-        <h2>PostAddForm</h2>
 
         <Stack
           component="form"
@@ -153,8 +148,8 @@ const Component = ({className, children, user}) => {
             author={`${user.name} ${user.surname}`}
             title={title}
             content={content}
-            date={currentDate}
-            update={currentDate}
+            date={today}
+            update={today}
             email={user.email}
             status={status}
             image={image}

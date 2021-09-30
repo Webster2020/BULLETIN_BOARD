@@ -8,7 +8,7 @@ export const getPostByUser = ({posts}, userId) => {
   console.log(userId);
   console.log(posts);
   console.log('---------');
-  return posts.data.find(post => {
+  return posts.data.filter(post => {
     console.log(post);
     console.log('---------');
     return post.authorId === userId;
