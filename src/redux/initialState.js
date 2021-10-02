@@ -3,7 +3,6 @@ export const initialState = {
     login: false,
     admin: false,
     data: {
-      id: '1',
       name: 'Bill',
       surname: 'Gates',
       email: 'billgates@gmail.com',
@@ -25,7 +24,7 @@ export const initialState = {
       //   image: 'https://images.pexels.com/photos/762687/pexels-photo-762687.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
       //   price: '20.00$',
       //   phone: '123456789',
-      //   localization: 'New York',
+      //   location: 'New York',
       // },
       // {
       //   postId: 2,
@@ -40,7 +39,7 @@ export const initialState = {
       //   image: 'https://images.pexels.com/photos/364308/pexels-photo-364308.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
       //   price: '15.00$',
       //   phone: '012345678',
-      //   localization: 'Paris',
+      //   location: 'Paris',
       // },
     ],
     loading: {

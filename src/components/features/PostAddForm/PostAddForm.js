@@ -24,21 +24,21 @@ const Component = ({className, children, user}) => {
   const today = currentDate();
 
   const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [image, setImage] = useState('');
+  const [text, setText] = useState('');
+  const [photo, setPhoto] = useState('');
   const [price, setPrice] = useState('');
   const [phone, setPhone] = useState('');
-  const [localization, setLocalization] = useState('');
+  const [location, setLocation] = useState('');
   const [status, setStatus] = useState('draft');
 
   const handleChangeTitle = (event) => {
     setTitle(event.target.value);
   };
-  const handleChangeContent = (event) => {
-    setContent(event.target.value);
+  const handleChangeText = (event) => {
+    setText(event.target.value);
   };
-  const handleChangeImage = (event) => {
-    setImage(event.target.value);
+  const handleChangePhoto = (event) => {
+    setPhoto(event.target.value);
   };
   const handleChangePrice = (event) => {
     setPrice(event.target.value);
@@ -46,8 +46,8 @@ const Component = ({className, children, user}) => {
   const handleChangePhone = (event) => {
     setPhone(event.target.value);
   };
-  const handleChangeLocalization = (event) => {
-    setLocalization(event.target.value);
+  const handleChangeLocation = (event) => {
+    setLocation(event.target.value);
   };
   const handleChangeStatus = (event) => {
     setStatus(event.target.value);
@@ -78,18 +78,18 @@ const Component = ({className, children, user}) => {
           />
 
           <TextField
-            id="outlined-content"
-            label="Content"
-            value={content}
-            onChange={handleChangeContent}
+            id="outlined-text"
+            label="Text"
+            value={text}
+            onChange={handleChangeText}
             fullWidth
           />
 
           <TextField
-            id="outlined-image"
-            label="Image"
-            value={image}
-            onChange={handleChangeImage}
+            id="outlined-photo"
+            label="Photo"
+            value={photo}
+            onChange={handleChangePhoto}
             fullWidth
           />
 
@@ -110,10 +110,10 @@ const Component = ({className, children, user}) => {
           />
 
           <TextField
-            id="outlined-localization"
-            label="Localization"
-            value={localization}
-            onChange={handleChangeLocalization}
+            id="outlined-location"
+            label="location"
+            value={location}
+            onChange={handleChangeLocation}
             fullWidth
           />
 
@@ -143,18 +143,19 @@ const Component = ({className, children, user}) => {
         >
           <SaveAddedPostButton  
             postId={shortid.generate()}
-            authorId={user.id}
-            author={`${user.name} ${user.surname}`}
+            //authorId={user.id}
+            author={user.email}
+            authorName={`${user.name} ${user.surname}`}
             title={title}
-            content={content}
-            date={today}
-            update={today}
-            email={user.email}
+            text={text}
+            created={today}
+            updated={today}
+            // email={user.email}
             status={status}
-            image={image}
+            photo={photo}
             price={price}
             phone={phone}
-            localization={localization}
+            location={location}
           />
         </Stack>
       </div>

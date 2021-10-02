@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
@@ -26,13 +26,6 @@ const Component = ({className, children, id, login, post, user}) => {
   
   //const author = undefined;
   const postData = post;
-
-  useEffect(() => {
-    console.log('POST LIST ELEM:');
-    console.log(post);
-    console.log(user.id);
-    console.log(postData.authorId);
-  });
 
   return (
     <div className={clsx(className, styles.root)}>
@@ -67,13 +60,13 @@ const Component = ({className, children, id, login, post, user}) => {
                     >
                       {/* {author === undefined ? 'Noname' : author} */}
                     </Typography>
-                    {` —  ${postData.content}`}
+                    {` —  ${postData.text}`}
                   </React.Fragment>
                 }
               />
               <ListItemText
                 sx={{ marginLeft: '15px' }}
-                primary={`Add date: ${postData.date}`}
+                primary={`Add date: ${postData.created}`}
                 secondary={
                   <React.Fragment>
                     <Typography
@@ -82,7 +75,7 @@ const Component = ({className, children, id, login, post, user}) => {
                       variant="body2"
                       color="text.primary"
                     >
-                      {`Last update: ${postData.update}`}
+                      {`Last update: ${postData.updated}`}
                     </Typography>
                   </React.Fragment>
                 }

@@ -16,7 +16,8 @@ const Component = ({className, children, login, user}) => (
   <div className={clsx(className, styles.root)}>
     <Header />
     {login && <AddPostButton />}
-    <PostsList userId={user.id}/>
+    {/* <PostsList userId={user.id}/> */}
+    <PostsList user={user.email}/>
     {children}
   </div>
 );

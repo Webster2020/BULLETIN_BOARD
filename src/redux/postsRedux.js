@@ -1,17 +1,19 @@
+import axios from 'axios';
+
 /* selectors */
 export const getAll = ({posts}) => posts.data;
 export const getPostById = ({posts}, postId) => {
   return posts.data.find(post => post.postId === postId);
 };
-export const getPostByUser = ({posts}, userId) => {
-  console.log('REDUX:');
-  console.log(userId);
-  console.log(posts);
-  console.log('---------');
+export const getPostByUser = ({posts}, user) => {
+  // console.log('REDUX:');
+  // console.log(user);
+  // console.log(posts);
+  // console.log('---------');
   return posts.data.filter(post => {
-    console.log(post);
-    console.log('---------');
-    return post.authorId === userId;
+    // console.log(post);
+    // console.log('---------');
+    return post.author === user;
   });
 };
 export const getPostsState = ({posts}) => posts.userPosts;
@@ -37,6 +39,22 @@ export const createActionEditPost = payload => ({ payload, type: EDIT_POST });
 export const createActionSwitchPosts = payload => ({ payload, type: SWITCH_POSTS });
 
 /* thunk creators */
+export const createActionFetchPosts = (posts) => {
+  return (dispatch, getState) => {
+    dispatch(fetchStarted());
+
+    if(posts.length < 1) {
+      axios
+        .get('http://localhost:8000/api/posts')
+        .then(res => {
+          dispatch(fetchSuccess(res.data));
+        })
+        .catch(err => {
+          dispatch(fetchError(err.message || true));
+        });
+    }
+  };
+};
 
 /* reducer */
 export const reducer = (statePart = [], action = {}) => {

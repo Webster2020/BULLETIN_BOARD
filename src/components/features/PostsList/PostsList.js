@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
 
 import clsx from 'clsx';
 
 import { connect } from 'react-redux';
-import { getAll, getPostByUser, getPostsState } from '../../../redux/postsRedux.js';
+import { getAll, getPostByUser, getPostsState, createActionFetchPosts } from '../../../redux/postsRedux.js';
 
 import styles from './PostsList.module.scss';
 
@@ -16,7 +16,11 @@ import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 
 
-const Component = ({className, children, posts, userId, postsState, userPosts}) => {
+const Component = ({className, children, posts, user, postsState, userPosts, fetchPostsDispatch}) => {
+
+  useEffect(() => {
+    posts.length < 1 && fetchPostsDispatch(posts);
+  });
 
   return (
     <div className={clsx(className, styles.root)}>
@@ -57,22 +61,23 @@ Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   posts: PropTypes.array,
-  userId: PropTypes.number,
+  user: PropTypes.string,
   postsState: PropTypes.bool,
   userPosts: PropTypes.array,
+  fetchPostsDispatch: PropTypes.func,
 };
 
 const mapStateToProps = (state, props) => ({
   posts: getAll(state),
   postsState: getPostsState(state),
-  userPosts: getPostByUser(state, props.userId) || [],
+  userPosts: getPostByUser(state, props.user) || [],
 });
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
+const mapDispatchToProps = dispatch => ({
+  fetchPostsDispatch: (posts) => dispatch(createActionFetchPosts(posts)),
+});
 
-const Container = connect(mapStateToProps)(Component);
+const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
   // Component as PostsList,

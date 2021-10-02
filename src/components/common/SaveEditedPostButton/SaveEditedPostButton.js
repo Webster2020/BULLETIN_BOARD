@@ -18,12 +18,12 @@ const Component = (
     children, 
     postData,
     title,
-    content,
-    image,
+    text,
+    photo,
     price,
     phone,
-    localization,
-    update,
+    location,
+    updated,
     setEditedPostDispatch,
   }
 ) => {
@@ -31,12 +31,12 @@ const Component = (
   const editedPost = {
     ...postData,
     title,
-    content,
-    image,
+    text,
+    photo,
     price,
     phone,
-    localization,
-    update,
+    location,
+    updated,
   };
 
   const clickHandler = () => {
@@ -56,12 +56,12 @@ Component.propTypes = {
   className: PropTypes.string,
   postData: PropTypes.object,
   title: PropTypes.string,
-  content: PropTypes.string,
-  image: PropTypes.string,
+  text: PropTypes.string,
+  photo: PropTypes.string,
   price: PropTypes.string,
   phone: PropTypes.string,
-  localization: PropTypes.string,
-  update: PropTypes.string,
+  location: PropTypes.string,
+  updated: PropTypes.string,
   setEditedPostDispatch: PropTypes.func,
 };
 

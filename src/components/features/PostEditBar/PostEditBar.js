@@ -9,7 +9,6 @@ import { getLoginStatus, getUserData } from '../../../redux/loginRedux.js';
 import styles from './PostEditBar.module.scss';
 
 import { BackHomeButton } from '../../common/BackHomeButton/BackHomeButton';
-import { SaveEditedPostButton } from '../../common/SaveEditedPostButton/SaveEditedPostButton';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -54,7 +53,6 @@ const Component = ({className, children, id, login, user}) => {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               POST {id} (EDIT)
             </Typography>
-            <SaveEditedPostButton />
           </Toolbar>
         </AppBar>
       </Box>

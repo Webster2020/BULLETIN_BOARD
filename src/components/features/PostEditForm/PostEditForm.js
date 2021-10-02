@@ -27,11 +27,11 @@ const Component = ({className, children, id, post}) => {
   const [titleChecked, setTitleChecked] = useState(false);
   const [title, setTitle] = useState(postData.title);
 
-  const [contentChecked, setContentChecked] = useState(false);
-  const [content, setContent] = useState(postData.content);
+  const [textChecked, setTextChecked] = useState(false);
+  const [text, setText] = useState(postData.text);
 
-  const [imageChecked, setImageChecked] = useState(false);
-  const [image, setImage] = useState(postData.image);
+  const [photoChecked, setPhotoChecked] = useState(false);
+  const [photo, setPhoto] = useState(postData.photo);
 
   const [priceChecked, setPriceChecked] = useState(false);
   const [price, setPrice] = useState(postData.price);
@@ -39,8 +39,8 @@ const Component = ({className, children, id, post}) => {
   const [phoneChecked, setPhoneChecked] = useState(false);
   const [phone, setPhone] = useState(postData.phone);
 
-  const [localizationChecked, setLocalizationChecked] = useState(false);
-  const [localization, setLocalization] = useState(postData.localization);
+  const [locationChecked, setlocationChecked] = useState(false);
+  const [location, setlocation] = useState(postData.location);
 
   const handleCheckTitle = (event) => {
     setTitleChecked(event.target.checked);
@@ -49,18 +49,18 @@ const Component = ({className, children, id, post}) => {
     setTitle(event.target.value);
   };
 
-  const handleCheckContent = (event) => {
-    setContentChecked(event.target.checked);
+  const handleCheckText = (event) => {
+    setTextChecked(event.target.checked);
   };
-  const handleChangeContent = (event) => {
-    setContent(event.target.value);
+  const handleChangeText = (event) => {
+    setText(event.target.value);
   };
 
-  const handleCheckImage = (event) => {
-    setImageChecked(event.target.checked);
+  const handleCheckPhoto = (event) => {
+    setPhotoChecked(event.target.checked);
   };
-  const handleChangeImage = (event) => {
-    setImage(event.target.value);
+  const handleChangePhoto = (event) => {
+    setPhoto(event.target.value);
   };
 
   const handleCheckPrice = (event) => {
@@ -77,11 +77,11 @@ const Component = ({className, children, id, post}) => {
     setPhone(event.target.value);
   };
 
-  const handleCheckLocalization = (event) => {
-    setLocalizationChecked(event.target.checked);
+  const handleChecklocation = (event) => {
+    setlocationChecked(event.target.checked);
   };
-  const handleChangeLocalization = (event) => {
-    setLocalization(event.target.value);
+  const handleChangelocation = (event) => {
+    setlocation(event.target.value);
   };
 
   return (
@@ -126,53 +126,53 @@ const Component = ({className, children, id, post}) => {
           </Stack>
 
           <Stack direction="row" spacing={2}>
-            {!contentChecked ? 
+            {!textChecked ? 
               (<TextField
-                id="outlined-content"
-                label="Content"
-                value={content}
-                onChange={handleChangeContent}
+                id="outlined-text"
+                label="Text"
+                value={text}
+                onChange={handleChangeText}
                 fullWidth
                 disabled
               />)
               :
               (<TextField
-                id="outlined-content"
-                label="Content"
-                value={content}
-                onChange={handleChangeContent}
+                id="outlined-text"
+                label="Text"
+                value={text}
+                onChange={handleChangeText}
                 fullWidth
               />)
             }
             <Checkbox
-              checked={contentChecked}
-              onChange={handleCheckContent}
+              checked={textChecked}
+              onChange={handleCheckText}
               inputProps={{ 'aria-label': 'controlled' }}
             />
           </Stack>
 
           <Stack direction="row" spacing={2}>
-            {!imageChecked ? 
+            {!photoChecked ? 
               (<TextField
-                id="outlined-image"
-                label="Image"
-                value={image}
-                onChange={handleChangeImage}
+                id="outlined-photo"
+                label="Photo"
+                value={photo}
+                onChange={handleChangePhoto}
                 fullWidth
                 disabled
               />)
               :
               (<TextField
-                id="outlined-image"
-                label="Image"
-                value={image}
-                onChange={handleChangeImage}
+                id="outlined-photo"
+                label="Photo"
+                value={photo}
+                onChange={handleChangePhoto}
                 fullWidth
               />)
             }
             <Checkbox
-              checked={imageChecked}
-              onChange={handleCheckImage}
+              checked={photoChecked}
+              onChange={handleCheckPhoto}
               inputProps={{ 'aria-label': 'controlled' }}
             />
           </Stack>
@@ -230,27 +230,27 @@ const Component = ({className, children, id, post}) => {
           </Stack>
 
           <Stack direction="row" spacing={2}>
-            {!localizationChecked ? 
+            {!locationChecked ? 
               (<TextField
-                id="outlined-localization"
-                label="Localization"
-                value={localization}
-                onChange={handleChangeLocalization}
+                id="outlined-location"
+                label="location"
+                value={location}
+                onChange={handleChangelocation}
                 fullWidth
                 disabled
               />)
               :
               (<TextField
-                id="outlined-localization"
-                label="Localization"
-                value={localization}
-                onChange={handleChangeLocalization}
+                id="outlined-location"
+                label="location"
+                value={location}
+                onChange={handleChangelocation}
                 fullWidth
               />)
             }
             <Checkbox
-              checked={localizationChecked}
-              onChange={handleCheckLocalization}
+              checked={locationChecked}
+              onChange={handleChecklocation}
               inputProps={{ 'aria-label': 'controlled' }}
             />
           </Stack>
@@ -267,12 +267,12 @@ const Component = ({className, children, id, post}) => {
           <SaveEditedPostButton 
             postData={postData} 
             title={title}
-            content={content}
-            image={image}
+            text={text}
+            photo={photo}
             price={price}
             phone={phone}
-            localization={localization}
-            update={today}
+            location={location}
+            updated={today}
           />
         </Stack>
       </div>

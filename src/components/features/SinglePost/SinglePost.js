@@ -47,7 +47,7 @@ const Component = ({className, children, id, post}) => {
               </IconButton>
             }
             title={postData.title}
-            subheader={postData.date}
+            subheader={postData.created}
           />
           <CardContent>
             <Typography variant="body2" color="text.secondary">
@@ -57,17 +57,17 @@ const Component = ({className, children, id, post}) => {
           <CardMedia
             component="img"
             height="400"
-            image={postData.image}
+            photo={postData.photo}
             alt={postData.title}
           />
           <CardContent>
             <Typography variant="body2" color="text.secondary">
-              {postData.content}
+              {postData.text}
             </Typography>
           </CardContent>
           <CardContent>
             <Typography variant="body2" color="text.secondary">
-              EMIAL: {postData.email}
+              EMAIL: {postData.author}
             </Typography>
           </CardContent>
           <CardContent>
@@ -82,12 +82,12 @@ const Component = ({className, children, id, post}) => {
           </CardContent>
           <CardContent>
             <Typography variant="body2" color="text.secondary">
-              LAST UPDATE: {postData.update}
+              LAST UPDATE: {postData.updated}
             </Typography>
           </CardContent>
           <CardContent>
             <Typography variant="body2" color="text.secondary">
-              LOCALIZATION: {postData.localization}
+              location: {postData.location}
             </Typography>
           </CardContent>
           <CardContent>

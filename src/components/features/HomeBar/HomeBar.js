@@ -16,8 +16,8 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+// import IconButton from '@mui/material/IconButton';
+// import MenuIcon from '@mui/icons-material/Menu';
 import Stack from '@mui/material/Stack';
 import Switch from '@mui/material/Switch';
 import Toolbar from '@mui/material/Toolbar';
@@ -53,7 +53,7 @@ const Component = ({className, children, login, user}) => {
         </FormGroup>
         <AppBar position="static">
           <Toolbar>
-            <IconButton
+            {/* <IconButton
               size="large"
               edge="start"
               color="inherit"
@@ -61,7 +61,7 @@ const Component = ({className, children, login, user}) => {
               sx={{ mr: 2 }}
             >
               <MenuIcon />
-            </IconButton>
+            </IconButton> */}
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               BULLETIN BOARD
             </Typography>
