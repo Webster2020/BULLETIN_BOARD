@@ -58,7 +58,7 @@ const Component = (
   return (
     <div className={clsx(className, styles.root)}>
       <Link to={`/`} style={{textDecoration: 'none'}}>
-        <Button variant="contained" onClick={() => clickHandler()}>SAVE</Button>
+        <Button variant="outlined" size="large" onClick={() => clickHandler()}>SAVE</Button>
       </Link>
       {children}
     </div>

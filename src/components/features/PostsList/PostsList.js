@@ -9,6 +9,7 @@ import { getAll, getPostByUser, getPostsState } from '../../../redux/postsRedux.
 
 import styles from './PostsList.module.scss';
 
+import { NoPosts } from '../../features/NoPosts/NoPosts';
 import { PostsListElem } from '../../features/PostsListElem/PostsListElem';
 
 import Box from '@mui/material/Box';
@@ -19,26 +20,34 @@ const Component = ({className, children, posts, userId, postsState, userPosts}) 
 
   return (
     <div className={clsx(className, styles.root)}>
-      <Box   
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        my={1} py={1}
-      >
-        {!postsState ?
-          (
-            <List sx={{ width: '100%', maxWidth: 900, bgcolor: 'background.paper' }}>
-              {posts.map(post => <PostsListElem key={shortid.generate()} id={post.postId} post={post}/>)}
-            </List>
-          )
-          :
-          (
-            <List sx={{ width: '100%', maxWidth: 900, bgcolor: 'background.paper' }}>
-              {userPosts.map(post => <PostsListElem key={shortid.generate()} id={post.postId} post={post}/>)}
-            </List>
-          )
-        }
-      </Box>
+      {posts.length > 0 ?
+        (
+          <Box   
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            my={1} py={1}
+          >
+            {!postsState ?
+              (
+                <List sx={{ width: '100%', maxWidth: 900, bgcolor: 'background.paper' }}>
+                  {posts.map(post => <PostsListElem key={shortid.generate()} id={post.postId} post={post}/>)}
+                </List>
+              )
+              :
+              (
+                <List sx={{ width: '100%', maxWidth: 900, bgcolor: 'background.paper' }}>
+                  {userPosts.map(post => <PostsListElem key={shortid.generate()} id={post.postId} post={post}/>)}
+                </List>
+              )
+            }
+          </Box>
+        )
+        :
+        (
+          <NoPosts />
+        )
+      }
       {children}
     </div>
   );

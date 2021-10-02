@@ -66,8 +66,7 @@ const Component = ({className, children, user}) => {
           direction='column'
           justifyContent="center"
           alignItems="center"
-          ml={5}
-          mb={5}
+          my={5}
         >
 
           <TextField

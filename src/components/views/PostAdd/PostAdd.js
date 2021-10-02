@@ -3,39 +3,50 @@ import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
+import { connect } from 'react-redux';
+import { getLoginStatus } from '../../../redux/loginRedux.js';
 
 import styles from './PostAdd.module.scss';
 
 import { PostAddBar } from '../../features/PostAddBar/PostAddBar';
 import { PostAddForm } from '../../features/PostAddForm/PostAddForm';
+import { NotFound } from '../../views/NotFound/NotFound'; 
 
-const Component = ({className, children}) => (
-  <div className={clsx(className, styles.root)}>
-    <PostAddBar />
-    <PostAddForm />
-    {children}
-  </div>
-);
+const Component = ({className, children, login}) => {
+  return (
+    <div className={clsx(className, styles.root)}>
+      {login ? 
+        (
+          <div>
+            <PostAddBar />
+            <PostAddForm />
+            {children}
+          </div>
+        )
+        :
+        (
+          <NotFound />
+        )
+      }
+    </div>
+  );
+};
+
 
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  login: PropTypes.bool,
 };
 
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
+const mapStateToProps = state => ({
+  login: getLoginStatus(state),
+});
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
-
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(mapStateToProps)(Component);
 
 export {
-  Component as PostAdd,
-  // Container as PostAdd,
+  // Component as PostAdd,
+  Container as PostAdd,
   Component as PostAddComponent,
 };

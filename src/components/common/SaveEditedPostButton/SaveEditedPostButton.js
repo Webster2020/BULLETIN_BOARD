@@ -45,7 +45,7 @@ const Component = (
 
   return (
     <div className={clsx(className, styles.root)}>
-      <Button variant="contained" onClick={() => clickHandler()}>SAVE</Button>
+      <Button variant="outlined" size="large" onClick={() => clickHandler()}>SAVE</Button>
       {children}
     </div>
   );
