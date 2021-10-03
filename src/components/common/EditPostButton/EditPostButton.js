@@ -14,11 +14,7 @@ import Button from '@material-ui/core/Button';
 import Stack from '@mui/material/Stack';
 
 
-const Component = ({className, children, id}) => {
-
-  const clickHandler = () => {
-    console.log('edit post page');
-  };
+const Component = ({className, id}) => {
 
   return (
     <div className={clsx(className, styles.root)}>
@@ -30,16 +26,14 @@ const Component = ({className, children, id}) => {
         mx={2}
       >
         <Link to={`/post/${id}/edit`} style={{textDecoration: 'none'}}>
-          <Button variant="contained" onClick={() => clickHandler()}>EDIT POST</Button>
+          <Button variant="contained">EDIT POST</Button>
         </Link>
       </Stack>
-      {children}
     </div>
   );
 };
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
   id: PropTypes.string,
 };

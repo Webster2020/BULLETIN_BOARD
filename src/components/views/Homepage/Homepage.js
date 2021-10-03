@@ -12,18 +12,15 @@ import { Header } from '../../layout/Header/Header';
 import { AddPostButton } from '../../common/AddPostButton/AddPostButton';
 import { PostsList } from '../../features/PostsList/PostsList';
 
-const Component = ({className, children, login, user}) => (
+const Component = ({className, login, user}) => (
   <div className={clsx(className, styles.root)}>
     <Header />
     {login && <AddPostButton />}
-    {/* <PostsList userId={user.id}/> */}
     <PostsList user={user.email}/>
-    {children}
   </div>
 );
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
   login: PropTypes.bool,
   user: PropTypes.object,

@@ -23,10 +23,18 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 
-const Component = ({className, children, id, login, post, user, fetchPostByIdDispatch}) => {
+const Component = (
+  {
+    className, 
+    id, 
+    login, 
+    post, 
+    user, 
+    fetchPostByIdDispatch,
+  }
+) => {
   
   //const author = undefined;
-  const postData = post;
 
   const clickHandler = () => {
     console.log('hhhhhhhhhhhhhhh');
@@ -34,10 +42,8 @@ const Component = ({className, children, id, login, post, user, fetchPostByIdDis
   };
 
   return (
-    <div className={clsx(className, styles.root)}>
-      
+    <div className={clsx(className, styles.root)}> 
       <Divider variant="inset" component="li" />
-
       <Stack 
         my={1}
         direction="row"
@@ -50,12 +56,12 @@ const Component = ({className, children, id, login, post, user, fetchPostByIdDis
             <ListItemButton onClick={clickHandler}>
               <ListItemAvatar>
                 <Avatar alt="Remy Sharp">
-                  {/* {postData.author.charAt(0)} */}
+                  {post.author.charAt(0)}
                 </Avatar>
               </ListItemAvatar>
               <ListItemText
                 sx={{ minWidth: '200px', width: '500px' }}
-                primary={postData.title}
+                primary={post.title}
                 secondary={
                   <React.Fragment>
                     <Typography
@@ -66,13 +72,13 @@ const Component = ({className, children, id, login, post, user, fetchPostByIdDis
                     >
                       {/* {author === undefined ? 'Noname' : author} */}
                     </Typography>
-                    {` —  ${postData.text}`}
+                    {` —  ${post.text}`}
                   </React.Fragment>
                 }
               />
               <ListItemText
                 sx={{ marginLeft: '15px' }}
-                primary={`Add date: ${postData.created}`}
+                primary={`Add date: ${post.created}`}
                 secondary={
                   <React.Fragment>
                     <Typography
@@ -81,7 +87,7 @@ const Component = ({className, children, id, login, post, user, fetchPostByIdDis
                       variant="body2"
                       color="text.primary"
                     >
-                      {`Last update: ${postData.updated}`}
+                      {`Last update: ${post.updated}`}
                     </Typography>
                   </React.Fragment>
                 }
@@ -89,17 +95,13 @@ const Component = ({className, children, id, login, post, user, fetchPostByIdDis
             </ListItemButton>
           </ListItem>
         </Link>
-        {login && user.id === postData.authorId && <EditPostButton id={id}/>}
-      
+        {login && user.email === post.author && <EditPostButton id={id}/>}
       </Stack>
-
-      {children}
     </div>
   );
 };
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
   id: PropTypes.string,
   login: PropTypes.bool,

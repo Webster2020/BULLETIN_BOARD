@@ -11,7 +11,7 @@ import styles from './MyPostsButton.module.scss';
 import Button from '@material-ui/core/Button';
 
 
-const Component = ({className, children, postsState, switchPostsDispatch}) => {
+const Component = ({className, postsState, switchPostsDispatch}) => {
 
   const clickHandler = () => {
     switchPostsDispatch(!postsState);
@@ -28,13 +28,11 @@ const Component = ({className, children, postsState, switchPostsDispatch}) => {
           <Button variant="contained" onClick={() => clickHandler()}>ALL POSTS</Button>
         )
       }
-      {children}
     </div>
   );
 };
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
   postsState: PropTypes.bool,
   switchPostsDispatch: PropTypes.func,

@@ -5,7 +5,7 @@ import clsx from 'clsx';
 
 import { connect } from 'react-redux';
 import { getLoginStatus, getUserData } from '../../../redux/loginRedux.js';
-import { createActionAddPost, createActionPostNewPost } from '../../../redux/postsRedux.js';
+import { createActionPostNewPost } from '../../../redux/postsRedux.js';
 
 import styles from './SaveAddedPostButton.module.scss';
 
@@ -31,26 +31,26 @@ const Component = (
     price,
     phone,
     location,
-    setAddedPostDispatch,
+    // setAddedPostDispatch,
     addNewPostToDB,
   }
 ) => {
 
-  const addedPost = {
-    postId,
-    authorName,
-    author,
-    title,
-    text,
-    created,
-    updated,
-    email,
-    status,
-    photo,
-    price,
-    phone,
-    location,
-  };
+  // const addedPost = {
+  //   postId,
+  //   authorName,
+  //   author,
+  //   title,
+  //   text,
+  //   created,
+  //   updated,
+  //   email,
+  //   status,
+  //   photo,
+  //   price,
+  //   phone,
+  //   location,
+  // };
 
   const addedPostDB = {
     author,

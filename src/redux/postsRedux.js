@@ -6,17 +6,10 @@ export const getPostById = ({posts}, postId) => {
   return posts.data.find(post => post._id === postId);
 };
 export const getPostByUser = ({posts}, user) => {
-  // console.log('REDUX:');
-  // console.log(user);
-  // console.log(posts);
-  // console.log('---------');
-  return posts.data.filter(post => {
-    // console.log(post);
-    // console.log('---------');
-    return post.author === user;
-  });
+  return posts.data.filter(post => post.author === user);
 };
 export const getPostsState = ({posts}) => posts.userPosts;
+export const getFetchStatus = ({posts}) => posts.loading.active;
 
 /* action name creator */
 const reducerName = 'posts';
@@ -39,11 +32,23 @@ export const createActionEditPost = payload => ({ payload, type: EDIT_POST });
 export const createActionSwitchPosts = payload => ({ payload, type: SWITCH_POSTS });
 
 /* thunk creators */
-export const createActionFetchPosts = (posts) => {
+export const createActionFetchPosts = (posts, refetch, activeFetch) => {
   return (dispatch, getState) => {
     dispatch(fetchStarted());
-
-    if(posts.length < 1) {
+    if(!refetch) {
+      if(posts.length < 1 && !activeFetch) {
+        console.log('first fetch');
+        axios
+          .get('http://localhost:8000/api/posts')
+          .then(res => {
+            dispatch(fetchSuccess(res.data));
+          })
+          .catch(err => {
+            dispatch(fetchError(err.message || true));
+          });
+      }
+    } else {
+      console.log('refetch');
       axios
         .get('http://localhost:8000/api/posts')
         .then(res => {
@@ -56,7 +61,6 @@ export const createActionFetchPosts = (posts) => {
   };
 };
 
-//TO THINK ABOUT IT 
 export const createActionFetchPostById = (id) => {
   return (dispatch, getState) => {
     dispatch(fetchStarted());

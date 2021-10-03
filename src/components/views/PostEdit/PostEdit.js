@@ -12,7 +12,7 @@ import styles from './PostEdit.module.scss';
 import { PostEditBar } from '../../features/PostEditBar/PostEditBar';
 import { PostEditForm } from '../../features/PostEditForm/PostEditForm';
 
-const Component = ({className, children}) => {
+const Component = ({className}) => {
  
   const { id } = useParams();
 
@@ -20,13 +20,11 @@ const Component = ({className, children}) => {
     <div className={clsx(className, styles.root)}>
       <PostEditBar id={id} />
       <PostEditForm id={id} />
-      {children}
     </div>
   );
 };
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
 };
 

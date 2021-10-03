@@ -11,7 +11,7 @@ import styles from './LoginButton.module.scss';
 import Button from '@material-ui/core/Button';
 
 
-const Component = ({className, children, setLoginStatusDispatch}) => {
+const Component = ({className, setLoginStatusDispatch}) => {
 
   const clickHandler = () => {
     setLoginStatusDispatch(true);
@@ -20,13 +20,11 @@ const Component = ({className, children, setLoginStatusDispatch}) => {
   return (
     <div className={clsx(className, styles.root)}>
       <Button variant="contained" onClick={() => clickHandler()}>LOGIN</Button>
-      {children}
     </div>
   );
 };
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
   setLoginStatusDispatch: PropTypes.func,
 };

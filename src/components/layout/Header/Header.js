@@ -10,15 +10,13 @@ import styles from './Header.module.scss';
 
 import { HomeBar } from '../../features/HomeBar/HomeBar';
 
-const Component = ({className, children}) => (
+const Component = ({className}) => (
   <div className={clsx(className, styles.root)}>
     <HomeBar />
-    {children}
   </div>
 );
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
 };
 

@@ -11,7 +11,7 @@ import styles from './LogoutButton.module.scss';
 import Button from '@material-ui/core/Button';
 
 
-const Component = ({className, children, setLogoutStatusDispatch}) => {
+const Component = ({className, setLogoutStatusDispatch}) => {
 
   const clickHandler = () => {
     setLogoutStatusDispatch(false);
@@ -20,13 +20,11 @@ const Component = ({className, children, setLogoutStatusDispatch}) => {
   return (
     <div className={clsx(className, styles.root)}>
       <Button variant="contained" onClick={() => clickHandler()}>LOGOUT</Button>
-      {children}
     </div>
   );
 };
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
   setLogoutStatusDispatch: PropTypes.func,
 };

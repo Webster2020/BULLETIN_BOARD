@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
@@ -16,24 +16,14 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
-// import IconButton from '@mui/material/IconButton';
-// import MenuIcon from '@mui/icons-material/Menu';
 import Stack from '@mui/material/Stack';
 import Switch from '@mui/material/Switch';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
-const Component = ({className, children, login, user}) => {
+const Component = ({className, login, user}) => {
 
   // const [auth, setAuth] = useState(false);
-  useEffect(() => {
-    console.log(login);
-  });
-
-  const handleChange = (event) => {
-    console.log(event.target.checked);
-    //setAuth(event.target.checked);
-  };
 
   return (
     <div className={clsx(className, styles.root)}>
@@ -43,7 +33,6 @@ const Component = ({className, children, login, user}) => {
             control={
               <Switch
                 checked={login}
-                onChange={handleChange}
                 aria-label="login switch"
                 disabled
               />
@@ -53,15 +42,6 @@ const Component = ({className, children, login, user}) => {
         </FormGroup>
         <AppBar position="static">
           <Toolbar>
-            {/* <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon />
-            </IconButton> */}
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               BULLETIN BOARD
             </Typography>
@@ -80,13 +60,11 @@ const Component = ({className, children, login, user}) => {
           </Toolbar>
         </AppBar>
       </Box>
-      {children}
     </div>
   );
 };
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
   login: PropTypes.bool,
   user: PropTypes.object,
