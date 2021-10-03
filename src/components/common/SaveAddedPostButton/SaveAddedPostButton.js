@@ -5,7 +5,7 @@ import clsx from 'clsx';
 
 import { connect } from 'react-redux';
 import { getLoginStatus, getUserData } from '../../../redux/loginRedux.js';
-import { createActionAddPost } from '../../../redux/postsRedux.js';
+import { createActionAddPost, createActionPostNewPost } from '../../../redux/postsRedux.js';
 
 import styles from './SaveAddedPostButton.module.scss';
 
@@ -32,6 +32,7 @@ const Component = (
     phone,
     location,
     setAddedPostDispatch,
+    addNewPostToDB,
   }
 ) => {
 
@@ -51,8 +52,18 @@ const Component = (
     location,
   };
 
+  const addedPostDB = {
+    author,
+    title,
+    text,
+    created,
+    updated,
+    status,
+  };
+
   const clickHandler = () => {
-    setAddedPostDispatch(addedPost);
+    //setAddedPostDispatch(addedPost);
+    addNewPostToDB(addedPostDB);
   };
 
   return (
@@ -82,6 +93,7 @@ Component.propTypes = {
   phone: PropTypes.string,
   location: PropTypes.string,
   setAddedPostDispatch: PropTypes.func,
+  addNewPostToDB: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -91,7 +103,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setAddedPostDispatch: postData => dispatch(createActionAddPost(postData)),
+  // setAddedPostDispatch: postData => dispatch(createActionAddPost(postData)),
+  addNewPostToDB: postData => dispatch(createActionPostNewPost(postData)),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);

@@ -3,7 +3,7 @@ import axios from 'axios';
 /* selectors */
 export const getAll = ({posts}) => posts.data;
 export const getPostById = ({posts}, postId) => {
-  return posts.data.find(post => post.postId === postId);
+  return posts.data.find(post => post._id === postId);
 };
 export const getPostByUser = ({posts}, user) => {
   // console.log('REDUX:');
@@ -56,6 +56,39 @@ export const createActionFetchPosts = (posts) => {
   };
 };
 
+//TO THINK ABOUT IT 
+export const createActionFetchPostById = (id) => {
+  return (dispatch, getState) => {
+    dispatch(fetchStarted());
+
+    axios
+      .get(`http://localhost:8000/api/posts/${id}`)
+      .then(res => {
+        console.log(res.data);
+        //dispatch(fetchSuccess(res.data));
+      })
+      .catch(err => {
+        console.log('error');
+        dispatch(fetchError(err.message || true));
+      });
+  };
+};
+
+export const createActionPostNewPost = (newPost) => {
+  return (dispatch, getState) => {
+
+    axios
+      .post(`http://localhost:8000/api/posts`, newPost)
+      .then(res => {
+        console.log(res.data);
+        dispatch(createActionAddPost(res.data));
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+};
+
 /* reducer */
 export const reducer = (statePart = [], action = {}) => {
   switch (action.type) {
@@ -101,7 +134,7 @@ export const reducer = (statePart = [], action = {}) => {
       return {
         ...statePart,
         data: statePart.data.map(
-          (post) => post.postId === action.payload.postId ? action.payload : post
+          (post) => post._id === action.payload._id ? action.payload : post
         ),
       };
     }

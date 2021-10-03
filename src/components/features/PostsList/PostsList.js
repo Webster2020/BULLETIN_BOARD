@@ -35,13 +35,13 @@ const Component = ({className, children, posts, user, postsState, userPosts, fet
             {!postsState ?
               (
                 <List sx={{ width: '100%', maxWidth: 900, bgcolor: 'background.paper' }}>
-                  {posts.map(post => <PostsListElem key={shortid.generate()} id={post.postId} post={post}/>)}
+                  {posts.map(post => <PostsListElem key={shortid.generate()} id={post._id} post={post}/>)}
                 </List>
               )
               :
               (
                 <List sx={{ width: '100%', maxWidth: 900, bgcolor: 'background.paper' }}>
-                  {userPosts.map(post => <PostsListElem key={shortid.generate()} id={post.postId} post={post}/>)}
+                  {userPosts.map(post => <PostsListElem key={shortid.generate()} id={post._id} post={post}/>)}
                 </List>
               )
             }

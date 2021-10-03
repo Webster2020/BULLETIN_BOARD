@@ -5,6 +5,7 @@ import clsx from 'clsx';
 
 import { connect } from 'react-redux';
 import { getLoginStatus, getUserData } from '../../../redux/loginRedux.js';
+import { createActionFetchPostById } from '../../../redux/postsRedux.js';
 
 import styles from './PostsListElem.module.scss';
 
@@ -22,10 +23,15 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 
-const Component = ({className, children, id, login, post, user}) => {
+const Component = ({className, children, id, login, post, user, fetchPostByIdDispatch}) => {
   
   //const author = undefined;
   const postData = post;
+
+  const clickHandler = () => {
+    console.log('hhhhhhhhhhhhhhh');
+    fetchPostByIdDispatch(id);
+  };
 
   return (
     <div className={clsx(className, styles.root)}>
@@ -41,10 +47,10 @@ const Component = ({className, children, id, login, post, user}) => {
       >
         <Link to={`/post/${id}`} style={{textDecoration: 'none'}}>
           <ListItem alignItems="center">
-            <ListItemButton>
+            <ListItemButton onClick={clickHandler}>
               <ListItemAvatar>
                 <Avatar alt="Remy Sharp">
-                  {postData.author.charAt(0)}
+                  {/* {postData.author.charAt(0)} */}
                 </Avatar>
               </ListItemAvatar>
               <ListItemText
@@ -99,6 +105,7 @@ Component.propTypes = {
   login: PropTypes.bool,
   post: PropTypes.object,
   user: PropTypes.object,
+  fetchPostByIdDispatch: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -108,11 +115,11 @@ const mapStateToProps = (state) => ({
   // admin: getAdminStatus(state),
 });
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
+const mapDispatchToProps = dispatch => ({
+  fetchPostByIdDispatch: (id) => dispatch(createActionFetchPostById(id)),
+});
 
-const Container = connect(mapStateToProps)(Component);
+const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
   // Component as PostsListElem,
