@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
@@ -23,12 +23,12 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
 
-const Component = ({className, children, id, login, user}) => {
+const Component = ({className, id, login, user}) => {
 
   // const [auth, setAuth] = useState(false);
-  useEffect(() => {
-    console.log(login);
-  });
+  // useEffect(() => {
+  //   console.log(login);
+  // });
 
   const handleChange = (event) => {
     console.log(event.target.checked);
@@ -58,9 +58,11 @@ const Component = ({className, children, id, login, user}) => {
               POST {id}
             </Typography>
 
-            {!login ? (
-              <LoginButton />
-            ) : 
+            {!login ? 
+              (
+                <LoginButton />
+              ) 
+              : 
               (
                 <Stack direction="row" spacing={2}>
                   <EditPostButton id={id}/>
@@ -72,13 +74,11 @@ const Component = ({className, children, id, login, user}) => {
           </Toolbar>
         </AppBar>
       </Box>
-      {children}
     </div>
   );
 };
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
   id: PropTypes.string,
   login: PropTypes.bool,

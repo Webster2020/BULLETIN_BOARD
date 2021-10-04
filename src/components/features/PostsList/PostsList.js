@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
 
 import clsx from 'clsx';
 
 import { connect } from 'react-redux';
-import { getAll, getPostByUser, getPostsState, getFetchStatus, createActionFetchPosts } from '../../../redux/postsRedux.js';
+import { getPostByUser, getPostsState } from '../../../redux/postsRedux.js';
 
 import styles from './PostsList.module.scss';
 
@@ -23,14 +23,8 @@ const Component = (
     user, 
     postsState, 
     userPosts, 
-    activeFetch,
-    fetchPostsDispatch,
   }
 ) => {
-
-  useEffect(() => {
-    posts.length < 1 && fetchPostsDispatch(posts, false, activeFetch);
-  });
 
   return (
     <div className={clsx(className, styles.root)}>
@@ -72,22 +66,14 @@ Component.propTypes = {
   user: PropTypes.string,
   postsState: PropTypes.bool,
   userPosts: PropTypes.array,
-  activeFetch: PropTypes.bool,
-  fetchPostsDispatch: PropTypes.func,
 };
 
-const mapStateToProps = (state, props) => ({
-  posts: getAll(state),
+const mapStateToProps = (state, {user}) => ({
   postsState: getPostsState(state),
-  userPosts: getPostByUser(state, props.user) || [], //get from server in future...
-  activeFetch: getFetchStatus(state),
+  userPosts: getPostByUser(state, user) || [], //get from server in future...
 });
 
-const mapDispatchToProps = dispatch => ({
-  fetchPostsDispatch: (posts, refetch, activeFetch) => dispatch(createActionFetchPosts(posts, refetch, activeFetch)),
-});
-
-const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(mapStateToProps)(Component);
 
 export {
   // Component as PostsList,

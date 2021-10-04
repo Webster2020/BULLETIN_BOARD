@@ -57,12 +57,13 @@ router.post('/posts', async (req, res) => {
 
 router.put('/posts/:id', async (req, res) => {
   const { 
-    author,
-    created,
-    updated,
-    status,
     title,
     text,
+    photo,
+    price,
+    phone,
+    location,
+    updated,
   } = req.body;
   try {
     const post = await Post.findById(req.params.id);
@@ -73,12 +74,13 @@ router.put('/posts/:id', async (req, res) => {
         }, 
         { 
           $set: { 
-            author: author,
-            created: created,
-            updated: updated,
-            status: status,
             title: title,
             text: text,
+            photo: photo,
+            price: price,
+            phone: phone,
+            location: location,
+            updated: updated,
           }
         }
       );

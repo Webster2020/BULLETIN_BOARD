@@ -44,7 +44,7 @@ const Component = (
 
 Component.propTypes = {
   className: PropTypes.string,
-  posts: PropTypes.array,
+  posts: PropTypes.any,
   fetchPostsDispatch: PropTypes.func,
 };
 

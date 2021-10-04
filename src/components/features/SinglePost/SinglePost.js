@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
 
 import { connect } from 'react-redux';
-import { getPostById } from '../../../redux/postsRedux.js';
+// import { getPostById } from '../../../redux/postsRedux.js';
+import { getAll } from '../../../redux/postsRedux.js';
 
 import styles from './SinglePost.module.scss';
 
@@ -23,9 +24,14 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 
-const Component = ({className, children, id, post}) => {
+const Component = ({className, post}) => {
 
-  const postData = post;
+  useEffect(() => {
+    console.log('.......................');
+    console.log('SINGLE POST');
+    console.log(post);
+    console.log('.......................');
+  });
 
   return (
     <div className={clsx(className, styles.root)}>
@@ -38,7 +44,7 @@ const Component = ({className, children, id, post}) => {
           <CardHeader
             avatar={
               <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                {postData.author.charAt(0)}
+                {post.author.charAt(0)}
               </Avatar>
             }
             action={
@@ -46,53 +52,53 @@ const Component = ({className, children, id, post}) => {
                 <MoreVertIcon />
               </IconButton>
             }
-            title={postData.title}
-            subheader={postData.created}
+            title={post.title}
+            subheader={post.created}
           />
           <CardContent>
             <Typography variant="body2" color="text.secondary">
-              {postData.author}
+              {post.author}
             </Typography>
           </CardContent>
           <CardMedia
             component="img"
             height="400"
-            photo={postData.photo}
-            alt={postData.title}
+            photo={post.photo}
+            alt={post.title}
           />
           <CardContent>
             <Typography variant="body2" color="text.secondary">
-              {postData.text}
+              {post.text}
             </Typography>
           </CardContent>
           <CardContent>
             <Typography variant="body2" color="text.secondary">
-              EMAIL: {postData.author}
+              EMAIL: {post.author}
             </Typography>
           </CardContent>
           <CardContent>
             <Typography variant="body2" color="text.secondary">
-              PHONE: {postData.phone}
+              PHONE: {post.phone}
             </Typography>
           </CardContent>
           <CardContent>
             <Typography variant="body2" color="text.secondary">
-              PRICE: {postData.price}
+              PRICE: {post.price}
             </Typography>
           </CardContent>
           <CardContent>
             <Typography variant="body2" color="text.secondary">
-              LAST UPDATE: {postData.updated}
+              LAST UPDATE: {post.updated}
             </Typography>
           </CardContent>
           <CardContent>
             <Typography variant="body2" color="text.secondary">
-              location: {postData.location}
+              location: {post.location}
             </Typography>
           </CardContent>
           <CardContent>
             <Typography variant="body2" color="text.secondary">
-              STATUS: {postData.status}
+              STATUS: {post.status}
             </Typography>
           </CardContent>
           <CardActions disableSpacing>
@@ -105,20 +111,21 @@ const Component = ({className, children, id, post}) => {
           </CardActions>
         </Card>
       </Stack>
-      {children}
     </div>
   );
 };
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
-  id: PropTypes.string,
   post: PropTypes.object,
 };
 
-const mapStateToProps = (state, props) => ({
-  post: getPostById(state, props.id),
+// const mapStateToProps = (state, props) => ({
+//   post: getPostById(state, props.id),
+// });
+
+const mapStateToProps = (state) => ({
+  post: getAll(state),
 });
 
 // const mapDispatchToProps = dispatch => ({

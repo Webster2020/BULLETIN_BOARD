@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
 
 import { connect } from 'react-redux';
-import { getPostById } from '../../../redux/postsRedux.js';
+import { getAll, getFetchStatus } from '../../../redux/postsRedux.js';
 
 import styles from './PostEditForm.module.scss';
 
@@ -18,29 +18,27 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 
 
-const Component = ({className, children, id, post}) => {
-
-  const postData = post;
+const Component = ({className, id, post, activeFetch}) => {
 
   const today = currentDate();
 
   const [titleChecked, setTitleChecked] = useState(false);
-  const [title, setTitle] = useState(postData.title);
+  const [title, setTitle] = useState(post.title);
 
   const [textChecked, setTextChecked] = useState(false);
-  const [text, setText] = useState(postData.text);
+  const [text, setText] = useState(post.text);
 
   const [photoChecked, setPhotoChecked] = useState(false);
-  const [photo, setPhoto] = useState(postData.photo);
+  const [photo, setPhoto] = useState(post.photo);
 
   const [priceChecked, setPriceChecked] = useState(false);
-  const [price, setPrice] = useState(postData.price);
+  const [price, setPrice] = useState(post.price);
 
   const [phoneChecked, setPhoneChecked] = useState(false);
-  const [phone, setPhone] = useState(postData.phone);
+  const [phone, setPhone] = useState(post.phone);
 
   const [locationChecked, setlocationChecked] = useState(false);
-  const [location, setlocation] = useState(postData.location);
+  const [location, setlocation] = useState(post.location);
 
   const handleCheckTitle = (event) => {
     setTitleChecked(event.target.checked);
@@ -265,7 +263,7 @@ const Component = ({className, children, id, post}) => {
           mt={2}
         >
           <SaveEditedPostButton 
-            postData={postData} 
+            post={post} 
             title={title}
             text={text}
             photo={photo}
@@ -278,28 +276,24 @@ const Component = ({className, children, id, post}) => {
       </div>
       
       <div className={styles.column}>
-        <SinglePost id={id}/>
+        {!activeFetch ? <SinglePost id={id}/> : <h3>Loading data...</h3>}
       </div>
 
-      {children}
     </div>
   );
 };
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
   id: PropTypes.string,
   post: PropTypes.object,
+  activeFetch: PropTypes.bool,
 };
 
-const mapStateToProps = (state, props) => ({
-  post: getPostById(state, props.id),
+const mapStateToProps = (state) => ({
+  post: getAll(state),
+  activeFetch: getFetchStatus(state),
 });
-
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
 
 const Container = connect(mapStateToProps)(Component);
 

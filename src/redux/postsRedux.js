@@ -1,10 +1,16 @@
 import axios from 'axios';
 
 /* selectors */
-export const getAll = ({posts}) => posts.data;
-export const getPostById = ({posts}, postId) => {
-  return posts.data.find(post => post._id === postId);
+export const getAll = ({posts}) => {
+  console.log('>>>>>>>>>>>>>>');
+  console.log('GET ALL');
+  console.log(posts.data);
+  console.log('>>>>>>>>>>>>>>');
+  return posts.data;
 };
+// export const getPostById = ({posts}, postId) => {
+//   return posts.data.find(post => post._id === postId);
+// };
 export const getPostByUser = ({posts}, user) => {
   return posts.data.filter(post => post.author === user);
 };
@@ -68,8 +74,11 @@ export const createActionFetchPostById = (id) => {
     axios
       .get(`http://localhost:8000/api/posts/${id}`)
       .then(res => {
+        console.log('--------------------------');
+        console.log('POST BY ID FROM SERVER');
         console.log(res.data);
-        //dispatch(fetchSuccess(res.data));
+        console.log('--------------------------');
+        dispatch(fetchSuccess(res.data));
       })
       .catch(err => {
         console.log('error');

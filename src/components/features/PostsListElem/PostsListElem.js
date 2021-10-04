@@ -37,8 +37,12 @@ const Component = (
   //const author = undefined;
 
   const clickHandler = () => {
-    console.log('hhhhhhhhhhhhhhh');
+    console.log('CLICK ON POST');
     fetchPostByIdDispatch(id);
+    console.log('===========================');
+    console.log('FETCHED POST (POSTLISTELEM');
+    console.log(post);
+    console.log('===========================');
   };
 
   return (
@@ -70,7 +74,6 @@ const Component = (
                       variant="body2"
                       color="text.primary"
                     >
-                      {/* {author === undefined ? 'Noname' : author} */}
                     </Typography>
                     {` —  ${post.text}`}
                   </React.Fragment>
@@ -112,7 +115,6 @@ Component.propTypes = {
 
 const mapStateToProps = (state) => ({
   login: getLoginStatus(state),
-  // post: getPostById(state, props.id),
   user: getUserData(state),
   // admin: getAdminStatus(state),
 });

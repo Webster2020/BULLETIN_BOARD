@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
@@ -14,9 +14,8 @@ import Button from '@material-ui/core/Button';
 
 const Component = (
   {
-    className,
-    children, 
-    postData,
+    className, 
+    post,
     title,
     text,
     photo,
@@ -28,8 +27,12 @@ const Component = (
   }
 ) => {
 
+  useEffect(() => {
+    console.log(post);
+  });
+
   const editedPost = {
-    ...postData,
+    ...post,
     title,
     text,
     photo,
@@ -40,21 +43,22 @@ const Component = (
   };
 
   const clickHandler = () => {
+    console.log('SAVE EDITED POST');
+    console.log('post/:id to server... TO DO !!!');
+    console.log(editedPost);
     setEditedPostDispatch(editedPost);
   };
 
   return (
     <div className={clsx(className, styles.root)}>
       <Button variant="outlined" size="large" onClick={() => clickHandler()}>SAVE</Button>
-      {children}
     </div>
   );
 };
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
-  postData: PropTypes.object,
+  post: PropTypes.object,
   title: PropTypes.string,
   text: PropTypes.string,
   photo: PropTypes.string,
@@ -72,7 +76,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setEditedPostDispatch: postData => dispatch(createActionEditPost(postData)),
+  setEditedPostDispatch: post => dispatch(createActionEditPost(post)),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
