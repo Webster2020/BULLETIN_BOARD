@@ -12,7 +12,7 @@ import { PostAddBar } from '../../features/PostAddBar/PostAddBar';
 import { PostAddForm } from '../../features/PostAddForm/PostAddForm';
 import { NotFound } from '../../views/NotFound/NotFound'; 
 
-const Component = ({className, children, login}) => {
+const Component = ({className, login}) => {
   return (
     <div className={clsx(className, styles.root)}>
       {login ? 
@@ -20,7 +20,6 @@ const Component = ({className, children, login}) => {
           <div>
             <PostAddBar />
             <PostAddForm />
-            {children}
           </div>
         )
         :
@@ -34,7 +33,6 @@ const Component = ({className, children, login}) => {
 
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
   login: PropTypes.bool,
 };

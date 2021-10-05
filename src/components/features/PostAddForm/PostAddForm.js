@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import shortid from 'shortid';
+// import shortid from 'shortid';
 
 import clsx from 'clsx';
 
@@ -19,7 +19,7 @@ import Select from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 
-const Component = ({className, children, user}) => {
+const Component = ({className, user}) => {
 
   const today = currentDate();
 
@@ -142,15 +142,13 @@ const Component = ({className, children, user}) => {
           my={5}
         >
           <SaveAddedPostButton  
-            postId={shortid.generate()}
-            //authorId={user.id}
+            // postId={shortid.generate()}
             author={user.email}
             authorName={`${user.name} ${user.surname}`}
             title={title}
             text={text}
             created={today}
             updated={today}
-            // email={user.email}
             status={status}
             photo={photo}
             price={price}
@@ -160,13 +158,11 @@ const Component = ({className, children, user}) => {
         </Stack>
       </div>
 
-      {children}
     </div>
   );
 };
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
   // login: PropTypes.bool,
   user: PropTypes.object,

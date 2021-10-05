@@ -9,7 +9,7 @@ import { createActionPostNewPost } from '../../../redux/postsRedux.js';
 
 import styles from './SaveAddedPostButton.module.scss';
 
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 import Button from '@material-ui/core/Button';
 
@@ -17,20 +17,18 @@ import Button from '@material-ui/core/Button';
 const Component = (
   {
     className,
-    children, 
-    postId,
-    authorName,
     author,
-    title,
-    text,
+    // authorName,
     created,
-    updated,
-    email,
-    status,
-    photo,
-    price,
-    phone,
     location,
+    phone,
+    photo,
+    // postId,
+    price,
+    status,
+    text,
+    title,
+    updated,
     // setAddedPostDispatch,
     addNewPostToDB,
   }
@@ -54,11 +52,16 @@ const Component = (
 
   const addedPostDB = {
     author,
-    title,
-    text,
+    // authorName,
     created,
-    updated,
+    location,
+    phone,
+    photo,
+    price,
     status,
+    text,
+    title,
+    updated,
   };
 
   const clickHandler = () => {
@@ -68,16 +71,14 @@ const Component = (
 
   return (
     <div className={clsx(className, styles.root)}>
-      <Link to={`/`} style={{textDecoration: 'none'}}>
-        <Button variant="outlined" size="large" onClick={() => clickHandler()}>SAVE</Button>
-      </Link>
-      {children}
+      {/* <Link to={`/`} style={{textDecoration: 'none'}}> */}
+      <Button variant="outlined" size="large" onClick={() => clickHandler()}>SAVE</Button>
+      {/* </Link> */}
     </div>
   );
 };
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
   postId: PropTypes.string,
   authorName: PropTypes.string,

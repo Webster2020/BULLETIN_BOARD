@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
@@ -19,17 +19,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
 
-const Component = ({className, children, login, user}) => {
+const Component = ({className, login, user}) => {
 
   // const [auth, setAuth] = useState(false);
-  useEffect(() => {
-    console.log(login);
-  });
-
-  const handleChange = (event) => {
-    console.log(event.target.checked);
-    //setAuth(event.target.checked);
-  };
 
   return (
     <div className={clsx(className, styles.root)}>
@@ -39,7 +31,6 @@ const Component = ({className, children, login, user}) => {
             control={
               <Switch
                 checked={login}
-                onChange={handleChange}
                 aria-label="login switch"
                 disabled
               />
@@ -56,13 +47,11 @@ const Component = ({className, children, login, user}) => {
           </Toolbar>
         </AppBar>
       </Box>
-      {children}
     </div>
   );
 };
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
   login: PropTypes.bool,
   user: PropTypes.object,

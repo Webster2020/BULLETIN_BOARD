@@ -33,24 +33,35 @@ router.post('/posts', async (req, res) => {
   try {
     const { 
       author,
+      // authorName,
       created,
-      updated,
+      location,
+      phone,
+      photo,
+      price,
       status,
-      title,
       text,
+      title,
+      updated,
     } = req.body;
     const newPost = new Post({ 
       author: author,
+      // authorName: authorName,
       created: created,
-      updated: updated,
+      location: location,
+      phone: phone,
+      photo: photo,
+      price: price,
       status: status,
-      title: title,
       text: text,
+      title: title,
+      updated: updated,
     });
     await newPost.save();
     res.json({ message: 'OK' });
   } 
   catch(err) {
+    console.log('TU ERROR');
     res.status(500).json({ message: err });
   }
 });

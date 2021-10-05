@@ -88,6 +88,8 @@ export const createActionFetchPostById = (id) => {
 };
 
 export const createActionPostNewPost = (newPost) => {
+  console.log('POSTING NEW POST');
+  console.log(newPost);
   return (dispatch, getState) => {
 
     axios
@@ -97,6 +99,7 @@ export const createActionPostNewPost = (newPost) => {
         dispatch(createActionAddPost(res.data));
       })
       .catch(err => {
+        console.log('tu error');
         console.log(err);
       });
   };
