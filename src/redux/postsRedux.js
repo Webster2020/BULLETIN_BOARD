@@ -25,6 +25,7 @@ const createActionName = name => `app/${reducerName}/${name}`;
 const FETCH_START = createActionName('FETCH_START');
 const FETCH_SUCCESS = createActionName('FETCH_SUCCESS');
 const FETCH_ERROR = createActionName('FETCH_ERROR');
+const DEL_SUCCESS = createActionName('DEL_SUCCESS');
 const ADD_POST = createActionName('ADD_POST');
 const EDIT_POST = createActionName('EDIT_POST');
 const SWITCH_POSTS = createActionName('SWITCH_POSTS');
@@ -33,6 +34,7 @@ const SWITCH_POSTS = createActionName('SWITCH_POSTS');
 export const fetchStarted = payload => ({ payload, type: FETCH_START });
 export const fetchSuccess = payload => ({ payload, type: FETCH_SUCCESS });
 export const fetchError = payload => ({ payload, type: FETCH_ERROR });
+export const delSuccess = payload => ({ payload, type: DEL_SUCCESS });
 export const createActionAddPost = payload => ({ payload, type: ADD_POST });
 export const createActionEditPost = payload => ({ payload, type: EDIT_POST });
 export const createActionSwitchPosts = payload => ({ payload, type: SWITCH_POSTS });
@@ -123,6 +125,25 @@ export const createActionPutEditPost = (id, editedPost) => {
   };
 };
 
+export const createActionDeletePost = (id) => {
+  console.log('DELETING POST');
+  return (dispatch, getState) => {
+    dispatch(fetchStarted());
+
+    axios
+      .delete(`http://localhost:8000/api/posts/${id}`)
+      .then(res => {
+        console.log(res.data);
+        dispatch(delSuccess(true));
+      })
+      .catch(err => {
+        console.log('tu error');
+        console.log(err);
+        dispatch(fetchError(err.message || true));
+      });
+  };
+};
+
 /* reducer */
 export const reducer = (statePart = [], action = {}) => {
   switch (action.type) {
@@ -172,6 +193,15 @@ export const reducer = (statePart = [], action = {}) => {
         // data: statePart.data.map(
         //   (post) => post._id === action.payload._id ? action.payload : post
         // ),
+      };
+    }
+    case DEL_SUCCESS: {
+      return {
+        ...statePart,
+        loading: {
+          active: false,
+          error: false,
+        },
       };
     }
     case SWITCH_POSTS: {

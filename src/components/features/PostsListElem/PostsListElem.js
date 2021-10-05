@@ -5,7 +5,7 @@ import clsx from 'clsx';
 
 import { connect } from 'react-redux';
 import { getLoginStatus, getUserData } from '../../../redux/loginRedux.js';
-import { createActionFetchPostById } from '../../../redux/postsRedux.js';
+import { createActionFetchPostById, createActionDeletePost } from '../../../redux/postsRedux.js';
 
 import styles from './PostsListElem.module.scss';
 
@@ -31,6 +31,7 @@ const Component = (
     post, 
     user, 
     fetchPostByIdDispatch,
+    fetchPostDeleteDispatch,
   }
 ) => {
   
@@ -43,6 +44,12 @@ const Component = (
     console.log('FETCHED POST (POSTLISTELEM');
     console.log(post);
     console.log('===========================');
+  };
+
+  const clickaHandlerDel = () => {
+    console.log('CLICK ON X');
+    fetchPostDeleteDispatch(id);
+    console.log('THINK HOW RERENDER THIS COMPONENT AFTER REMOVING POST');
   };
 
   return (
@@ -99,6 +106,7 @@ const Component = (
           </ListItem>
         </Link>
         {login && user.email === post.author && <EditPostButton id={id}/>}
+        <button onClick={clickaHandlerDel}>x</button>
       </Stack>
     </div>
   );
@@ -111,6 +119,7 @@ Component.propTypes = {
   post: PropTypes.object,
   user: PropTypes.object,
   fetchPostByIdDispatch: PropTypes.func,
+  fetchPostDeleteDispatch: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -121,6 +130,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchPostByIdDispatch: (id) => dispatch(createActionFetchPostById(id)),
+  fetchPostDeleteDispatch: (id) => dispatch(createActionDeletePost(id)),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
