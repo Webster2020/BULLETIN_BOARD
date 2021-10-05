@@ -68,12 +68,12 @@ router.post('/posts', async (req, res) => {
 
 router.put('/posts/:id', async (req, res) => {
   const { 
-    title,
-    text,
+    location,
+    phone,
     photo,
     price,
-    phone,
-    location,
+    text,
+    title,
     updated,
   } = req.body;
   try {
@@ -85,12 +85,12 @@ router.put('/posts/:id', async (req, res) => {
         }, 
         { 
           $set: { 
-            title: title,
-            text: text,
+            location: location,
+            phone: phone,
             photo: photo,
             price: price,
-            phone: phone,
-            location: location,
+            text: text,
+            title: title,
             updated: updated,
           }
         }

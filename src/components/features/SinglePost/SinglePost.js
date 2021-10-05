@@ -63,7 +63,7 @@ const Component = ({className, post}) => {
           <CardMedia
             component="img"
             height="400"
-            photo={post.photo}
+            image={post.photo}
             alt={post.title}
           />
           <CardContent>

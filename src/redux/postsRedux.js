@@ -105,6 +105,24 @@ export const createActionPostNewPost = (newPost) => {
   };
 };
 
+export const createActionPutEditPost = (id, editedPost) => {
+  console.log('PUTTING EDITED POST');
+  console.log(editedPost);
+  return (dispatch, getState) => {
+
+    axios
+      .put(`http://localhost:8000/api/posts/${id}`, editedPost)
+      .then(res => {
+        console.log(res.data);
+        dispatch(createActionEditPost(editedPost));
+      })
+      .catch(err => {
+        console.log('tu error');
+        console.log(err);
+      });
+  };
+};
+
 /* reducer */
 export const reducer = (statePart = [], action = {}) => {
   switch (action.type) {
@@ -147,11 +165,13 @@ export const reducer = (statePart = [], action = {}) => {
       };
     }
     case EDIT_POST: {
+      console.log(action.payload);
       return {
         ...statePart,
-        data: statePart.data.map(
-          (post) => post._id === action.payload._id ? action.payload : post
-        ),
+        data: action.payload,
+        // data: statePart.data.map(
+        //   (post) => post._id === action.payload._id ? action.payload : post
+        // ),
       };
     }
     case SWITCH_POSTS: {

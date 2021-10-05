@@ -6,6 +6,8 @@ import clsx from 'clsx';
 import { connect } from 'react-redux';
 import { getLoginStatus, getUserData } from '../../../redux/loginRedux.js';
 
+import { getAll } from '../../../redux/postsRedux.js';
+
 import styles from './PostBar.module.scss';
 
 import { EditPostButton } from '../../common/EditPostButton/EditPostButton';
@@ -23,7 +25,15 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
 
-const Component = ({className, id, login, user}) => {
+const Component = (
+  
+  {className, 
+    id, 
+    login,
+    post, 
+    user,
+  }
+) => {
 
   // const [auth, setAuth] = useState(false);
   // useEffect(() => {
@@ -65,7 +75,7 @@ const Component = ({className, id, login, user}) => {
               : 
               (
                 <Stack direction="row" spacing={2}>
-                  <EditPostButton id={id}/>
+                  {user.email === post.author && <EditPostButton id={id}/>}
                   <LogoutButton />
                 </Stack>
               )
@@ -82,12 +92,14 @@ Component.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string,
   login: PropTypes.bool,
+  post: PropTypes.object,
   user: PropTypes.object,
 };
 
 const mapStateToProps = state => ({
   login: getLoginStatus(state),
   user: getUserData(state),
+  post: getAll(state),
   //admin: getAdminStatus(state),
 });
 

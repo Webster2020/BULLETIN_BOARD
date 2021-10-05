@@ -5,7 +5,7 @@ import clsx from 'clsx';
 
 import { connect } from 'react-redux';
 import { getLoginStatus, getUserData } from '../../../redux/loginRedux.js';
-import { createActionEditPost } from '../../../redux/postsRedux.js';
+import { createActionPutEditPost } from '../../../redux/postsRedux.js';
 
 import styles from './SaveEditedPostButton.module.scss';
 
@@ -14,14 +14,15 @@ import Button from '@material-ui/core/Button';
 
 const Component = (
   {
+    id,
     className, 
     post,
-    title,
-    text,
+    location,
+    phone,
     photo,
     price,
-    phone,
-    location,
+    text,
+    title,
     updated,
     setEditedPostDispatch,
   }
@@ -33,12 +34,12 @@ const Component = (
 
   const editedPost = {
     ...post,
-    title,
-    text,
+    location,
+    phone,
     photo,
     price,
-    phone,
-    location,
+    text,
+    title,
     updated,
   };
 
@@ -46,7 +47,7 @@ const Component = (
     console.log('SAVE EDITED POST');
     console.log('post/:id to server... TO DO !!!');
     console.log(editedPost);
-    setEditedPostDispatch(editedPost);
+    setEditedPostDispatch(id, editedPost);
   };
 
   return (
@@ -57,14 +58,15 @@ const Component = (
 };
 
 Component.propTypes = {
+  id: PropTypes.string,
   className: PropTypes.string,
   post: PropTypes.object,
-  title: PropTypes.string,
-  text: PropTypes.string,
+  location: PropTypes.string,
+  phone: PropTypes.string,
   photo: PropTypes.string,
   price: PropTypes.string,
-  phone: PropTypes.string,
-  location: PropTypes.string,
+  text: PropTypes.string,
+  title: PropTypes.string,
   updated: PropTypes.string,
   setEditedPostDispatch: PropTypes.func,
 };
@@ -76,7 +78,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setEditedPostDispatch: post => dispatch(createActionEditPost(post)),
+  setEditedPostDispatch: (id, post) => dispatch(createActionPutEditPost(id, post)),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);

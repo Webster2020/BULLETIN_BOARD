@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
@@ -19,6 +19,10 @@ import TextField from '@mui/material/TextField';
 
 
 const Component = ({className, id, post, activeFetch}) => {
+
+  useEffect(() => {
+    console.log(post);
+  });
 
   const today = currentDate();
 
@@ -262,7 +266,8 @@ const Component = ({className, id, post, activeFetch}) => {
           alignItems="center"
           mt={2}
         >
-          <SaveEditedPostButton 
+          <SaveEditedPostButton
+            id={id} 
             post={post} 
             title={title}
             text={text}
