@@ -10,6 +10,7 @@ import { getAll } from '../../../redux/postsRedux.js';
 
 import styles from './PostBar.module.scss';
 
+import { DelPostButton } from '../../common/DelPostButton/DelPostButton.js';
 import { EditPostButton } from '../../common/EditPostButton/EditPostButton';
 import { LoginButton } from '../../common/LoginButton/LoginButton';
 import { LogoutButton } from '../../common/LogoutButton/LogoutButton';
@@ -76,6 +77,7 @@ const Component = (
               (
                 <Stack direction="row" spacing={2}>
                   {user.email === post.author && <EditPostButton id={id}/>}
+                  {user.email === post.author && <DelPostButton id={id}/>}
                   <LogoutButton />
                 </Stack>
               )

@@ -202,6 +202,7 @@ export const reducer = (statePart = [], action = {}) => {
           active: false,
           error: false,
         },
+        data: [],
       };
     }
     case SWITCH_POSTS: {
