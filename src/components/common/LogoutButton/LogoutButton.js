@@ -10,7 +10,6 @@ import styles from './LogoutButton.module.scss';
 
 import Button from '@material-ui/core/Button';
 
-
 const Component = ({className, setLogoutStatusDispatch}) => {
 
   const clickHandler = () => {
@@ -32,7 +31,6 @@ Component.propTypes = {
 const mapStateToProps = state => ({
   login: getLoginStatus(state),
   user: getUserData(state),
-  //admin: getAdminStatus(state),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -42,7 +40,6 @@ const mapDispatchToProps = dispatch => ({
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  // Component as LogoutButton,
   Container as LogoutButton,
   Component as LogoutButtonComponent,
 };

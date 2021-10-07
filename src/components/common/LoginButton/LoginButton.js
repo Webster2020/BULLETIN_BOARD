@@ -4,17 +4,17 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 import { connect } from 'react-redux';
-import { getLoginStatus, getUserData, createActionLogin } from '../../../redux/loginRedux.js';
+import { getLoginStatus, getUserData, createActionLogin, createActionLoginWithGoogle } from '../../../redux/loginRedux.js';
 
 import styles from './LoginButton.module.scss';
 
 import Button from '@material-ui/core/Button';
 
-
-const Component = ({className, setLoginStatusDispatch}) => {
+const Component = ({className, setLoginStatusDispatch, loginWithGoogleDispatch}) => {
 
   const clickHandler = () => {
     setLoginStatusDispatch(true);
+    loginWithGoogleDispatch();
   };
 
   return (
@@ -27,22 +27,22 @@ const Component = ({className, setLoginStatusDispatch}) => {
 Component.propTypes = {
   className: PropTypes.string,
   setLoginStatusDispatch: PropTypes.func,
+  loginWithGoogleDispatch: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
   login: getLoginStatus(state),
   user: getUserData(state),
-  //admin: getAdminStatus(state),
 });
 
 const mapDispatchToProps = dispatch => ({
   setLoginStatusDispatch: bool => dispatch(createActionLogin(bool)),
+  loginWithGoogleDispatch: () => dispatch(createActionLoginWithGoogle()),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  //Component as LoginButton,
   Container as LoginButton,
   Component as LoginButtonComponent,
 };

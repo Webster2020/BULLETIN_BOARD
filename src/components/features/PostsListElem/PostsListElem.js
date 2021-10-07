@@ -12,7 +12,6 @@ import styles from './PostsListElem.module.scss';
 import { Link } from 'react-router-dom';
 
 import Avatar from '@mui/material/Avatar';
-import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -31,68 +30,84 @@ const Component = (
     fetchPostByIdDispatch,
   }
 ) => {
-  
-  //const author = undefined;
 
   const clickHandler = () => {
-    console.log('CLICK ON POST');
     fetchPostByIdDispatch(id);
-    console.log('===========================');
-    console.log('FETCHED POST (POSTLISTELEM');
-    console.log(post);
-    console.log('===========================');
   };
 
   return (
     <div className={clsx(className, styles.root)}> 
-      <Divider variant="inset" component="li" />
       <Stack 
-        my={1}
+        my={2}
         direction="row"
         justifyContent="flex-start"
         alignItems="center"
-        spacing={2}
+        sx={{
+          border: '1px solid red', 
+          bgcolor: 'background.paper', 
+          width: '100%',
+        }}
       >
         <Link to={`/post/${id}`} style={{textDecoration: 'none'}}>
           <ListItem alignItems="center">
-            <ListItemButton onClick={clickHandler}>
-              <ListItemAvatar>
-                <Avatar alt="Remy Sharp">
-                  {post.author.charAt(0)}
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText
-                sx={{ minWidth: '200px', width: '500px' }}
-                primary={post.title}
-                secondary={
-                  <React.Fragment>
-                    <Typography
-                      sx={{ display: 'inline' }}
-                      component="span"
-                      variant="body2"
-                      color="text.primary"
-                    >
-                    </Typography>
-                    {` —  ${post.text}`}
-                  </React.Fragment>
-                }
-              />
-              <ListItemText
-                sx={{ marginLeft: '15px' }}
-                primary={`Add date: ${post.created}`}
-                secondary={
-                  <React.Fragment>
-                    <Typography
-                      sx={{ display: 'inline' }}
-                      component="span"
-                      variant="body2"
-                      color="text.primary"
-                    >
-                      {`Last update: ${post.updated}`}
-                    </Typography>
-                  </React.Fragment>
-                }
-              />
+            <ListItemButton 
+              onClick={clickHandler}         
+              sx={{
+                border: '1px solid orange',
+                width: '100%',
+              }}
+            >
+              <Stack 
+                my={0}
+                direction="row"
+                justifyContent="space-between"
+                alignItems="center"
+              >
+                <ListItemAvatar>
+                  <Avatar alt="Remy Sharp">
+                    {post.author.charAt(0)}
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText
+                  sx={{ 
+                    // width: '50%',
+                    border: '1px solid green',
+                  }}
+                  primary={post.title}
+                  secondary={
+                    <React.Fragment>
+                      <Typography
+                        sx={{ display: 'inline' }}
+                        component="span"
+                        variant="body2"
+                        color="text.primary"
+                      >
+                      </Typography>
+                      {` —  ${post.text}`}
+                    </React.Fragment>
+                  }
+                />
+                <ListItemText
+                  sx={{ 
+                    // width: '50%', 
+                    marginLeft: '10px',
+                    border: '1px solid green', 
+                  }}
+                  primary={`Add date: ${post.created}`}
+                  secondary={
+                    <React.Fragment>
+                      <Typography
+                        sx={{ display: 'inline' }}
+                        component="span"
+                        variant="body2"
+                        color="text.primary"
+                      >
+                        {`Last update: ${post.updated}`}
+                      </Typography>
+                    </React.Fragment>
+                  }
+                />
+              </Stack>
             </ListItemButton>
           </ListItem>
         </Link>
@@ -114,7 +129,6 @@ Component.propTypes = {
 const mapStateToProps = (state) => ({
   login: getLoginStatus(state),
   user: getUserData(state),
-  // admin: getAdminStatus(state),
 });
 
 const mapDispatchToProps = dispatch => ({

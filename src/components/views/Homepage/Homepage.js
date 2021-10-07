@@ -52,7 +52,6 @@ const mapStateToProps = state => ({
   user: getUserData(state),
   posts: getAll(state),
   activeFetch: getFetchStatus(state),
-  // admin: getAdminStatus(state),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -62,7 +61,6 @@ const mapDispatchToProps = dispatch => ({
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  // Component as Homepage,
   Container as Homepage,
   Component as HomepageComponent,
 };

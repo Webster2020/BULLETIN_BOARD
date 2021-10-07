@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 /* selectors */
 export const getLoginStatus = ({user}) => user.login;
 export const getUserData = ({user}) => user.data;
@@ -15,6 +17,23 @@ export const createActionLogin = payload => ({ payload, type: LOGIN });
 export const createActionLogout = payload => ({ payload, type: LOGOUT });
 
 /* thunk creators */
+export const createActionLoginWithGoogle = () => {
+  console.log('LOGIN WITH GOOGLE');
+  return (dispatch, getState) => {
+
+    axios
+      .get(`http://localhost:8000/auth/google`)
+      .then(res => {
+        console.log('login google correct');
+        console.log(res.data);
+        // dispatch(createActionEditPost(editedPost));
+      })
+      .catch(err => {
+        console.log('login google error');
+        console.log(err);
+      });
+  };
+};
 
 /* reducer */
 export const reducer = (statePart = [], action = {}) => {

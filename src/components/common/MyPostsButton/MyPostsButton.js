@@ -10,7 +10,6 @@ import styles from './MyPostsButton.module.scss';
 
 import Button from '@material-ui/core/Button';
 
-
 const Component = ({className, postsState, switchPostsDispatch}) => {
 
   const clickHandler = () => {
@@ -19,15 +18,7 @@ const Component = ({className, postsState, switchPostsDispatch}) => {
 
   return (
     <div className={clsx(className, styles.root)}>
-      {!postsState ? 
-        (
-          <Button variant="contained" onClick={() => clickHandler()}>MY POSTS</Button>
-        )
-        : 
-        (
-          <Button variant="contained" onClick={() => clickHandler()}>ALL POSTS</Button>
-        )
-      }
+      <Button variant="contained" onClick={() => clickHandler()}>{!postsState ? 'MY POSTS' : 'ALL POSTS'}</Button>
     </div>
   );
 };
@@ -49,7 +40,6 @@ const mapDispatchToProps = dispatch => ({
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  // Component as MyPostsButton,
   Container as MyPostsButton,
   Component as MyPostsButtonComponent,
 };

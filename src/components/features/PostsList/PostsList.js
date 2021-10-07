@@ -15,7 +15,6 @@ import { PostsListElem } from '../../features/PostsListElem/PostsListElem';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 
-
 const Component = (
   {
     className,
@@ -35,20 +34,16 @@ const Component = (
             justifyContent="center"
             alignItems="center"
             my={1} py={1}
+            sx={{ p: 2, border: '5px dashed green' }}
           >
-            {!postsState ?
-              (
-                <List sx={{ width: '100%', maxWidth: 900, bgcolor: 'background.paper' }}>
-                  {posts.map(post => <PostsListElem key={shortid.generate()} id={post._id} post={post}/>)}
-                </List>
-              )
-              :
-              (
-                <List sx={{ width: '100%', maxWidth: 900, bgcolor: 'background.paper' }}>
-                  {userPosts.map(post => <PostsListElem key={shortid.generate()} id={post._id} post={post}/>)}
-                </List>
-              )
-            }
+            <List sx={{ width: '100%', maxWidth: 900, bgcolor: 'inherit' }}>
+              {
+                !postsState ?
+                  posts.map(post => <PostsListElem key={shortid.generate()} id={post._id} post={post}/>)
+                  :
+                  userPosts.map(post => <PostsListElem key={shortid.generate()} id={post._id} post={post}/>)
+              }
+            </List>
           </Box>
         )
         :
@@ -76,7 +71,6 @@ const mapStateToProps = (state, {user}) => ({
 const Container = connect(mapStateToProps)(Component);
 
 export {
-  // Component as PostsList,
   Container as PostsList,
   Component as PostsListComponent,
 };

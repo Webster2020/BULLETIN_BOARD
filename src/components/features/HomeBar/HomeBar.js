@@ -27,7 +27,11 @@ const Component = ({className, login, user}) => {
 
   return (
     <div className={clsx(className, styles.root)}>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box 
+        sx={{ 
+          flexGrow: 1,
+        }}
+      >
         <FormGroup>
           <FormControlLabel
             control={
@@ -73,17 +77,11 @@ Component.propTypes = {
 const mapStateToProps = state => ({
   login: getLoginStatus(state),
   user: getUserData(state),
-  //admin: getAdminStatus(state),
 });
-
-// const mapDispatchToProps = dispatch => ({
-//   setLoginStatusDispatch: arg => dispatch(creatActionSetLoginStatus(arg)),
-// });
 
 const Container = connect(mapStateToProps)(Component);
 
 export {
-  //Component as HomeBar,
   Container as HomeBar,
   Component as HomeBarComponent,
 };
