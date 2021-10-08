@@ -42,7 +42,7 @@ const Component = ({className, id, login, user}) => {
           <Toolbar>
             <BackHomeButton />
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              POST {id} (EDIT)
+              POST /{id}/ (EDIT)
             </Typography>
           </Toolbar>
         </AppBar>
@@ -64,14 +64,9 @@ const mapStateToProps = state => ({
   //admin: getAdminStatus(state),
 });
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
-
 const Container = connect(mapStateToProps)(Component);
 
 export {
-  //Component as PostEditBar,
   Container as PostEditBar,
   Component as PostEditBarComponent,
 };

@@ -33,7 +33,6 @@ router.post('/posts', async (req, res) => {
   try {
     const { 
       author,
-      // authorName,
       created,
       location,
       phone,
@@ -46,7 +45,6 @@ router.post('/posts', async (req, res) => {
     } = req.body;
     const newPost = new Post({ 
       author: author,
-      // authorName: authorName,
       created: created,
       location: location,
       phone: phone,

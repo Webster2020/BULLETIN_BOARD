@@ -11,7 +11,9 @@ import { MainLayout } from './components/layout/MainLayout/MainLayout';
 import { Homepage } from './components/views/Homepage/Homepage';
 import { Post } from './components/views/Post/Post';
 import { PostEdit } from './components/views/PostEdit/PostEdit';
+import { PostEdited } from './components/views/PostEdited/PostEdited';
 import { PostAdd } from './components/views/PostAdd/PostAdd';
+import { PostAdded } from './components/views/PostAdded/PostAdded';
 import { PostDel } from './components/views/PostDel/PostDel';
 import { NotFound } from './components/views/NotFound/NotFound';
 
@@ -31,9 +33,11 @@ const App = () => (
             <Switch>
               <Route exact path='/' component={Homepage} />
               <Route exact path='/post/add' component={PostAdd} />
+              <Route exact path='/postadded' component={PostAdded} />
               <Route exact path='/post/del' component={PostDel} />
               <Route exact path='/post/:id' component={Post} />
               <Route exact path='/post/:id/edit' component={PostEdit} />
+              <Route exact path='/postedited' component={PostEdited} />
               <Route path='*' component={NotFound} />
             </Switch>
           </MainLayout>

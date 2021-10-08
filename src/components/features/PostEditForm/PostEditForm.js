@@ -88,24 +88,16 @@ const Component = ({className, id, post, activeFetch}) => {
 
   return (
     <div className={clsx(className, styles.root)}>
+      <div className={styles.row}>
 
-      <div className={styles.column}>
+        <div className={styles.column}>
 
-        <Stack
-          component="form"
-          sx={{
-            '& > :not(style)': { m: 1, maxWidth: '500px' },
-          }}
-          direction='column'
-          ml={5}
-          mb={5}
-        >
-
-          <Stack direction="row" spacing={2}>
+          <Stack direction="row" spacing={2} my={2}>
             {!titleChecked ? 
               (<TextField
                 id="outlined-title"
                 label="Title"
+                size='small'
                 value={title}
                 onChange={handleChangeTitle}
                 fullWidth
@@ -115,6 +107,7 @@ const Component = ({className, id, post, activeFetch}) => {
               (<TextField
                 id="outlined-title"
                 label="Title"
+                size='small'
                 value={title}
                 onChange={handleChangeTitle}
                 fullWidth
@@ -127,11 +120,12 @@ const Component = ({className, id, post, activeFetch}) => {
             />
           </Stack>
 
-          <Stack direction="row" spacing={2}>
+          <Stack direction="row" spacing={2} my={2}>
             {!textChecked ? 
               (<TextField
                 id="outlined-text"
                 label="Text"
+                size='small'
                 value={text}
                 onChange={handleChangeText}
                 fullWidth
@@ -141,6 +135,7 @@ const Component = ({className, id, post, activeFetch}) => {
               (<TextField
                 id="outlined-text"
                 label="Text"
+                size='small'
                 value={text}
                 onChange={handleChangeText}
                 fullWidth
@@ -153,11 +148,12 @@ const Component = ({className, id, post, activeFetch}) => {
             />
           </Stack>
 
-          <Stack direction="row" spacing={2}>
+          <Stack direction="row" spacing={2} my={2}>
             {!photoChecked ? 
               (<TextField
                 id="outlined-photo"
                 label="Photo"
+                size='small'
                 value={photo}
                 onChange={handleChangePhoto}
                 fullWidth
@@ -167,6 +163,7 @@ const Component = ({className, id, post, activeFetch}) => {
               (<TextField
                 id="outlined-photo"
                 label="Photo"
+                size='small'
                 value={photo}
                 onChange={handleChangePhoto}
                 fullWidth
@@ -179,11 +176,12 @@ const Component = ({className, id, post, activeFetch}) => {
             />
           </Stack>
 
-          <Stack direction="row" spacing={2}>
+          <Stack direction="row" spacing={2} my={2}>
             {!priceChecked ? 
               (<TextField
                 id="outlined-price"
                 label="Price [$]"
+                size='small'
                 value={price}
                 onChange={handleChangePrice}
                 fullWidth
@@ -193,6 +191,7 @@ const Component = ({className, id, post, activeFetch}) => {
               (<TextField
                 id="outlined-price"
                 label="Price [$]"
+                size='small'
                 value={price}
                 onChange={handleChangePrice}
                 fullWidth
@@ -205,11 +204,12 @@ const Component = ({className, id, post, activeFetch}) => {
             />
           </Stack>
 
-          <Stack direction="row" spacing={2}>
+          <Stack direction="row" spacing={2} my={2}>
             {!phoneChecked ? 
               (<TextField
                 id="outlined-phone"
                 label="Phone"
+                size='small'
                 value={phone}
                 onChange={handleChangePhone}
                 fullWidth
@@ -219,6 +219,7 @@ const Component = ({className, id, post, activeFetch}) => {
               (<TextField
                 id="outlined-phone"
                 label="Phone"
+                size='small'
                 value={phone}
                 onChange={handleChangePhone}
                 fullWidth
@@ -231,11 +232,12 @@ const Component = ({className, id, post, activeFetch}) => {
             />
           </Stack>
 
-          <Stack direction="row" spacing={2}>
+          <Stack direction="row" spacing={2} my={2}>
             {!locationChecked ? 
               (<TextField
                 id="outlined-location"
-                label="location"
+                label="Location"
+                size='small'
                 value={location}
                 onChange={handleChangelocation}
                 fullWidth
@@ -244,7 +246,8 @@ const Component = ({className, id, post, activeFetch}) => {
               :
               (<TextField
                 id="outlined-location"
-                label="location"
+                label="Location"
+                size='small'
                 value={location}
                 onChange={handleChangelocation}
                 fullWidth
@@ -257,27 +260,28 @@ const Component = ({className, id, post, activeFetch}) => {
             />
           </Stack>
 
-        </Stack>
-        
-        <Stack
-          direction={{ xs: 'column', sm: 'row' }}
-          spacing={{ xs: 1, sm: 2, md: 4 }}
-          justifyContent="center"
-          alignItems="center"
-          mt={2}
-        >
-          <SaveEditedPostButton
-            id={id} 
-            post={post} 
-            title={title}
-            text={text}
-            photo={photo}
-            price={price}
-            phone={phone}
-            location={location}
-            updated={today}
-          />
-        </Stack>
+          
+          <Stack
+            direction={{ xs: 'column', sm: 'row' }}
+            spacing={{ xs: 1, sm: 2, md: 4 }}
+            justifyContent="flex-start"
+            alignItems="start"
+            mt={2}
+          >
+            <SaveEditedPostButton
+              id={id} 
+              post={post} 
+              title={title}
+              text={text}
+              photo={photo}
+              price={price}
+              phone={phone}
+              location={location}
+              updated={today}
+            />
+          </Stack>
+        </div>
+
       </div>
       
       <div className={styles.column}>

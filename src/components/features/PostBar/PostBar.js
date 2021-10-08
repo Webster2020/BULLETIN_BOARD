@@ -13,7 +13,6 @@ import styles from './PostBar.module.scss';
 import { DelPostButton } from '../../common/DelPostButton/DelPostButton.js';
 import { EditPostButton } from '../../common/EditPostButton/EditPostButton';
 import { LoginButton } from '../../common/LoginButton/LoginButton';
-import { LogoutButton } from '../../common/LogoutButton/LogoutButton';
 import { BackHomeButton } from '../../common/BackHomeButton/BackHomeButton';
 
 import AppBar from '@mui/material/AppBar';
@@ -61,7 +60,7 @@ const Component = (
           <Toolbar>
             <BackHomeButton />
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              POST {id}
+              POST / {post.title}
             </Typography>
 
             {!login ? 
@@ -73,7 +72,6 @@ const Component = (
                 <Stack direction="row" spacing={1}>
                   {user.email === post.author && <EditPostButton id={id}/>}
                   {user.email === post.author && <DelPostButton id={id}/>}
-                  <LogoutButton />
                 </Stack>
               )
             }

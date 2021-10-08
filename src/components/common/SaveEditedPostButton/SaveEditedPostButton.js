@@ -9,6 +9,8 @@ import { createActionPutEditPost } from '../../../redux/postsRedux.js';
 
 import styles from './SaveEditedPostButton.module.scss';
 
+import { Link } from 'react-router-dom';
+
 import Button from '@material-ui/core/Button';
 
 
@@ -44,15 +46,14 @@ const Component = (
   };
 
   const clickHandler = () => {
-    console.log('SAVE EDITED POST');
-    console.log('post/:id to server... TO DO !!!');
-    console.log(editedPost);
     setEditedPostDispatch(id, editedPost);
   };
 
   return (
     <div className={clsx(className, styles.root)}>
-      <Button variant="outlined" size="large" onClick={() => clickHandler()}>SAVE</Button>
+      <Link to={`/postedited`} style={{textDecoration: 'none'}}>
+        <Button variant="outlined" size="large" onClick={() => clickHandler()}>SAVE</Button>
+      </Link>
     </div>
   );
 };
@@ -84,7 +85,6 @@ const mapDispatchToProps = dispatch => ({
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  // Component as SaveEditedPostButton,
   Container as SaveEditedPostButton,
   Component as SaveEditedPostButtonComponent,
 };

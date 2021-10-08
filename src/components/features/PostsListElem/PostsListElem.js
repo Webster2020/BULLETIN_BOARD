@@ -40,7 +40,7 @@ const Component = (
           <div className={styles.content}>
             <div className={styles.avatar}>
               <ListItemAvatar>
-                <Avatar sx={{ bgcolor: blue[800] }} alt="Remy Sharp">
+                <Avatar sx={{ bgcolor: blue[700] }} alt="Remy Sharp">
                   {post.author.charAt(0)}
                 </Avatar>
               </ListItemAvatar>

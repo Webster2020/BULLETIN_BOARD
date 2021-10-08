@@ -20,7 +20,7 @@ const Component = ({className}) => {
         mt={1}
         sx={{border: '0px solid red'}}
       >
-        <Link to={`/post/add`} style={{textDecoration: 'none'}}>
+        <Link to={`/post/add`} style={{textDecoration: 'none'}} className={styles.addButton}>
           <AddBoxIcon color='primary' fontSize='large'/>
         </Link>
       </Stack>

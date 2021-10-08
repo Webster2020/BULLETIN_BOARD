@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-// import shortid from 'shortid';
 
 import clsx from 'clsx';
 
@@ -142,7 +141,6 @@ const Component = ({className, user}) => {
           my={5}
         >
           <SaveAddedPostButton  
-            // postId={shortid.generate()}
             author={user.email}
             authorName={`${user.name} ${user.surname}`}
             title={title}
@@ -164,24 +162,16 @@ const Component = ({className, user}) => {
 
 Component.propTypes = {
   className: PropTypes.string,
-  // login: PropTypes.bool,
   user: PropTypes.object,
 };
 
 const mapStateToProps = state => ({
-  // login: getLoginStatus(state),
   user: getUserData(state),
-  //admin: getAdminStatus(state),
 });
-
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
 
 const Container = connect(mapStateToProps)(Component);
 
 export {
-  // Component as PostAddForm,
   Container as PostAddForm,
   Component as PostAddFormComponent,
 };

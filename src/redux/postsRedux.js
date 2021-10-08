@@ -2,10 +2,6 @@ import axios from 'axios';
 
 /* selectors */
 export const getAll = ({posts}) => {
-  console.log('>>>>>>>>>>>>>>');
-  console.log('GET ALL');
-  console.log(posts.data);
-  console.log('>>>>>>>>>>>>>>');
   return posts.data;
 };
 // export const getPostById = ({posts}, postId) => {
