@@ -27,19 +27,14 @@ import Typography from '@mui/material/Typography';
 
 
 const Component = (
-  
-  {className, 
+  {
+    className, 
     id, 
     login,
     post, 
     user,
   }
 ) => {
-
-  // const [auth, setAuth] = useState(false);
-  // useEffect(() => {
-  //   console.log(login);
-  // });
 
   const handleChange = (event) => {
     console.log(event.target.checked);
@@ -75,7 +70,7 @@ const Component = (
               ) 
               : 
               (
-                <Stack direction="row" spacing={2}>
+                <Stack direction="row" spacing={1}>
                   {user.email === post.author && <EditPostButton id={id}/>}
                   {user.email === post.author && <DelPostButton id={id}/>}
                   <LogoutButton />
@@ -105,14 +100,9 @@ const mapStateToProps = state => ({
   //admin: getAdminStatus(state),
 });
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
-
 const Container = connect(mapStateToProps)(Component);
 
 export {
-  // Component as PostBar,
   Container as PostBar,
   Component as PostBarComponent,
 };

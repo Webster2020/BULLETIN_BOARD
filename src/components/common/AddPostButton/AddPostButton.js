@@ -18,6 +18,7 @@ const Component = ({className}) => {
         justifyContent="center"
         alignItems="center"
         mt={1}
+        sx={{border: '0px solid red'}}
       >
         <Link to={`/post/add`} style={{textDecoration: 'none'}}>
           <AddBoxIcon color='primary' fontSize='large'/>

@@ -11,15 +11,13 @@ import styles from './DelPostButton.module.scss';
 import { Link } from 'react-router-dom';
 
 import Button from '@material-ui/core/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
 import Stack from '@mui/material/Stack';
-
 
 const Component = ({className, id, fetchPostDeleteDispatch}) => {
 
   const clickHandler = () => {
-    console.log('CLICK ON X');
     fetchPostDeleteDispatch(id);
-    console.log('THINK HOW RERENDER THIS COMPONENT AFTER REMOVING POST');
   };
 
   return (
@@ -32,7 +30,9 @@ const Component = ({className, id, fetchPostDeleteDispatch}) => {
         mx={2}
       >
         <Link to={`/post/del`} style={{textDecoration: 'none'}}>
-          <Button variant="contained" onClick={clickHandler}>DEL POST</Button>
+          <Button variant="contained" onClick={clickHandler}>
+            <DeleteIcon/>
+          </Button>
         </Link>
       </Stack>
     </div>
@@ -45,17 +45,13 @@ Component.propTypes = {
   fetchPostDeleteDispatch: PropTypes.func,
 };
 
-const mapStateToProps = (state) => ({
-  dupa: state,
-});
 const mapDispatchToProps = dispatch => ({
   fetchPostDeleteDispatch: (id) => dispatch(createActionDeletePost(id)),
 });
 
-const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(null, mapDispatchToProps)(Component);
 
 export {
-  // Component as DelPostButton,
   Container as DelPostButton,
   Component as DelPostButtonComponent,
 };

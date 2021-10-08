@@ -34,7 +34,7 @@ const Component = (
             justifyContent="center"
             alignItems="center"
             my={1} py={1}
-            sx={{ p: 2, border: '5px dashed green' }}
+            sx={{ p: 2, border: '0px dashed green' }}
           >
             <List sx={{ width: '100%', maxWidth: 900, bgcolor: 'inherit' }}>
               {

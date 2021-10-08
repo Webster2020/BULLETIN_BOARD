@@ -11,18 +11,13 @@ import styles from './EditPostButton.module.scss';
 import { Link } from 'react-router-dom';
 
 import Button from '@material-ui/core/Button';
+import EditIcon from '@mui/icons-material/Edit';
 import Stack from '@mui/material/Stack';
-
 
 const Component = ({className, id, fetchPostByIdDispatch}) => {
 
   const clickHandler = () => {
-    console.log('CLICK ON EDIT BUTTON');
     fetchPostByIdDispatch(id);
-    console.log('===========================');
-    console.log('FETCHED POST (EDITBUTTON)');
-    // console.log(post);
-    console.log('===========================');
   };
 
   return (
@@ -32,10 +27,12 @@ const Component = ({className, id, fetchPostByIdDispatch}) => {
         spacing={{ xs: 1, sm: 2, md: 4 }}
         justifyContent="center"
         alignItems="center"
-        mx={2}
+        mx={0}
       >
         <Link to={`/post/${id}/edit`} style={{textDecoration: 'none'}}>
-          <Button variant="contained" onClick={clickHandler}>EDIT POST</Button>
+          <Button variant="contained" onClick={clickHandler}>
+            <EditIcon/>
+          </Button>
         </Link>
       </Stack>
     </div>
@@ -48,17 +45,13 @@ Component.propTypes = {
   fetchPostByIdDispatch: PropTypes.func,
 };
 
-const mapStateToProps = (state) => ({
-  dupa: state,
-});
 const mapDispatchToProps = dispatch => ({
   fetchPostByIdDispatch: (id) => dispatch(createActionFetchPostById(id)),
 });
 
-const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(null, mapDispatchToProps)(Component);
 
 export {
-  // Component as EditPostButton,
   Container as EditPostButton,
   Component as EditPostButtonComponent,
 };

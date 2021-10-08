@@ -1,4 +1,27 @@
 @import '../../../styles/settings.scss';
 
-// .root {
-// }
+.root {
+  position: relative;
+  &:after {
+    content: "REMOVE";
+    display: block;
+    position: absolute;
+    padding: 5px 0;
+    top: 0;
+    left: 7px;
+    width: 80px;
+    height: 30px;
+    background-color: #1976d2;
+    text-align: center;
+    opacity: 0;
+    transition: 0.5s;
+    z-index: -1;
+  }
+  &:hover {
+    &:after {
+      top: 55px;
+      opacity: 1;
+      transition: 0.5s;
+    }
+  }
+}

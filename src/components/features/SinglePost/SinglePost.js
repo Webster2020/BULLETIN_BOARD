@@ -9,7 +9,7 @@ import { getAll } from '../../../redux/postsRedux.js';
 
 import styles from './SinglePost.module.scss';
 
-import { red } from '@mui/material/colors';
+import { blue } from '@mui/material/colors';
 import Avatar from '@mui/material/Avatar';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -43,7 +43,7 @@ const Component = ({className, post}) => {
         <Card sx={{ maxWidth: 700 }}>
           <CardHeader
             avatar={
-              <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+              <Avatar sx={{ bgcolor: blue[800] }} aria-label="recipe">
                 {post.author.charAt(0)}
               </Avatar>
             }

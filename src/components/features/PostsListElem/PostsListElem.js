@@ -11,14 +11,9 @@ import styles from './PostsListElem.module.scss';
 
 import { Link } from 'react-router-dom';
 
+import { blue } from '@mui/material/colors';
 import Avatar from '@mui/material/Avatar';
-import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
-
 
 const Component = (
   {
@@ -36,82 +31,31 @@ const Component = (
   };
 
   return (
-    <div className={clsx(className, styles.root)}> 
-      <Stack 
-        my={2}
-        direction="row"
-        justifyContent="flex-start"
-        alignItems="center"
-        sx={{
-          border: '1px solid red', 
-          bgcolor: 'background.paper', 
-          width: '100%',
-        }}
-      >
-        <Link to={`/post/${id}`} style={{textDecoration: 'none'}}>
-          <ListItem alignItems="center">
-            <ListItemButton 
-              onClick={clickHandler}         
-              sx={{
-                border: '1px solid orange',
-                width: '100%',
-              }}
-            >
-              <Stack 
-                my={0}
-                direction="row"
-                justifyContent="space-between"
-                alignItems="center"
-              >
-                <ListItemAvatar>
-                  <Avatar alt="Remy Sharp">
-                    {post.author.charAt(0)}
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                  sx={{ 
-                    // width: '50%',
-                    border: '1px solid green',
-                  }}
-                  primary={post.title}
-                  secondary={
-                    <React.Fragment>
-                      <Typography
-                        sx={{ display: 'inline' }}
-                        component="span"
-                        variant="body2"
-                        color="text.primary"
-                      >
-                      </Typography>
-                      {` —  ${post.text}`}
-                    </React.Fragment>
-                  }
-                />
-                <ListItemText
-                  sx={{ 
-                    // width: '50%', 
-                    marginLeft: '10px',
-                    border: '1px solid green', 
-                  }}
-                  primary={`Add date: ${post.created}`}
-                  secondary={
-                    <React.Fragment>
-                      <Typography
-                        sx={{ display: 'inline' }}
-                        component="span"
-                        variant="body2"
-                        color="text.primary"
-                      >
-                        {`Last update: ${post.updated}`}
-                      </Typography>
-                    </React.Fragment>
-                  }
-                />
-              </Stack>
-            </ListItemButton>
-          </ListItem>
-        </Link>
-      </Stack>
+    <div className={clsx(className, styles.root)}>
+      <Link to={`/post/${id}`} style={{textDecoration: 'none'}}> 
+        <button 
+          className={styles.postButton} 
+          onClick={clickHandler}
+        >
+          <div className={styles.content}>
+            <div className={styles.avatar}>
+              <ListItemAvatar>
+                <Avatar sx={{ bgcolor: blue[800] }} alt="Remy Sharp">
+                  {post.author.charAt(0)}
+                </Avatar>
+              </ListItemAvatar>
+            </div>
+            <div className={styles.text}>
+              <div className={styles.postTitle}>{post.title.toUpperCase()}</div>
+              <div className={styles.postText}>{post.text}</div>
+            </div>
+          </div>
+          <div className={styles.date}>
+            <div className={styles.created}>CREATED: {post.created}</div>
+            <div className={styles.updated}>UPDATED: {post.updated}</div>
+          </div>
+        </button>
+      </Link>
     </div>
   );
 };

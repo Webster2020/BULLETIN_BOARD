@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
 import { getFetchStatus } from '../../../redux/postsRedux.js';
 
@@ -39,14 +38,9 @@ const mapStateToProps = state => ({
   activeFetch: getFetchStatus(state),
 });
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
-
 const Container = connect(mapStateToProps)(Component);
 
 export {
-  // Component as Post,
   Container as Post,
   Component as PostComponent,
 };
