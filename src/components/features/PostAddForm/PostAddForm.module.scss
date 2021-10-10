@@ -6,3 +6,25 @@
 .column {
   margin: 0 20px;
 }
+
+.validationWrapper {
+  width: 100%;
+  padding: 5px 2px 0;
+  border: 2px solid transparent;
+  border-top: none;
+}
+
+.validationError {
+  border-color: red;
+}
+
+.validation {
+  width: 100%;
+  margin: 5px 0;
+  color: red;
+  text-align: center;
+}
+
+.validationOK {
+  border-color: green;
+}

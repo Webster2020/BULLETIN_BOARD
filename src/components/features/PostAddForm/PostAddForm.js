@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
@@ -28,7 +28,15 @@ const Component = ({className, user}) => {
   const [price, setPrice] = useState('');
   const [phone, setPhone] = useState('');
   const [location, setLocation] = useState('');
-  const [status, setStatus] = useState('draft');
+  const [status, setStatus] = useState('published');
+
+  const [titleValidation, setTitleValidation] = useState('');
+  const [textValidation, setTextValidation] = useState('');
+
+  useEffect(() => {
+    console.log('title: ', titleValidation);
+    console.log('text: ', textValidation);
+  });
 
   const handleChangeTitle = (event) => {
     setTitle(event.target.value);
@@ -40,16 +48,61 @@ const Component = ({className, user}) => {
     setPhoto(event.target.value);
   };
   const handleChangePrice = (event) => {
-    setPrice(event.target.value);
+    const priceRegex = /[0-9]/;
+    if(priceRegex.test(event.target.value) || event.target.value === '') {
+      setPrice(event.target.value);
+    }
   };
   const handleChangePhone = (event) => {
-    setPhone(event.target.value);
+    const phoneRegex = /[0-9]/;
+    if(phoneRegex.test(event.target.value) || event.target.value === '') {
+      setPhone(event.target.value);
+    }
   };
   const handleChangeLocation = (event) => {
     setLocation(event.target.value);
   };
   const handleChangeStatus = (event) => {
     setStatus(event.target.value);
+  };
+
+  const validation = (addingPost) => {
+    console.log('<<VALIDATION>>');
+    let isValid = false;
+
+    if(addingPost.title === '') {
+      setTitleValidation('empty title!');
+      isValid = false;
+    } else if (addingPost.title.length < 10) {  
+      setTitleValidation('title is too short!');
+      isValid = false;
+    } else if (addingPost.title.length > 40) {  
+      setTitleValidation('title is too long!');
+      isValid = false;
+    } else {
+      setTitleValidation('correct');
+      isValid = true;
+    }
+
+    if(addingPost.text === '') {
+      setTextValidation('empty text!');
+      isValid = false;
+    } else if (addingPost.text.length < 20) {  
+      setTextValidation('text is too short!');
+      isValid = false;
+    } else if (addingPost.text.length > 100) {  
+      setTextValidation('text is too long!');
+      isValid = false;
+    } else {
+      setTextValidation('correct');
+      isValid = true;
+    }
+
+    if(isValid) {
+      console.log('VALIDATION OK!');
+      return true;
+    }
+
   };
 
   return (
@@ -67,22 +120,27 @@ const Component = ({className, user}) => {
           alignItems="center"
           my={5}
         >
+          <div className={`${styles.validationWrapper} ${titleValidation !== 'correct' && titleValidation !== '' && styles.validationError}`}>
+            <TextField
+              id="outlined-title"
+              label="Title (required)"
+              value={title}
+              onChange={handleChangeTitle}
+              fullWidth
+            />
+            {titleValidation !== 'correct' && titleValidation !== '' && <div className={styles.validation}>{titleValidation}</div>}
+          </div>
 
-          <TextField
-            id="outlined-title"
-            label="Title"
-            value={title}
-            onChange={handleChangeTitle}
-            fullWidth
-          />
-
-          <TextField
-            id="outlined-text"
-            label="Text"
-            value={text}
-            onChange={handleChangeText}
-            fullWidth
-          />
+          <div className={`${styles.validationWrapper} ${textValidation !== 'correct' && textValidation !== '' && styles.validationError}`}>
+            <TextField
+              id="outlined-text"
+              label="Text (required)"
+              value={text}
+              onChange={handleChangeText}
+              fullWidth
+            />
+            {textValidation !== 'correct' && textValidation !== '' && <div className={styles.validation}>{textValidation}</div>}
+          </div>
 
           <TextField
             id="outlined-photo"
@@ -110,7 +168,7 @@ const Component = ({className, user}) => {
 
           <TextField
             id="outlined-location"
-            label="location"
+            label="Location"
             value={location}
             onChange={handleChangeLocation}
             fullWidth
@@ -124,6 +182,7 @@ const Component = ({className, user}) => {
               value={status}
               label="Status"
               onChange={handleChangeStatus}
+              disabled
             >
               <MenuItem value={'published'}>published</MenuItem>
               <MenuItem value={'draft'}>draft</MenuItem>
@@ -152,6 +211,7 @@ const Component = ({className, user}) => {
             price={price}
             phone={phone}
             location={location}
+            validation={validation}
           />
         </Stack>
       </div>

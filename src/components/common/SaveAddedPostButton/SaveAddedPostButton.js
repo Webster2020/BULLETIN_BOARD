@@ -26,6 +26,8 @@ const Component = (
     text,
     title,
     updated,
+    validation,
+    formIsValid,
     addNewPostToDB,
   }
 ) => {
@@ -44,12 +46,17 @@ const Component = (
   };
 
   const clickHandler = () => {
-    addNewPostToDB(addedPostDB);
+    if(validation(addedPostDB)) {
+      console.log('Accept form validation!');
+      addNewPostToDB(addedPostDB);
+    } else {
+      console.log('Reject form validation!');
+    }
   };
 
   return (
     <div className={clsx(className, styles.root)}>
-      <Link to={`/postadded`} style={{textDecoration: 'none'}}>
+      <Link to={formIsValid ? `/postadded` : `/post/add`} style={{textDecoration: 'none'}}>
         <Button variant="outlined" size="large" onClick={() => clickHandler()}>SAVE</Button>
       </Link>
     </div>
@@ -68,6 +75,8 @@ Component.propTypes = {
   price: PropTypes.string,
   phone: PropTypes.string,
   location: PropTypes.string,
+  validation: PropTypes.func,
+  formIsValid: PropTypes.bool,
   addNewPostToDB: PropTypes.func,
 };
 
