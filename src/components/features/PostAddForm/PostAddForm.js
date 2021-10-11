@@ -68,38 +68,46 @@ const Component = ({className, user}) => {
 
   const validation = (addingPost) => {
     console.log('<<VALIDATION>>');
-    let isValid = false;
+    let isValidTitle = false;
+    let isValidText = false;
 
     if(addingPost.title === '') {
       setTitleValidation('empty title!');
-      isValid = false;
+      isValidTitle = false;
     } else if (addingPost.title.length < 10) {  
       setTitleValidation('title is too short!');
-      isValid = false;
+      isValidTitle = false;
     } else if (addingPost.title.length > 40) {  
       setTitleValidation('title is too long!');
-      isValid = false;
+      isValidTitle = false;
     } else {
       setTitleValidation('correct');
-      isValid = true;
+      isValidTitle = true;
     }
 
     if(addingPost.text === '') {
       setTextValidation('empty text!');
-      isValid = false;
+      isValidText = false;
     } else if (addingPost.text.length < 20) {  
       setTextValidation('text is too short!');
-      isValid = false;
+      isValidText = false;
     } else if (addingPost.text.length > 100) {  
       setTextValidation('text is too long!');
-      isValid = false;
+      isValidText = false;
     } else {
       setTextValidation('correct');
-      isValid = true;
+      isValidText = true;
     }
 
-    if(isValid) {
+    if(isValidTitle && isValidText) {
       console.log('VALIDATION OK!');
+      setTitle('');
+      setText('');
+      setPhoto('');
+      setPrice('');
+      setPhone('');
+      setLocation('');
+      setStatus('');
       return true;
     }
 

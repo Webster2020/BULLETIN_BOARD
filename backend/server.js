@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 // ----------->
 const passport = require('passport');
 const session = require('express-session');
-const passportConfig = require('./config/passport');
+require('./config/passport');
 require('dotenv').config();
 // -----------<
 
@@ -18,6 +18,11 @@ const userRoutes = require('./routes/user.routes');
 
 const app = express();
 
+/* MIDDLEWARE */
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 // ----------->
 // init session mechanism
 app.use(session({ secret: 'anything' }));
@@ -25,11 +30,6 @@ app.use(session({ secret: 'anything' }));
 app.use(passport.initialize());
 app.use(passport.session());
 // -----------<
-
-/* MIDDLEWARE */
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 
 /* API ENDPOINTS */
 app.use('/api', postsRoutes);

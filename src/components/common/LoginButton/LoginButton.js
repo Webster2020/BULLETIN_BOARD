@@ -10,7 +10,13 @@ import styles from './LoginButton.module.scss';
 
 import Button from '@material-ui/core/Button';
 
-const Component = ({className, setLoginStatusDispatch, loginWithGoogleDispatch}) => {
+const Component = (
+  {
+    className, 
+    setLoginStatusDispatch, 
+    loginWithGoogleDispatch,
+  }
+) => {
 
   const clickHandler = () => {
     setLoginStatusDispatch(true);
