@@ -23,13 +23,32 @@ export const createActionLoginWithGoogle = () => {
 
     axios
       .get(`http://localhost:8000/auth/google`)
-      .then(res => {
+      .then((req, res) => {
         console.log('login google correct');
+        console.log(req.data);
         console.log(res.data);
         // dispatch(createActionEditPost(editedPost));
       })
       .catch(err => {
         console.log('login google error');
+        console.log(err);
+      });
+  };
+};
+
+export const createActionRegisterDB = (newUser) => {
+  console.log('POSTING NEW USER');
+  console.log(newUser);
+  return (dispatch, getState) => {
+
+    axios
+      .post(`http://localhost:8000/user/register`, newUser)
+      .then(res => {
+        console.log(res.data);
+        // dispatch(createActionAddPost(res.data));
+      })
+      .catch(err => {
+        console.log('tu error');
         console.log(err);
       });
   };

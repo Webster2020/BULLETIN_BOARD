@@ -4,16 +4,17 @@ const path = require('path');
 const mongoose = require('mongoose');
 
 // ----------->
-const passport = require('passport');
-const session = require('express-session');
-require('./config/passport');
-require('dotenv').config();
+// const passport = require('passport');
+// const session = require('express-session');
+// require('./config/passport');
+// require('dotenv').config();
 // -----------<
 
 const postsRoutes = require('./routes/posts.routes');
-// ----------->
-const authRoutes = require('./routes/auth.routes');
 const userRoutes = require('./routes/user.routes');
+// ----------->
+// const authRoutes = require('./routes/auth.routes');
+// const userRoutes = require('./routes/user.routes');
 // -----------<
 
 const app = express();
@@ -25,22 +26,26 @@ app.use(express.urlencoded({ extended: false }));
 
 // ----------->
 // init session mechanism
-app.use(session({ secret: 'anything' }));
+// app.use(session({ secret: 'anything' }));
 // init passport
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 // -----------<
 
 /* API ENDPOINTS */
 app.use('/api', postsRoutes);
-// ----------->
-app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
+// ----------->
+// app.use('/auth', authRoutes);
+// app.use('/user', userRoutes);
 // -----------<
 
 /* API ERROR PAGES */
 app.use('/api', (req, res) => {
   res.status(404).send({ post: 'Not found...' });
+});
+app.use('/user', (req, res) => {
+  res.status(404).send({ user: 'Not found...' });
 });
 
 /* REACT WEBSITE */

@@ -1,44 +1,60 @@
 const express = require('express');
 const router = express.Router();
 
-const isLogged = (req, res, next) => {
-  if (req.user === undefined) {
-    res.redirect('/user/no-permission');
-    //console.log(req.user);
-  } else {
-    next();
+const User = require('../models/user.model');
+
+router.get('/all', async (req, res) => {
+  try {
+    const result = await User
+      .find()
+      .select('name email password')
+      .sort({name: -1});
+    if(!result) res.status(404).json({ user: 'Not found' });
+    else res.json(result);
   }
-};
-
-router.get('/logged', (req, res) => {
-  req.user
-    ? res.render('logged', {
-        name: `${req.user.name.givenName} ${req.user.name.familyName}`,
-        avatar: req.user.photos[0].value,
-      })
-    : res.redirect('no-permission');
-
-  console.log('======================');
-  console.log('====  user DATA:  ====');
-  console.log('======================');
-  console.log(req.user);
-  console.log('======================');
-
+  catch(err) {
+    res.status(500).json(err);
+  }
 });
 
-// router.get('/logged', (req, res) => {
-//   res.render('logged');
-// });
-
-router.get('/no-permission', (req, res) => {
-  res.render('noPermission');
+router.get('/login', async (req, res) => {
+  try {
+    const result = await User
+      .findOne(
+        {
+          email: req.body.email,
+          password: req.body.password
+        }
+      )
+    if(!result) res.status(404).json({ user: 'Not found' });
+    else res.json(result);
+  }
+  catch(err) {
+    res.status(500).json(err);
+  }
 });
 
-router.get('/profile', isLogged, (req, res) => {
-  res.render('profile', {
-    name: `${req.user.name.givenName} ${req.user.name.familyName}`,
-    email: req.user.emails[0].value,
-  });
+router.post('/register', async (req, res) => {
+  try {
+    const {name, email, password} = req.body;
+    const newUser = new User({ 
+      name: name,
+      email: email,
+      password: password,
+    });
+    const result = await User
+      .findOne({email: req.body.email})
+    if(!result) {
+      await newUser.save();
+      res.json({ message: 'OK' });
+    } else {
+      res.json({ message: 'EMAIL EXITS' });
+    }
+  } 
+  catch(err) {
+    console.log('TU ERROR WITH REGISTER');
+    res.status(500).json({ message: err });
+  }
 });
 
 module.exports = router;

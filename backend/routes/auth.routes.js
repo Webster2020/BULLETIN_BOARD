@@ -7,11 +7,10 @@ router.get('/google',
 
 // router.get('/google', console.log('DUPA !!!'));
 
-router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/user/no-permission' }),
+router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/post/del' }),
   (req, res) => {
     console.log('CALLBACK IS HERE');
     res.render('correct login');
-    // res.redirect('/post/del');
   }
 );
 

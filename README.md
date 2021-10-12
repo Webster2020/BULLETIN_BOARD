@@ -4,6 +4,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `yarn serv`
+
+Runs the server in the development mode.<br />
+Open [http://localhost:8000/api/posts](http://localhost:8000/api/posts) to view it in the browser.
+
 ### `yarn start`
 
 Runs the app in the development mode.<br />
