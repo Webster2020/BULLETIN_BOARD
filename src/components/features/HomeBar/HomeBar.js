@@ -11,6 +11,7 @@ import styles from './HomeBar.module.scss';
 import { LoginButton } from '../../common/LoginButton/LoginButton';
 import { LogoutButton } from '../../common/LogoutButton/LogoutButton';
 import { MyPostsButton } from '../../common/MyPostsButton/MyPostsButton';
+import { RegisterButton } from '../../common/RegisterButton/RegisterButton';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -50,9 +51,14 @@ const Component = ({className, login, user}) => {
               BULLETIN BOARD
             </Typography>
 
-            {!login ? (
-              <LoginButton />
-            ) : 
+            {!login ? 
+              (
+                <Stack direction="row" spacing={2}>
+                  <LoginButton />
+                  <RegisterButton />
+                </Stack>
+              ) 
+              : 
               (
                 <Stack direction="row" spacing={2}>
                   <MyPostsButton />

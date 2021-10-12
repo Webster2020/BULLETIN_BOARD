@@ -10,7 +10,7 @@ import {
   createActionLogin, 
   createActionLoginWithGoogle,
   // createActionLoginDB, 
-  createActionRegisterDB, 
+  // createActionRegisterDB, 
 } from '../../../redux/loginRedux.js';
 
 import styles from './LoginButton.module.scss';
@@ -23,7 +23,7 @@ const Component = (
     setLoginStatusDispatch, 
     loginWithGoogleDispatch,
     // loginDispatch,
-    registerDispatch,
+    // registerDispatch,
   }
 ) => {
 
@@ -31,7 +31,7 @@ const Component = (
     setLoginStatusDispatch(true);
     loginWithGoogleDispatch();
     // loginDispatch();
-    registerDispatch();
+    // registerDispatch();
   };
 
   return (
@@ -46,7 +46,7 @@ Component.propTypes = {
   setLoginStatusDispatch: PropTypes.func,
   loginWithGoogleDispatch: PropTypes.func,
   // loginDispatch: PropTypes.func,
-  registerDispatch: PropTypes.func,
+  // registerDispatch: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -58,7 +58,7 @@ const mapDispatchToProps = dispatch => ({
   setLoginStatusDispatch: bool => dispatch(createActionLogin(bool)),
   loginWithGoogleDispatch: () => dispatch(createActionLoginWithGoogle()),
   // loginDispatch: () => dispatch(createActionLoginDB({email: 'adam@adam', password: 'adam1'})),
-  registerDispatch: () => dispatch(createActionRegisterDB({name: 'michal', email: 'michal@michal.com', password: 'michal1'})),
+  // registerDispatch: () => dispatch(createActionRegisterDB({name: 'michal', email: 'michal@michal.com', password: 'michal1'})),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);

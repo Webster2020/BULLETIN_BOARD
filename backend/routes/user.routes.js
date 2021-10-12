@@ -46,13 +46,13 @@ router.post('/register', async (req, res) => {
       .findOne({email: req.body.email})
     if(!result) {
       await newUser.save();
-      res.json({ message: 'OK' });
+      res.json({ message: 'REGISTER: <OK>' });
     } else {
-      res.json({ message: 'EMAIL EXITS' });
+      res.json({ message: 'REGISTER: <EMAIL EXITS>' });
     }
   } 
   catch(err) {
-    console.log('TU ERROR WITH REGISTER');
+    console.log('ERROR WITH REGISTER 500');
     res.status(500).json({ message: err });
   }
 });

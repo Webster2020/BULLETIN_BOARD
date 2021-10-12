@@ -44,11 +44,12 @@ export const createActionRegisterDB = (newUser) => {
     axios
       .post(`http://localhost:8000/user/register`, newUser)
       .then(res => {
+        console.log('redux redister OK');
         console.log(res.data);
         // dispatch(createActionAddPost(res.data));
       })
       .catch(err => {
-        console.log('tu error');
+        console.log('redux register ERROR');
         console.log(err);
       });
   };
