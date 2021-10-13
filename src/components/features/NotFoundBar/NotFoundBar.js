@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
 
-// import { connect } from 'react-redux';
-// import { getLoginStatus, getUserData } from '../../../redux/loginRedux.js';
-
 import styles from './NotFoundBar.module.scss';
 
 import { BackHomeButton } from '../../common/BackHomeButton/BackHomeButton';
@@ -39,20 +36,7 @@ Component.propTypes = {
   className: PropTypes.string,
 };
 
-// const mapStateToProps = state => ({
-//   login: getLoginStatus(state),
-//   user: getUserData(state),
-//   //admin: getAdminStatus(state),
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   setLoginStatusDispatch: arg => dispatch(creatActionSetLoginStatus(arg)),
-// });
-
-// const Container = connect(mapStateToProps)(Component);
-
 export {
   Component as NotFoundBar,
-  // Container as NotFoundBar,
   Component as NotFoundBarComponent,
 };

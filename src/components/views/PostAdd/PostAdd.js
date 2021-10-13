@@ -31,7 +31,6 @@ const Component = ({className, login}) => {
   );
 };
 
-
 Component.propTypes = {
   className: PropTypes.string,
   login: PropTypes.bool,
@@ -44,7 +43,6 @@ const mapStateToProps = state => ({
 const Container = connect(mapStateToProps)(Component);
 
 export {
-  // Component as PostAdd,
   Container as PostAdd,
   Component as PostAddComponent,
 };

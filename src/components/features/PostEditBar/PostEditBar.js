@@ -21,8 +21,6 @@ import Typography from '@mui/material/Typography';
 
 const Component = ({className, id, login, user}) => {
 
-  // const [auth, setAuth] = useState(false);
-
   return (
     <div className={clsx(className, styles.root)}>
       <Box sx={{ flexGrow: 1 }}>
@@ -61,7 +59,6 @@ Component.propTypes = {
 const mapStateToProps = state => ({
   login: getLoginStatus(state),
   user: getUserData(state),
-  //admin: getAdminStatus(state),
 });
 
 const Container = connect(mapStateToProps)(Component);

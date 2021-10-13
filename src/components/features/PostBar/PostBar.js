@@ -35,11 +35,6 @@ const Component = (
   }
 ) => {
 
-  const handleChange = (event) => {
-    console.log(event.target.checked);
-    //setAuth(event.target.checked);
-  };
-
   return (
     <div className={clsx(className, styles.root)}>
       <Box sx={{ flexGrow: 1 }}>
@@ -48,7 +43,6 @@ const Component = (
             control={
               <Switch
                 checked={login}
-                onChange={handleChange}
                 aria-label="login switch"
                 disabled
               />
@@ -73,8 +67,6 @@ const Component = (
                 <Stack direction="row" spacing={1}>
                   {user.email === post.author && <EditPostButton id={id}/>}
                   {user.email === post.author && <DelPostButton id={id}/>}
-                  {/* <EditPostButton id={id}/>
-                  <DelPostButton id={id}/> */}
                 </Stack>
               )
             }
@@ -98,7 +90,6 @@ const mapStateToProps = state => ({
   login: getLoginStatus(state),
   user: getUserData(state),
   post: getAll(state),
-  //admin: getAdminStatus(state),
 });
 
 const Container = connect(mapStateToProps)(Component);

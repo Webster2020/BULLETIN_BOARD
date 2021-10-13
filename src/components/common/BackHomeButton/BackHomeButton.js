@@ -59,7 +59,6 @@ const mapDispatchToProps = dispatch => ({
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  // Component as BackHomeButton,
   Container as BackHomeButton,
   Component as BackHomeButtonComponent,
 };

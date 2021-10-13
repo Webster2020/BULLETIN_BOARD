@@ -49,12 +49,9 @@ const Component = (
 
   const clickHandler = () => {
     if(validation(addedPostDB)) {
-      console.log('Accept form validation!');
       setIsValid(true);
       addNewPostToDB(addedPostDB);
-    } else {
-      console.log('Reject form validation!');
-    }
+    } 
   };
 
   return (
@@ -90,7 +87,6 @@ Component.propTypes = {
 const mapStateToProps = state => ({
   login: getLoginStatus(state),
   user: getUserData(state),
-  // admin: getAdminStatus(state),
 });
 
 const mapDispatchToProps = dispatch => ({

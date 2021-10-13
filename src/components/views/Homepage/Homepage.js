@@ -26,7 +26,6 @@ const Component = (
 
   useEffect(() => {
     posts.length < 1 && !activeFetch && fetchPostsDispatch(posts, false, activeFetch);
-    console.log('active fetching... : ' + activeFetch);
   });
 
   return (

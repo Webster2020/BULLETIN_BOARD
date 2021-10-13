@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
@@ -33,11 +33,6 @@ const Component = ({className, user}) => {
   const [titleValidation, setTitleValidation] = useState('');
   const [textValidation, setTextValidation] = useState('');
 
-  useEffect(() => {
-    console.log('title: ', titleValidation);
-    console.log('text: ', textValidation);
-  });
-
   const handleChangeTitle = (event) => {
     setTitle(event.target.value);
   };
@@ -67,7 +62,6 @@ const Component = ({className, user}) => {
   };
 
   const validation = (addingPost) => {
-    console.log('<<VALIDATION>>');
     let isValidTitle = false;
     let isValidText = false;
 
@@ -100,7 +94,6 @@ const Component = ({className, user}) => {
     }
 
     if(isValidTitle && isValidText) {
-      console.log('VALIDATION OK!');
       setTitle('');
       setText('');
       setPhoto('');

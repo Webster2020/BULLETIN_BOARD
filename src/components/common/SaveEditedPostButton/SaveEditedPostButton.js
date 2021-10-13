@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
@@ -29,10 +29,6 @@ const Component = (
     setEditedPostDispatch,
   }
 ) => {
-
-  useEffect(() => {
-    console.log(post);
-  });
 
   const editedPost = {
     ...post,
@@ -75,7 +71,6 @@ Component.propTypes = {
 const mapStateToProps = state => ({
   login: getLoginStatus(state),
   user: getUserData(state),
-  //admin: getAdminStatus(state),
 });
 
 const mapDispatchToProps = dispatch => ({

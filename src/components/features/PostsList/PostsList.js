@@ -65,7 +65,7 @@ Component.propTypes = {
 
 const mapStateToProps = (state, {user}) => ({
   postsState: getPostsState(state),
-  userPosts: getPostByUser(state, user) || [], //get from server in future...
+  userPosts: getPostByUser(state, user) || [],
 });
 
 const Container = connect(mapStateToProps)(Component);

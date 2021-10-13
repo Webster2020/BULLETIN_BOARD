@@ -39,12 +39,10 @@ const Component = (
   };
 
   const clickHandlerShow = () => {
-    console.log(formVisible);
     setFormVisible(!formVisible);
   };
 
   const clickHandlerConfirm = () => {
-    console.log(email + ' / ' + password);
     setLoginStatusDispatch(true);
     loginDispatch(
       {

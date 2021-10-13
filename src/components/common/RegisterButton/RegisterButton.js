@@ -39,7 +39,6 @@ const Component = (
   };
 
   const clickHandlerShow = () => {
-    console.log(formVisible);
     setFormVisible(!formVisible);
   };
 

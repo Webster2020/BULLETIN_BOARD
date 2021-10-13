@@ -72,22 +72,15 @@ export const createActionFetchPostById = (id) => {
     axios
       .get(`http://localhost:8000/api/posts/${id}`)
       .then(res => {
-        console.log('--------------------------');
-        console.log('POST BY ID FROM SERVER');
-        console.log(res.data);
-        console.log('--------------------------');
         dispatch(fetchSuccess(res.data));
       })
       .catch(err => {
-        console.log('error');
         dispatch(fetchError(err.message || true));
       });
   };
 };
 
 export const createActionPostNewPost = (newPost) => {
-  console.log('POSTING NEW POST');
-  console.log(newPost);
   return (dispatch, getState) => {
 
     axios
@@ -97,15 +90,12 @@ export const createActionPostNewPost = (newPost) => {
         dispatch(createActionAddPost(res.data));
       })
       .catch(err => {
-        console.log('tu error');
         console.log(err);
       });
   };
 };
 
 export const createActionPutEditPost = (id, editedPost) => {
-  console.log('PUTTING EDITED POST');
-  console.log(editedPost);
   return (dispatch, getState) => {
 
     axios
@@ -115,14 +105,12 @@ export const createActionPutEditPost = (id, editedPost) => {
         dispatch(createActionEditPost(editedPost));
       })
       .catch(err => {
-        console.log('tu error');
         console.log(err);
       });
   };
 };
 
 export const createActionDeletePost = (id) => {
-  console.log('DELETING POST');
   return (dispatch, getState) => {
     dispatch(fetchStarted());
 
@@ -133,7 +121,6 @@ export const createActionDeletePost = (id) => {
         dispatch(delSuccess(true));
       })
       .catch(err => {
-        console.log('tu error');
         console.log(err);
         dispatch(fetchError(err.message || true));
       });
@@ -172,7 +159,6 @@ export const reducer = (statePart = [], action = {}) => {
       };
     }
     case ADD_POST: {
-      console.log(action.payload);
       return {
         ...statePart,
         data: [
@@ -182,7 +168,6 @@ export const reducer = (statePart = [], action = {}) => {
       };
     }
     case EDIT_POST: {
-      console.log(action.payload);
       return {
         ...statePart,
         data: action.payload,

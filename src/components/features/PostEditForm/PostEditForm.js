@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
@@ -19,10 +19,6 @@ import TextField from '@mui/material/TextField';
 
 
 const Component = ({className, id, post, activeFetch}) => {
-
-  useEffect(() => {
-    console.log(post);
-  });
 
   const today = currentDate();
 
@@ -307,7 +303,6 @@ const mapStateToProps = (state) => ({
 const Container = connect(mapStateToProps)(Component);
 
 export {
-  // Component as PostEditForm,
   Container as PostEditForm,
   Component as PostEditFormComponent,
 };

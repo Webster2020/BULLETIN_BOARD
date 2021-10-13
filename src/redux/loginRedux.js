@@ -39,7 +39,6 @@ export const createActionUser = payload => ({ payload, type: USER });
 // };
 
 export const createActionRegisterDB = (newUser) => {
-  console.log('POSTING NEW USER');
   return () => {
     axios
       .post(`http://localhost:8000/user/register`, newUser)
@@ -55,8 +54,6 @@ export const createActionRegisterDB = (newUser) => {
 };
 
 export const createActionLoginDB = (user) => {
-  console.log('GETTING LOGIN USER');
-  console.log(user);
   return (dispatch, getState) => {
 
     axios

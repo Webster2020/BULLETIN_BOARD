@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 import { connect } from 'react-redux';
-import { getLoginStatus, getUserData } from '../../../redux/loginRedux.js';
 import { createActionFetchPostById } from '../../../redux/postsRedux.js';
 
 import styles from './PostsListElem.module.scss';
@@ -19,9 +18,7 @@ const Component = (
   {
     className, 
     id, 
-    login, 
     post, 
-    user, 
     fetchPostByIdDispatch,
   }
 ) => {
@@ -63,23 +60,16 @@ const Component = (
 Component.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string,
-  login: PropTypes.bool,
   post: PropTypes.object,
-  user: PropTypes.object,
   fetchPostByIdDispatch: PropTypes.func,
   fetchPostDeleteDispatch: PropTypes.func,
 };
-
-const mapStateToProps = (state) => ({
-  login: getLoginStatus(state),
-  user: getUserData(state),
-});
 
 const mapDispatchToProps = dispatch => ({
   fetchPostByIdDispatch: (id) => dispatch(createActionFetchPostById(id)),
 });
 
-const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(null, mapDispatchToProps)(Component);
 
 export {
   Container as PostsListElem,

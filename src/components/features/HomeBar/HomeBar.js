@@ -24,8 +24,6 @@ import Typography from '@mui/material/Typography';
 
 const Component = ({className, login, user}) => {
 
-  // const [auth, setAuth] = useState(false);
-
   return (
     <div className={clsx(className, styles.root)}>
       <Box 
