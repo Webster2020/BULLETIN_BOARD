@@ -66,12 +66,15 @@ const Component = (
             {!login ? 
               (
                 <LoginButton />
+                
               ) 
               : 
               (
                 <Stack direction="row" spacing={1}>
                   {user.email === post.author && <EditPostButton id={id}/>}
                   {user.email === post.author && <DelPostButton id={id}/>}
+                  {/* <EditPostButton id={id}/>
+                  <DelPostButton id={id}/> */}
                 </Stack>
               )
             }
