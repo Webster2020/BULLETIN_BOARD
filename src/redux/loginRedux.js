@@ -11,10 +11,12 @@ const createActionName = name => `app/${reducerName}/${name}`;
 /* action types */
 const LOGIN = createActionName('LOGIN');
 const LOGOUT = createActionName('LOGOUT');
+const USER = createActionName('USER');
 
 /* action creators */
 export const createActionLogin = payload => ({ payload, type: LOGIN });
 export const createActionLogout = payload => ({ payload, type: LOGOUT });
+export const createActionUser = payload => ({ payload, type: USER });
 
 /* thunk creators */
 // export const createActionLoginWithGoogle = () => {
@@ -38,15 +40,12 @@ export const createActionLogout = payload => ({ payload, type: LOGOUT });
 
 export const createActionRegisterDB = (newUser) => {
   console.log('POSTING NEW USER');
-  console.log(newUser);
-  return (dispatch, getState) => {
-
+  return () => {
     axios
       .post(`http://localhost:8000/user/register`, newUser)
       .then(res => {
-        console.log('redux redister OK');
+        console.log('redux register OK');
         console.log(res.data);
-        // dispatch(createActionAddPost(res.data));
       })
       .catch(err => {
         console.log('redux register ERROR');
@@ -65,7 +64,7 @@ export const createActionLoginDB = (user) => {
       .then(res => {
         console.log('redux login OK');
         console.log(res.data);
-        // dispatch(createActionAddPost(res.data));
+        dispatch(createActionUser(res.data));
       })
       .catch(err => {
         console.log('redux login ERROR');
@@ -81,6 +80,12 @@ export const reducer = (statePart = [], action = {}) => {
       return {
         ...statePart,
         login: action.payload,
+      };
+    }
+    case USER: {
+      return {
+        ...statePart,
+        data: action.payload,
       };
     }
     case LOGOUT: {

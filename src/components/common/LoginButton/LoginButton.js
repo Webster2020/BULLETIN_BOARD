@@ -8,9 +8,8 @@ import {
   getLoginStatus, 
   getUserData, 
   createActionLogin, 
-  // createActionLoginWithGoogle,
   createActionLoginDB, 
-  // createActionRegisterDB, 
+  // createActionLoginWithGoogle,
 } from '../../../redux/loginRedux.js';
 
 import styles from './LoginButton.module.scss';
@@ -23,9 +22,8 @@ const Component = (
   {
     className, 
     setLoginStatusDispatch, 
-    // loginWithGoogleDispatch,
     loginDispatch,
-    // registerDispatch,
+    // loginWithGoogleDispatch,
   }
 ) => {
 
@@ -48,19 +46,17 @@ const Component = (
   const clickHandlerConfirm = () => {
     console.log(email + ' / ' + password);
     setLoginStatusDispatch(true);
-    // loginWithGoogleDispatch();
     loginDispatch(
       {
         email: email, 
         password: password,
       }
     );
-    // registerDispatch();
+    // loginWithGoogleDispatch();
   };
 
   return (
     <div className={clsx(className, styles.root)}>
-      {/* <Button variant="contained" onClick={() => clickHandler()}>LOGIN</Button> */}
       <Button variant="contained" onClick={() => clickHandlerShow()}>LOGIN</Button>
       {formVisible &&
         (<div className={styles.formWrapper}>
@@ -99,9 +95,8 @@ const Component = (
 Component.propTypes = {
   className: PropTypes.string,
   setLoginStatusDispatch: PropTypes.func,
-  // loginWithGoogleDispatch: PropTypes.func,
   loginDispatch: PropTypes.func,
-  // registerDispatch: PropTypes.func,
+  // loginWithGoogleDispatch: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -111,9 +106,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   setLoginStatusDispatch: bool => dispatch(createActionLogin(bool)),
-  // loginWithGoogleDispatch: () => dispatch(createActionLoginWithGoogle()),
   loginDispatch: (user) => dispatch(createActionLoginDB(user)),
-  // registerDispatch: () => dispatch(createActionRegisterDB({name: 'michal', email: 'michal@michal.com', password: 'michal1'})),
+  // loginWithGoogleDispatch: () => dispatch(createActionLoginWithGoogle()),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
