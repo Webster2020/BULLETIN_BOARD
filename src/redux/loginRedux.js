@@ -17,24 +17,24 @@ export const createActionLogin = payload => ({ payload, type: LOGIN });
 export const createActionLogout = payload => ({ payload, type: LOGOUT });
 
 /* thunk creators */
-export const createActionLoginWithGoogle = () => {
-  console.log('LOGIN WITH GOOGLE');
-  return (dispatch, getState) => {
+// export const createActionLoginWithGoogle = () => {
+//   console.log('LOGIN WITH GOOGLE');
+//   return (dispatch, getState) => {
 
-    axios
-      .get(`http://localhost:8000/auth/google`)
-      .then((req, res) => {
-        console.log('login google correct');
-        console.log(req.data);
-        console.log(res.data);
-        // dispatch(createActionEditPost(editedPost));
-      })
-      .catch(err => {
-        console.log('login google error');
-        console.log(err);
-      });
-  };
-};
+//     axios
+//       .get(`http://localhost:8000/auth/google`)
+//       .then((req, res) => {
+//         console.log('login google correct');
+//         console.log(req.data);
+//         console.log(res.data);
+//         // dispatch(createActionEditPost(editedPost));
+//       })
+//       .catch(err => {
+//         console.log('login google error');
+//         console.log(err);
+//       });
+//   };
+// };
 
 export const createActionRegisterDB = (newUser) => {
   console.log('POSTING NEW USER');
@@ -50,6 +50,25 @@ export const createActionRegisterDB = (newUser) => {
       })
       .catch(err => {
         console.log('redux register ERROR');
+        console.log(err);
+      });
+  };
+};
+
+export const createActionLoginDB = (user) => {
+  console.log('GETTING LOGIN USER');
+  console.log(user);
+  return (dispatch, getState) => {
+
+    axios
+      .post(`http://localhost:8000/user/login`, user)
+      .then(res => {
+        console.log('redux login OK');
+        console.log(res.data);
+        // dispatch(createActionAddPost(res.data));
+      })
+      .catch(err => {
+        console.log('redux login ERROR');
         console.log(err);
       });
   };

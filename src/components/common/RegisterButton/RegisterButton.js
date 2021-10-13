@@ -13,7 +13,6 @@ import {
 import styles from './RegisterButton.module.scss';
 
 import Button from '@material-ui/core/Button';
-
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 

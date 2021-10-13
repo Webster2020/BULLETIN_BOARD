@@ -17,15 +17,40 @@ router.get('/all', async (req, res) => {
   }
 });
 
-router.get('/login', async (req, res) => {
+// router.get('/login', async (req, res) => {
+//   try {
+//     const {email} = req.body;
+//     const result = await User
+//       .findOne(
+//         {
+//           // email: 'pati@pati.com',
+//           // password: 'pati1',
+//           // email: email,
+//           // password: password,
+//         }
+//       )
+//       .select('name email password')
+//     if(!result) res.status(404).json({ user: 'Not found' });
+//     else res.json(result);
+//   }
+//   catch(err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+router.post('/login', async (req, res) => {
   try {
+    const {email, password} = req.body;
     const result = await User
       .findOne(
         {
-          email: req.body.email,
-          password: req.body.password
+          // email: 'pati@pati.com',
+          // password: 'pati1',
+          email: email,
+          password: password,
         }
       )
+      .select('name email password')
     if(!result) res.status(404).json({ user: 'Not found' });
     else res.json(result);
   }
@@ -33,6 +58,7 @@ router.get('/login', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 
 router.post('/register', async (req, res) => {
   try {
