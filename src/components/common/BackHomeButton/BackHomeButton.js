@@ -1,33 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { getAll, createActionFetchPosts } from '../../../redux/postsRedux.js';
 
 import styles from './BackHomeButton.module.scss';
 
-import { Link } from 'react-router-dom';
-
 import Box from '@mui/material/Box';
 import Button from '@material-ui/core/Button';
 
-
-const Component = (
-  {
-    className, 
-    posts, 
-    fetchPostsDispatch,
-  }
-) => {
+const Component = ({posts, fetchPostsDispatch}) => {
 
   const clickHandler = () => {
     fetchPostsDispatch(posts, true);
   };
 
   return (
-    <div className={clsx(className, styles.root)}>
+    <div className={styles.root}>
       <Box   
         display="flex"
         justifyContent="center"
@@ -43,12 +33,11 @@ const Component = (
 };
 
 Component.propTypes = {
-  className: PropTypes.string,
   posts: PropTypes.any,
   fetchPostsDispatch: PropTypes.func,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   posts: getAll(state),
 });
 

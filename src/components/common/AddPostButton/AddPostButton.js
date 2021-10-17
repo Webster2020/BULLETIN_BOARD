@@ -1,24 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
-import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 
 import styles from './AddPostButton.module.scss';
-
-import { Link } from 'react-router-dom';
 
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import Stack from '@mui/material/Stack';
 
-const Component = ({className}) => {
+const Component = () => {
 
   return (
-    <div className={clsx(className, styles.root)}>
+    <div className={styles.root}>
       <Stack
         justifyContent="center"
         alignItems="center"
         mt={1}
-        sx={{border: '0px solid red'}}
       >
         <Link to={`/post/add`} style={{textDecoration: 'none'}} className={styles.addButton}>
           <AddBoxIcon color='primary' fontSize='large'/>
@@ -26,10 +21,6 @@ const Component = ({className}) => {
       </Stack>
     </div>
   );
-};
-
-Component.propTypes = {
-  className: PropTypes.string,
 };
 
 export {

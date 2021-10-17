@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import clsx from 'clsx';
-
 import { connect } from 'react-redux';
 import { getLoginStatus, getUserData } from '../../../redux/loginRedux.js';
 
@@ -22,10 +20,10 @@ import Switch from '@mui/material/Switch';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
-const Component = ({className, login, user}) => {
+const Component = ({login, user}) => {
 
   return (
-    <div className={clsx(className, styles.root)}>
+    <div className={styles.root}>
       <Box 
         sx={{ 
           flexGrow: 1,
@@ -73,7 +71,6 @@ const Component = ({className, login, user}) => {
 };
 
 Component.propTypes = {
-  className: PropTypes.string,
   login: PropTypes.bool,
   user: PropTypes.object,
 };

@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import clsx from 'clsx';
-
 import { connect } from 'react-redux';
 import { getAll } from '../../../redux/postsRedux.js';
 
@@ -22,10 +20,10 @@ import ShareIcon from '@mui/icons-material/Share';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-const Component = ({className, post}) => {
+const Component = ({post}) => {
 
   return (
-    <div className={clsx(className, styles.root)}>
+    <div className={styles.root}>
       <Stack
         justifyContent="center"
         alignItems="center"
@@ -109,7 +107,6 @@ const Component = ({className, post}) => {
 };
 
 Component.propTypes = {
-  className: PropTypes.string,
   post: PropTypes.object,
 };
 

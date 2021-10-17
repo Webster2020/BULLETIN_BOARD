@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import clsx from 'clsx';
-
 import { connect } from 'react-redux';
 import { 
   getLoginStatus, 
@@ -16,48 +14,42 @@ import Button from '@material-ui/core/Button';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 
-const Component = (
-  {
-    className, 
-    registerDispatch,
-  }
-) => {
+const Component = ({registerDispatch}) => {
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [formVisible, setFormVisible] = useState(false);
-
-  const handleChangeName = (event) => {
-    setName(event.target.value);
-  };
-  const handleChangeEmail = (event) => {
-    setEmail(event.target.value);
-  };
-  const handleChangePassword = (event) => {
-    setPassword(event.target.value);
-  };
+  const [registerValues, setRegisterValues] = useState(
+    {
+      name: '',
+      email: '',
+      password: '',
+    }
+  );
 
   const clickHandlerShow = () => {
     setFormVisible(!formVisible);
   };
-
-  const clickHandlerConfirm = () => {
-    registerDispatch(
+  const handleChange = (value, type) => {
+    setRegisterValues(
       {
-        name: name,
-        email: email,
-        password: password,
+        ...registerValues,
+        [type]: value,
       }
     );
-    setName('');
-    setEmail('');
-    setPassword('');
+  };
+  const clickHandlerConfirm = () => {
+    registerDispatch(registerValues);
+    setRegisterValues(
+      {
+        name: '',
+        email: '',
+        password: '',
+      }
+    );
     setFormVisible(false);
   };
 
   return (
-    <div className={clsx(className, styles.root)}>
+    <div className={styles.root}>
       <Button variant="contained" onClick={() => clickHandlerShow()}>REGISTER</Button>
       {formVisible &&
         (<div className={styles.formWrapper}>
@@ -74,22 +66,22 @@ const Component = (
             <TextField
               id="outlined-name"
               label="Name (required)"
-              value={name}
-              onChange={handleChangeName}
+              value={registerValues.name}
+              onChange={event => handleChange(event.target.value, 'name')}
               fullWidth
             />
             <TextField
               id="outlined-email"
               label="Email (required)"
-              value={email}
-              onChange={handleChangeEmail}
+              value={registerValues.email}
+              onChange={event => handleChange(event.target.value, 'email')}
               fullWidth
             />
             <TextField
               id="outlined-password"
               label="Password (required)"
-              value={password}
-              onChange={handleChangePassword}
+              value={registerValues.password}
+              onChange={event => handleChange(event.target.value, 'password')}
               fullWidth
             />
           </Stack>
@@ -101,7 +93,6 @@ const Component = (
 };
 
 Component.propTypes = {
-  className: PropTypes.string,
   registerDispatch: PropTypes.func,
 };
 

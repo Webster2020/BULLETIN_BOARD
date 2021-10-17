@@ -1,7 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
-import clsx from 'clsx';
 
 import styles from './PostDelBar.module.scss';
 
@@ -12,10 +9,10 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
-const Component = ({className}) => {
+const Component = () => {
 
   return (
-    <div className={clsx(className, styles.root)}>
+    <div className={styles.root}>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
@@ -28,10 +25,6 @@ const Component = ({className}) => {
       </Box>
     </div>
   );
-};
-
-Component.propTypes = {
-  className: PropTypes.string,
 };
 
 export {

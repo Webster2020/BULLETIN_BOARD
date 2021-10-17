@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import clsx from 'clsx';
-
 import { connect } from 'react-redux';
 import { getLoginStatus, getUserData } from '../../../redux/loginRedux.js';
 import { createActionPostNewPost } from '../../../redux/postsRedux.js';
@@ -16,7 +14,6 @@ import Stack from '@mui/material/Stack';
 
 const Component = (
   {
-    className,
     author,
     created,
     location,
@@ -55,7 +52,7 @@ const Component = (
   };
 
   return (
-    <div className={clsx(className, styles.root)}>
+    <div className={styles.root}>
       <div className={styles.buttonWrapper}>
         <Button variant="outlined" size="large" onClick={() => clickHandler()}>SAVE</Button>
       </div>
@@ -69,7 +66,6 @@ const Component = (
 };
 
 Component.propTypes = {
-  className: PropTypes.string,
   author: PropTypes.string,
   title: PropTypes.string,
   text: PropTypes.string,

@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import clsx from 'clsx';
-
 import { connect } from 'react-redux';
 import { getLoginStatus, getUserData, createActionLogout } from '../../../redux/loginRedux.js';
 import { createActionSwitchPosts } from '../../../redux/postsRedux.js';
@@ -11,7 +9,7 @@ import styles from './LogoutButton.module.scss';
 
 import Button from '@material-ui/core/Button';
 
-const Component = ({className, setLogoutStatusDispatch, switchPostsDispatch}) => {
+const Component = ({setLogoutStatusDispatch, switchPostsDispatch}) => {
 
   const clickHandler = () => {
     setLogoutStatusDispatch(false);
@@ -19,14 +17,13 @@ const Component = ({className, setLogoutStatusDispatch, switchPostsDispatch}) =>
   };
 
   return (
-    <div className={clsx(className, styles.root)}>
+    <div className={styles.root}>
       <Button variant="contained" onClick={() => clickHandler()}>LOGOUT</Button>
     </div>
   );
 };
 
 Component.propTypes = {
-  className: PropTypes.string,
   setLogoutStatusDispatch: PropTypes.func,
   switchPostsDispatch: PropTypes.func,
 };

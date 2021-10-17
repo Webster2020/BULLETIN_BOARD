@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
 
-import clsx from 'clsx';
-
 import { connect } from 'react-redux';
 import { getPostByUser, getPostsState } from '../../../redux/postsRedux.js';
 
@@ -17,7 +15,6 @@ import List from '@mui/material/List';
 
 const Component = (
   {
-    className,
     posts, 
     user, 
     postsState, 
@@ -26,7 +23,7 @@ const Component = (
 ) => {
 
   return (
-    <div className={clsx(className, styles.root)}>
+    <div className={styles.root}>
       {posts.length > 0 ?
         (
           <Box   
@@ -56,7 +53,6 @@ const Component = (
 };
 
 Component.propTypes = {
-  className: PropTypes.string,
   posts: PropTypes.array,
   user: PropTypes.string,
   postsState: PropTypes.bool,

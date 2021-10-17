@@ -22,6 +22,11 @@ const Component = ({className, user}) => {
 
   const today = currentDate();
 
+  // const [options, setOptions] = useState({
+  //   title: '',
+  //   text: '' 
+  // });
+
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
   const [photo, setPhoto] = useState('');
@@ -105,6 +110,21 @@ const Component = ({className, user}) => {
     }
 
   };
+
+  // const validation = {
+  //   text = (value) => reg(/[0-9]/).test(value);
+  // }
+
+  // const changeValue = (value, type) => {
+  //   const isValid = valitadion[type](value);
+
+  //   if(isValid) {
+  //     setOptions({
+  //       ...options,
+  //       [type]: value
+  //     })
+  //   }
+  // }
 
   return (
     <div className={clsx(className, styles.root)}>

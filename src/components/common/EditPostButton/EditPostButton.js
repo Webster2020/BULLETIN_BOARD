@@ -1,27 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { createActionFetchPostById } from '../../../redux/postsRedux.js';
 
 import styles from './EditPostButton.module.scss';
 
-import { Link } from 'react-router-dom';
-
 import Button from '@material-ui/core/Button';
 import EditIcon from '@mui/icons-material/Edit';
 import Stack from '@mui/material/Stack';
 
-const Component = ({className, id, fetchPostByIdDispatch}) => {
+const Component = ({id, fetchPostByIdDispatch}) => {
 
   const clickHandler = () => {
     fetchPostByIdDispatch(id);
   };
 
   return (
-    <div className={clsx(className, styles.root)}>
+    <div className={styles.root}>
       <Stack
         direction={{ xs: 'column', sm: 'row' }}
         spacing={{ xs: 1, sm: 2, md: 4 }}
@@ -40,13 +37,12 @@ const Component = ({className, id, fetchPostByIdDispatch}) => {
 };
 
 Component.propTypes = {
-  className: PropTypes.string,
   id: PropTypes.string,
   fetchPostByIdDispatch: PropTypes.func,
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchPostByIdDispatch: (id) => dispatch(createActionFetchPostById(id)),
+  fetchPostByIdDispatch: id => dispatch(createActionFetchPostById(id)),
 });
 
 const Container = connect(null, mapDispatchToProps)(Component);

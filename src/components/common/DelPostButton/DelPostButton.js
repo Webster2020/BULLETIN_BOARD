@@ -1,27 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { createActionDeletePost } from '../../../redux/postsRedux.js';
 
 import styles from './DelPostButton.module.scss';
 
-import { Link } from 'react-router-dom';
-
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Stack from '@mui/material/Stack';
 
-const Component = ({className, id, fetchPostDeleteDispatch}) => {
+const Component = ({id, fetchPostDeleteDispatch}) => {
 
   const clickHandler = () => {
     fetchPostDeleteDispatch(id);
   };
 
   return (
-    <div className={clsx(className, styles.root)}>
+    <div className={styles.root}>
       <Stack
         direction={{ xs: 'column', sm: 'row' }}
         spacing={{ xs: 1, sm: 2, md: 4 }}
@@ -40,7 +37,6 @@ const Component = ({className, id, fetchPostDeleteDispatch}) => {
 };
 
 Component.propTypes = {
-  className: PropTypes.string,
   id: PropTypes.string,
   fetchPostDeleteDispatch: PropTypes.func,
 };

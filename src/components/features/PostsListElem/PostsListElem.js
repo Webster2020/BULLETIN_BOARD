@@ -1,14 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { createActionFetchPostById } from '../../../redux/postsRedux.js';
 
 import styles from './PostsListElem.module.scss';
-
-import { Link } from 'react-router-dom';
 
 import { blue } from '@mui/material/colors';
 import Avatar from '@mui/material/Avatar';
@@ -16,7 +13,6 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 
 const Component = (
   {
-    className, 
     id, 
     post, 
     fetchPostByIdDispatch,
@@ -28,7 +24,7 @@ const Component = (
   };
 
   return (
-    <div className={clsx(className, styles.root)}>
+    <div className={styles.root}>
       <Link to={`/post/${id}`} style={{textDecoration: 'none'}}> 
         <button 
           className={styles.postButton} 
@@ -58,11 +54,9 @@ const Component = (
 };
 
 Component.propTypes = {
-  className: PropTypes.string,
   id: PropTypes.string,
   post: PropTypes.object,
   fetchPostByIdDispatch: PropTypes.func,
-  fetchPostDeleteDispatch: PropTypes.func,
 };
 
 const mapDispatchToProps = dispatch => ({

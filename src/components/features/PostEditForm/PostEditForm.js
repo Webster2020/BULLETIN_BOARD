@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import clsx from 'clsx';
+import { currentDate } from '../../../utils/currentDate';
 
 import { connect } from 'react-redux';
 import { getAll, getFetchStatus } from '../../../redux/postsRedux.js';
@@ -11,14 +11,11 @@ import styles from './PostEditForm.module.scss';
 import { SaveEditedPostButton } from '../../common/SaveEditedPostButton/SaveEditedPostButton';
 import { SinglePost} from '../../features/SinglePost/SinglePost';
 
-import { currentDate } from '../../../utils/currentDate';
-
 import Checkbox from '@mui/material/Checkbox';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 
-
-const Component = ({className, id, post, activeFetch}) => {
+const Component = ({id, post, activeFetch}) => {
 
   const today = currentDate();
 
@@ -83,7 +80,7 @@ const Component = ({className, id, post, activeFetch}) => {
   };
 
   return (
-    <div className={clsx(className, styles.root)}>
+    <div className={styles.root}>
       <div className={styles.row}>
 
         <div className={styles.column}>
@@ -289,7 +286,6 @@ const Component = ({className, id, post, activeFetch}) => {
 };
 
 Component.propTypes = {
-  className: PropTypes.string,
   id: PropTypes.string,
   post: PropTypes.object,
   activeFetch: PropTypes.bool,

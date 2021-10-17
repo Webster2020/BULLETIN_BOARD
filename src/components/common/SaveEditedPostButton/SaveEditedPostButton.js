@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { getLoginStatus, getUserData } from '../../../redux/loginRedux.js';
@@ -9,15 +8,12 @@ import { createActionPutEditPost } from '../../../redux/postsRedux.js';
 
 import styles from './SaveEditedPostButton.module.scss';
 
-import { Link } from 'react-router-dom';
-
 import Button from '@material-ui/core/Button';
 
 
 const Component = (
   {
     id,
-    className, 
     post,
     location,
     phone,
@@ -46,7 +42,7 @@ const Component = (
   };
 
   return (
-    <div className={clsx(className, styles.root)}>
+    <div className={styles.root}>
       <Link to={`/postedited`} style={{textDecoration: 'none'}}>
         <Button variant="outlined" size="large" onClick={() => clickHandler()}>SAVE</Button>
       </Link>
@@ -56,7 +52,6 @@ const Component = (
 
 Component.propTypes = {
   id: PropTypes.string,
-  className: PropTypes.string,
   post: PropTypes.object,
   location: PropTypes.string,
   phone: PropTypes.string,

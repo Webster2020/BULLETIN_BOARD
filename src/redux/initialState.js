@@ -4,8 +4,8 @@ export const initialState = {
     admin: false,
     data: {
       name: '',
-      surname: '',
       email: '',
+      password: '',
     },
   },
   posts: {

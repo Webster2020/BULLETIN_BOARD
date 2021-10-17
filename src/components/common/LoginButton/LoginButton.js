@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import clsx from 'clsx';
-
 import { connect } from 'react-redux';
 import { 
   getLoginStatus, 
@@ -20,41 +18,39 @@ import TextField from '@mui/material/TextField';
 
 const Component = (
   {
-    className, 
     setLoginStatusDispatch, 
     loginDispatch,
     // loginWithGoogleDispatch,
   }
 ) => {
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [formVisible, setFormVisible] = useState(false);
-
-  const handleChangeEmail = (event) => {
-    setEmail(event.target.value);
-  };
-  const handleChangePassword = (event) => {
-    setPassword(event.target.value);
-  };
+  const [loginValues, setLoginValues] = useState(
+    {
+      email: '',
+      password: '',
+    }
+  );
 
   const clickHandlerShow = () => {
     setFormVisible(!formVisible);
   };
-
-  const clickHandlerConfirm = () => {
-    setLoginStatusDispatch(true);
-    loginDispatch(
+  const handleChange = (value, type) => {
+    setLoginValues(
       {
-        email: email, 
-        password: password,
+        ...loginValues,
+        [type]: value,
       }
     );
+  };
+  const clickHandlerConfirm = () => {
+    setLoginStatusDispatch(true);
+    loginDispatch(loginValues);
     // loginWithGoogleDispatch();
   };
 
   return (
-    <div className={clsx(className, styles.root)}>
+    <div className={styles.root}>
       <Button variant="contained" onClick={() => clickHandlerShow()}>LOGIN</Button>
       {formVisible &&
         (<div className={styles.formWrapper}>
@@ -71,15 +67,15 @@ const Component = (
             <TextField
               id="outlined-email"
               label="email"
-              value={email}
-              onChange={handleChangeEmail}
+              value={loginValues.email}
+              onChange={event => handleChange(event.target.value, 'email')}
               fullWidth
             />
             <TextField
               id="outlined-password"
               label="password"
-              value={password}
-              onChange={handleChangePassword}
+              value={loginValues.password}
+              onChange={event => handleChange(event.target.value, 'password')}
               fullWidth
             />
           </Stack>
@@ -91,7 +87,6 @@ const Component = (
 };
 
 Component.propTypes = {
-  className: PropTypes.string,
   setLoginStatusDispatch: PropTypes.func,
   loginDispatch: PropTypes.func,
   // loginWithGoogleDispatch: PropTypes.func,
@@ -104,7 +99,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   setLoginStatusDispatch: bool => dispatch(createActionLogin(bool)),
-  loginDispatch: (user) => dispatch(createActionLoginDB(user)),
+  loginDispatch: user => dispatch(createActionLoginDB(user)),
   // loginWithGoogleDispatch: () => dispatch(createActionLoginWithGoogle()),
 });
 
