@@ -7,7 +7,7 @@ BULLETIN BOARD is full stack application to adding announcement. This project wa
 ![](BULLETIN_BOARD_2.gif)
 
 ## Link
-https://olx.webster2020.com/
+http://olx.webster2020.usermd.net/
 
 ## How to start:
 1. git clone git@github.com:Webster2020/BULLETIN_BOARD.git

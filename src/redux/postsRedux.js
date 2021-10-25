@@ -43,7 +43,8 @@ export const createActionFetchPosts = (posts, refetch, activeFetch) => {
       if(posts.length < 1 && !activeFetch) {
         console.log('first fetch');
         axios
-          .get('http://localhost:8000/api/posts')
+          .get('http://olx.webster2020.usermd.net/api/posts')
+          // .get('http://localhost:8000/api/posts')
           .then(res => {
             dispatch(fetchSuccess(res.data));
           })
@@ -54,7 +55,8 @@ export const createActionFetchPosts = (posts, refetch, activeFetch) => {
     } else {
       console.log('refetch');
       axios
-        .get('http://localhost:8000/api/posts')
+        .get('http://olx.webster2020.usermd.net/api/posts')
+        // .get('http://localhost:8000/api/posts')
         .then(res => {
           dispatch(fetchSuccess(res.data));
         })
@@ -70,7 +72,8 @@ export const createActionFetchPostById = (id) => {
     dispatch(fetchStarted());
 
     axios
-      .get(`http://localhost:8000/api/posts/${id}`)
+      .get(`http://olx.webster2020.usermd.net/api/posts/${id}`)
+      // .get(`http://localhost:8000/api/posts/${id}`)
       .then(res => {
         dispatch(fetchSuccess(res.data));
       })
@@ -84,7 +87,8 @@ export const createActionPostNewPost = (newPost) => {
   return (dispatch, getState) => {
 
     axios
-      .post(`http://localhost:8000/api/posts`, newPost)
+      .post(`http://olx.webster2020.usermd.net/api/posts`, newPost)
+      // .post(`http://localhost:8000/api/posts`, newPost)
       .then(res => {
         console.log(res.data);
         dispatch(createActionAddPost(res.data));
@@ -99,7 +103,8 @@ export const createActionPutEditPost = (id, editedPost) => {
   return (dispatch, getState) => {
 
     axios
-      .put(`http://localhost:8000/api/posts/${id}`, editedPost)
+      .put(`http://olx.webster2020.usermd.net/api/posts/${id}`, editedPost)
+      // .put(`http://localhost:8000/api/posts/${id}`, editedPost)
       .then(res => {
         console.log(res.data);
         dispatch(createActionEditPost(editedPost));
@@ -115,7 +120,8 @@ export const createActionDeletePost = (id) => {
     dispatch(fetchStarted());
 
     axios
-      .delete(`http://localhost:8000/api/posts/${id}`)
+      .delete(`http://olx.webster2020.usermd.net/api/posts/${id}`)
+      // .delete(`http://localhost:8000/api/posts/${id}`)
       .then(res => {
         console.log(res.data);
         dispatch(delSuccess(true));

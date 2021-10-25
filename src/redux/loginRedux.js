@@ -41,7 +41,8 @@ export const createActionUser = payload => ({ payload, type: USER });
 export const createActionRegisterDB = (newUser) => {
   return () => {
     axios
-      .post(`http://localhost:8000/user/register`, newUser)
+      .post(`http://olx.webster2020.usermd.net/user/register`, newUser)
+      // .post(`http://localhost:8000/user/register`, newUser)
       .then(res => {
         console.log('redux register OK');
         console.log(res.data);
@@ -57,7 +58,8 @@ export const createActionLoginDB = (user) => {
   return (dispatch, getState) => {
 
     axios
-      .post(`http://localhost:8000/user/login`, user)
+      .post(`http://olx.webster2020.usermd.net/user/login`, user)
+      // .post(`http://localhost:8000/user/login`, user)
       .then(res => {
         console.log('redux login OK');
         console.log(res.data);

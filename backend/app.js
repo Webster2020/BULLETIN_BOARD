@@ -55,7 +55,9 @@ app.use('*', (req, res) => {
 });
 
 /* MONGOOSE */
-mongoose.connect('mongodb://localhost:27017/bulletinBoard', { useNewUrlParser: true, useUnifiedTopology: true });
+// const temp = 'mongodb://localhost:27017/bulletinBoard';
+
+mongoose.connect('mongodb://mo1513_olx:Mo1513_olx@mongo26.mydevil.net/mo1513_olx', { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.once('open', () => {
   console.log('Successfully connected to the database');
